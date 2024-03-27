@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 z-[9999] flex h-20 w-full shrink-0 items-center px-4 md:px-6 row-span-1">
+    <header className="fixed top-0 z-10 flex h-20 w-full shrink-0 items-center px-4 md:px-6">
       <Sheet>
         <SheetTrigger asChild>
           <Button className="lg:hidden" size="icon" variant="outline">
