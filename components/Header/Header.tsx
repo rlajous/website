@@ -44,21 +44,21 @@ export default function Header() {
         <Logo className={cn("h-11", styles.logo)} />
         <span className="sr-only">2</span>
       </Link>
-      <NavigationMenu className="hidden lg:flex">
-        <NavigationMenuList className="flex space-x-4">
-          <NavigationMenuLink asChild>
-            <Link
-              className="text-sm font-semibold"
-              href="/resume.pdf"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Resume
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuList>
-      </NavigationMenu>
       <div className="ml-auto flex items-center gap-4">
+        <NavigationMenu className="hidden lg:flex">
+          <NavigationMenuList className="flex space-x-4">
+            <NavigationMenuLink asChild>
+              <Link
+                className="text-sm font-semibold"
+                href="/resume.pdf"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Resume
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuList>
+        </NavigationMenu>
         <ModeToggle />
       </div>
     </header>
