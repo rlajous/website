@@ -1,0 +1,4 @@
+.logo path {
+  stroke: hsl(var(--primary)) !important;
+  fill: hsl(var(--primary)) !important;
+}
