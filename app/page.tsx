@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center px-4 pt-24 text-center md:px-8 lg:px-16 xl:px-32 row-span-8 lg:row-span-11 ">
+    <div className="flex flex-col items-center justify-center px-4 text-center md:px-8 lg:px-16 xl:px-32 row-span-8 lg:row-span-11 ">
       <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
         Hi, I&apos;m Rodrigo 👋
       </h1>

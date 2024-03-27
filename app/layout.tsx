@@ -28,7 +28,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <main>
-            <div className="min-h-svh grid grid-rows-10 lg:grid-rows-12">
+            <div className="min-h-svh grid grid-rows-10 lg:grid-rows-12 pt-20">
               <Header />
               {children}
               <Footer />
