@@ -1,0 +1,79 @@
+export const jobs = [
+  {
+    position: "Senior Software Engineer",
+    company: "POAP",
+    period: "May 2021 — Present",
+    responsibilities: [
+      "Worked to solve complex problems using the latest in Cloud, Mobile, and Web Technologies.",
+      "Generated and maintained a public library called POAP.js, where people could integrate with the ecosystem seamlessly.",
+    ],
+    technologies: ["JavaScript", "Node.js", "Cloud Services"],
+  },
+  {
+    position: "Full Stack Developer",
+    company: "Quipu Market",
+    period: "April 2020 — May 2021",
+    responsibilities: [
+      "Created the standard for the Front-end design system with CSS.",
+      "Developed a series of courses for all other developers to understand how the library worked.",
+      "Created a private components library, which was shared between all apps.",
+    ],
+    technologies: ["CSS", "JavaScript", "React"],
+  },
+  {
+    position: "Full Stack Developer",
+    company: "Turismocity",
+    period: "October 2019 — April 2020",
+    responsibilities: [
+      "Gained extensive experience in using and developing proprietary API and integration with external API.",
+      "Worked to meet the expectations of stakeholders and users continually.",
+      "In charge of all new page designs.",
+    ],
+    technologies: ["APIs", "JavaScript", "React"],
+  },
+  {
+    position: "Frontend Developer",
+    company: "WOLOX",
+    period: "June 2018 — October 2019",
+    responsibilities: [
+      "Expanded my skill set by constantly changing technology in Front-end tools such as Angular, React, and Vue.js, which has given me great adaptability.",
+    ],
+    technologies: ["Angular", "React", "Vue.js"],
+  },
+];
+
+export const startups = [
+  {
+    position: "Founding Member",
+    company: "Dome",
+    period: "April 2022 — December 2022",
+    responsibilities: [
+      "Created the whole application from scratch, including CI/CD pipelines for both front-end and back-end applications.",
+    ],
+    technologies: [
+      "Software Architecture",
+      "Full Stack Development",
+      "Management",
+      "Cloud Services",
+      "Leadership",
+      "Blockchain",
+    ],
+  },
+  {
+    position: "Founding Member",
+    company: "PLOTI",
+    period: "July 2018 — March 2019",
+    responsibilities: [
+      "Managed front-end and back-end development.",
+      "Worked to solve complex problems using the latest Cloud, Mobile, and Web Technologies",
+    ],
+    technologies: [
+      "Software Architecture",
+      "Full Stack Development",
+      "Management",
+      "Cloud Services",
+      "Leadership",
+      "GPS Technologies",
+    ],
+  },
+];

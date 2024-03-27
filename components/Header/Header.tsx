@@ -37,6 +37,12 @@ export default function Header() {
             >
               Resume
             </Link>
+            <Link
+              className="flex w-full items-center py-2 text-lg font-semibold"
+              href="/experience"
+            >
+              Experience
+            </Link>
           </div>
         </SheetContent>
       </Sheet>
@@ -55,6 +61,11 @@ export default function Header() {
                 target="_blank"
               >
                 Resume
+              </Link>
+            </NavigationMenuLink>
+            <NavigationMenuLink asChild>
+              <Link className="text-sm font-semibold" href="/experience">
+                Experience
               </Link>
             </NavigationMenuLink>
           </NavigationMenuList>
