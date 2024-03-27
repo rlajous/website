@@ -17,7 +17,7 @@ const Experience: React.FC<ExperienceProps> = ({
   technologies,
 }) => {
   return (
-    <div className="bg-white text-black p-6 rounded-lg shadow-lg flex flex-col md:flex-row">
+    <div className="bg-white text-black dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row">
       <div className="md:w-1/4 pr-4 border-r">
         <h2 className="text-xl font-semibold">{period}</h2>
       </div>
