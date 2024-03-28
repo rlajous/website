@@ -43,6 +43,12 @@ export default function Header() {
             >
               Experience
             </Link>
+            <Link
+              className="flex w-full items-center py-2 text-lg font-semibold"
+              href="/contact"
+            >
+              Contact
+            </Link>
           </div>
         </SheetContent>
       </Sheet>
@@ -66,6 +72,11 @@ export default function Header() {
             <NavigationMenuLink asChild>
               <Link className="text-sm font-semibold" href="/experience">
                 Experience
+              </Link>
+            </NavigationMenuLink>
+            <NavigationMenuLink asChild>
+              <Link className="text-sm font-semibold" href="/contact">
+                Contact
               </Link>
             </NavigationMenuLink>
           </NavigationMenuList>
