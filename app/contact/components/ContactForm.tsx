@@ -12,10 +12,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createContact } from "@/services/contacts";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -32,10 +36,37 @@ const ContactForm: React.FC = () => {
       message: "",
     },
   });
+  const { toast } = useToast();
+
   const { handleSubmit, control } = form;
 
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
   async function onSubmit(values: z.infer<typeof schema>) {
-    console.log(values);
+    setIsSubmitting(true);
+
+    try {
+      await createContact(values);
+      toast({
+        variant: "default",
+        title: "Message sent!",
+        description:
+          "Your message has been sent successfully. I'll get back to you soon.",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        action: (
+          <ToastAction altText="Try again" onClick={handleSubmit(onSubmit)}>
+            Try again
+          </ToastAction>
+        ),
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -74,17 +105,14 @@ const ContactForm: React.FC = () => {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Textarea
-                  className="min-h-[100px]"
-                  placeholder="Enter your message"
-                  {...field}
-                />
+                <Textarea placeholder="Enter your message" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="w-full" type="submit">
+        <Button className="w-full" type="submit" disabled={isSubmitting}>
+          {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Send message
         </Button>
       </form>
