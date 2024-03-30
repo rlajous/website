@@ -1,11 +1,21 @@
 # Personal Portfolio
 
-Welcome to the repository for my personal portfolio website. This portfolio is designed to showcase my skills, projects, and professional journey. It's built with modern web technologies and includes a contact form with automated email responses for improved interaction with visitors.
+Welcome to the repository for my personal portfolio website. This portfolio showcases my skills, projects, and professional journey.
+
+## Technologies Used
+
+This project is built using a powerful stack of technologies for web development:
+
+- [**Next.js**](https://nextjs.org/): A React framework for production.
+- [**TypeScript**](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
+- [**Tailwind CSS**](https://tailwindcss.com/): A utility-first CSS framework for creating custom designs.
+- [**Supabase**](https://supabase.io/): An open-source Firebase alternative providing backend services.
+- [**Deno**](https://deno.land/): A modern runtime for JavaScript and TypeScript, used for serverless functions.
 
 ## Features
 
 - **Portfolio Showcase**: A curated selection of my projects and contributions, highlighting my skills in web development, design, and other areas of expertise.
-- **Contact Form**: An easy way for visitors to leave messages or inquiries, directly integrated into my email.
+- **Contact Form**: This is an easy way for visitors to leave messages or inquiries, directly integrated into my email.
 - **Automated Email Notifications**: Automated responses to contact form submissions, ensuring that every message is acknowledged and I'm promptly notified.
 
 ## Recent Enhancements
@@ -43,7 +53,7 @@ This site is configured for deployment on [Vercel](https://vercel.com/), leverag
 
 ## Contributing
 
-Feedback and contributions are always welcome! Please open an issue or submit a pull request with any suggestions, questions, or enhancements.
+Feedback and contributions are always welcome! Please open an issue or submit a pull request with suggestions, questions, or enhancements.
 
 ## License
 
