@@ -1,8 +1,3 @@
-Absolutely! Here's the markdown content for your README, ready for you to copy and paste into your repository.
-
-markdown
-Copy code
-
 # Personal Portfolio
 
 Welcome to the repository for my personal portfolio website. This portfolio is designed to showcase my skills, projects, and professional journey. It's built with modern web technologies and includes a contact form with automated email responses for improved interaction with visitors.
