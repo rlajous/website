@@ -28,16 +28,22 @@ This project is built using a powerful stack of technologies for web development
 
 To run this project locally:
 
-1. Ensure you have [Node.js](https://nodejs.org/) installed.\n2. Clone the repository:
+1. **Node Version**: This project specifies a Node.js version in a `.nvmrc` file to ensure compatibility. If you have `nvm` (Node Version Manager) installed, set your Node version to match the project by running:
+
+   ```bash
+   nvm use
+   ```
+   If you don't have nvm installed, you can follow the installation instructions on the nvm GitHub page.
+2. Clone the repository:
    ```bash
     git clone https://github.com/rlajous/website.git
     cd website
    ```
-2. Install dependencies:
+3. Install dependencies:
    ```bash
    npm install
    ```
-3. Start the development server:
+4. Start the development server:
    ```bash
    npm start
    ```
