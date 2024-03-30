@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Absolutely! Here's the markdown content for your README, ready for you to copy and paste into your repository.
+
+markdown
+Copy code
+
+# Personal Portfolio
+
+Welcome to the repository for my personal portfolio website. This portfolio is designed to showcase my skills, projects, and professional journey. It's built with modern web technologies and includes a contact form with automated email responses for improved interaction with visitors.
+
+## Features
+
+- **Portfolio Showcase**: A curated selection of my projects and contributions, highlighting my skills in web development, design, and other areas of expertise.
+- **Contact Form**: An easy way for visitors to leave messages or inquiries, directly integrated into my email.
+- **Automated Email Notifications**: Automated responses to contact form submissions, ensuring that every message is acknowledged and I'm promptly notified.
+
+## Recent Enhancements
+
+- **Deno-based Email Automation**: Integration with Deno runtime and Supabase Edge Functions for server-side logic handling email notifications.
+- **Secure Environment Variable Management**: Utilizes Supabase for securely managing and accessing API keys and sensitive information required for email automation.
+- **Improved User Interaction**: Immediate feedback to users upon submitting the contact form, enhancing the overall user experience.
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Ensure you have [Node.js](https://nodejs.org/) installed.\n2. Clone the repository:
+   ```bash
+    git clone https://github.com/rlajous/website.git
+    cd website
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm start
+   ```
+   The site should now be running on [http://localhost:3000](http://localhost:3000).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This site is configured for deployment on [Vercel](https://vercel.com/), leveraging its seamless integration with GitHub for CI/CD. To deploy your version:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Fork this repository.
+2. Connect your fork to Vercel.
+3. Set up environment variables as needed in Vercel's project settings.
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Feedback and contributions are always welcome! Please open an issue or submit a pull request with any suggestions, questions, or enhancements.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is open-source and available under the [MIT License](LICENSE).
