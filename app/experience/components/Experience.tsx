@@ -25,7 +25,7 @@ const Experience: React.FC<ExperienceProps> = ({
         <h3 className="text-lg font-semibold">
           {position} · {company}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 smd:hidden">{period}</p>
+        <p className="text-gray-600 dark:text-gray-300 md:hidden">{period}</p>
         <ul className="list-disc ml-5 space-y-1">
           {responsibilities.map((item, itemIndex) => (
             <li key={itemIndex} className="mt-2 text-sm">
