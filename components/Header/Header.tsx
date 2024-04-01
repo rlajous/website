@@ -45,6 +45,12 @@ export default function Header() {
             </Link>
             <Link
               className="flex w-full items-center py-2 text-lg font-semibold"
+              href="/projects"
+            >
+              Projects
+            </Link>
+            <Link
+              className="flex w-full items-center py-2 text-lg font-semibold"
               href="/contact"
             >
               Contact
@@ -72,6 +78,11 @@ export default function Header() {
             <NavigationMenuLink asChild>
               <Link className="text-sm font-semibold" href="/experience">
                 Experience
+              </Link>
+            </NavigationMenuLink>
+            <NavigationMenuLink asChild>
+              <Link className="text-sm font-semibold" href="/projects">
+                Projects
               </Link>
             </NavigationMenuLink>
             <NavigationMenuLink asChild>
