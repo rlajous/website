@@ -1,5 +1,8 @@
-export const jobs = [
+import { Experience } from "@/domains/Experience";
+
+export const jobs: Experience[] = [
   {
+    id: 1,
     position: "Senior Software Engineer",
     company: "POAP",
     period: "May 2021 — Present",
@@ -10,6 +13,7 @@ export const jobs = [
     technologies: ["JavaScript", "Node.js", "Cloud Services"],
   },
   {
+    id: 2,
     position: "Full Stack Developer",
     company: "Quipu Market",
     period: "April 2020 — May 2021",
@@ -21,6 +25,7 @@ export const jobs = [
     technologies: ["CSS", "JavaScript", "React"],
   },
   {
+    id: 3,
     position: "Full Stack Developer",
     company: "Turismocity",
     period: "October 2019 — April 2020",
@@ -32,6 +37,7 @@ export const jobs = [
     technologies: ["APIs", "JavaScript", "React"],
   },
   {
+    id: 4,
     position: "Frontend Developer",
     company: "WOLOX",
     period: "June 2018 — October 2019",
@@ -42,8 +48,9 @@ export const jobs = [
   },
 ];
 
-export const startups = [
+export const startups: Experience[] = [
   {
+    id: 1,
     position: "Founding Member",
     company: "Dome",
     period: "April 2022 — December 2022",
@@ -60,6 +67,7 @@ export const startups = [
     ],
   },
   {
+    id: 2,
     position: "Founding Member",
     company: "PLOTI",
     period: "July 2018 — March 2019",

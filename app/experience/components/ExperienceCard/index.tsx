@@ -1,15 +1,8 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
+import { Experience } from "@/domains/Experience";
 
-interface ExperienceProps {
-  position: string;
-  company: string;
-  period: string;
-  responsibilities: string[];
-  technologies: string[];
-}
-
-const Experience: React.FC<ExperienceProps> = ({
+const ExperienceCard: React.FC<Experience> = ({
   position,
   company,
   period,
@@ -21,7 +14,7 @@ const Experience: React.FC<ExperienceProps> = ({
       <div className="md:w-1/4 pr-4 border-r hidden md:block">
         <h2 className="text-xl font-semibold">{period}</h2>
       </div>
-      <div className="md:w-3/4 pl-4">
+      <div className="md:w-3/4 md:pl-4">
         <h3 className="text-lg font-semibold">
           {position} · {company}
         </h3>
@@ -45,4 +38,4 @@ const Experience: React.FC<ExperienceProps> = ({
   );
 };
 
-export default Experience;
+export default ExperienceCard;
