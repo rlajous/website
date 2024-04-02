@@ -1,11 +1,14 @@
 import React from "react";
+import { cn } from "@/lib/utils";
+import styles from "./Logo.module.css";
 
-const Logo: React.FC<any> = (props) => {
+const Logo: React.FC<any> = ({ className, ...props }) => {
   return (
     <svg
       {...props}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 589.64 617.72"
+      className={cn(styles.logo, className)}
     >
       <g id="Capa_2" data-name="Capa 2">
         <g id="Capa_1-2" data-name="Capa 1">

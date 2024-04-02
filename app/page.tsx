@@ -1,4 +1,7 @@
+import Github from "@/components/icons/Github";
 import { Button } from "@/components/ui/button";
+import { LinkedinIcon } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -17,6 +20,24 @@ export default function Home() {
         With experience in the design, installation, testing,
         <br className="hidden md:inline" /> and maintenance of web systems.
       </p>
+      <div className="flex flex-wrap gap-2 mt-3">
+        <Link
+          href="https://github.com/rlajous"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <Github className="h-7" />
+          <span className="sr-only">Github</span>
+        </Link>
+        <Link
+          href="https://www.linkedin.com/in/rodrigo-manuel-navarro-lajous/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <LinkedinIcon className="h-7 w-7" />
+          <span className="sr-only">LinkedIn</span>
+        </Link>
+      </div>
       <Button asChild className="mt-8" variant="default">
         <a href="/resume.pdf" download>
           Download Resume

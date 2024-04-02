@@ -10,8 +10,6 @@ import {
 import { MenuIcon } from "lucide-react";
 import Logo from "../icons/Logo";
 import { ModeToggle } from "../ModeToggle/ModeToggle";
-import styles from "./Header.module.css";
-import { cn } from "@/lib/utils";
 
 export default function Header() {
   return (
@@ -25,7 +23,7 @@ export default function Header() {
         </SheetTrigger>
         <SheetContent side="left">
           <Link href="/">
-            <Logo className={cn("h-11", styles.logo)} />
+            <Logo className="h-11" />
             <span className="sr-only">2</span>
           </Link>
           <div className="grid gap-2 py-6">
@@ -59,7 +57,7 @@ export default function Header() {
         </SheetContent>
       </Sheet>
       <Link className="mr-6 hidden lg:flex" href="/">
-        <Logo className={cn("h-11", styles.logo)} />
+        <Logo className="h-11" />
         <span className="sr-only">2</span>
       </Link>
       <div className="ml-auto flex items-center gap-4">
