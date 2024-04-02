@@ -2,20 +2,18 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import Github from "@/components/icons/Github";
-import { cn } from "@/lib/utils";
-import styles from "./ProjectCard.module.css";
 import { Globe } from "lucide-react";
 import { Project } from "@/domains/Project";
 
 const ProjectCard: React.FC<Project> = ({
   name,
   company,
-  website = "https://navarrolajous.com",
-  github = "https://github.com/rlajous",
+  website,
+  github,
   period,
-  description = "A project description",
+  description,
   technologies,
-  banner = "https://generated.vusercontent.net/placeholder.svg",
+  banner,
 }) => {
   return (
     <Link
@@ -52,7 +50,7 @@ const ProjectCard: React.FC<Project> = ({
           {github && website && (
             <div className="flex flex-wrap gap-2 mt-3">
               <Link href={github}>
-                <Github className={cn("h-5", styles.github)} />
+                <Github className="h-5" />
               </Link>
               <Link href={website}>
                 <Globe />
