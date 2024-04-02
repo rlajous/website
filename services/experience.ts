@@ -10,7 +10,7 @@ export const jobs: Experience[] = [
       "Worked to solve complex problems using the latest in Cloud, Mobile, and Web Technologies.",
       "Generated and maintained a public library called POAP.js, where people could integrate with the ecosystem seamlessly.",
     ],
-    technologies: ["JavaScript", "Node.js", "Cloud Services"],
+    technologies: ["Solidity", "Node.js", "AWS", "Next.js", "TypeScript", "NPM", "Cloudflare", "Docker", "aws cdk"],
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ export const jobs: Experience[] = [
       "Developed a series of courses for all other developers to understand how the library worked.",
       "Created a private components library, which was shared between all apps.",
     ],
-    technologies: ["CSS", "JavaScript", "React"],
+    technologies: ["Angular", "NPM", "Firebase", "CSS"],
   },
   {
     id: 3,
@@ -34,7 +34,7 @@ export const jobs: Experience[] = [
       "Worked to meet the expectations of stakeholders and users continually.",
       "In charge of all new page designs.",
     ],
-    technologies: ["APIs", "JavaScript", "React"],
+    technologies: ["APIs", "JavaScript", "Vue.js"],
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ export const jobs: Experience[] = [
     responsibilities: [
       "Expanded my skill set by constantly changing technology in Front-end tools such as Angular, React, and Vue.js, which has given me great adaptability.",
     ],
-    technologies: ["Angular", "React", "Vue.js"],
+    technologies: ["Angular", "React", "Vue.js","Bash","AWS"],
   },
 ];
 
@@ -58,10 +58,12 @@ export const startups: Experience[] = [
       "Created the whole application from scratch, including CI/CD pipelines for both front-end and back-end applications.",
     ],
     technologies: [
-      "Software Architecture",
-      "Full Stack Development",
+      "Next.js",
+      "TypeScript",
+      "Nest.js",
       "Management",
-      "Cloud Services",
+      "AWS",
+      "Vercel",
       "Leadership",
       "Blockchain",
     ],
@@ -76,8 +78,9 @@ export const startups: Experience[] = [
       "Worked to solve complex problems using the latest Cloud, Mobile, and Web Technologies",
     ],
     technologies: [
-      "Software Architecture",
-      "Full Stack Development",
+      "AWS",
+      "React.js",
+      "Express.js",
       "Management",
       "Cloud Services",
       "Leadership",
