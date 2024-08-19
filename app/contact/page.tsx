@@ -27,7 +27,7 @@ export default function Component() {
             href="mailto:odrigo@lajous.com.ar"
           >
             <MailIcon className="h-6 w-6 mr-2" />
-            rodrigo@lajous.com.ar
+            rodrigolajous@gmail.com
             <span className="sr-only">Email</span>
           </a>
         </div>
