@@ -19,7 +19,7 @@ export default function Component() {
             href="#"
           >
             <LinkedinIcon className="h-6 w-6 mr-2" />
-            /rodrigo-manuel-navarro-lajous
+            /rodrigo-lajous
             <span className="sr-only">LinkedIn</span>
           </Link>
           <a
