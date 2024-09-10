@@ -27,7 +27,7 @@ const ProjectCard: React.FC<Project> = ({
           <img
             alt="Project 1"
             className="object-cover w-full md:w-auto  md:h-44"
-            src={banner}
+            src={"/assets/" + banner}
             style={{
               aspectRatio: "2 / 1",
               objectFit: "fill",

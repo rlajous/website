@@ -93,6 +93,17 @@ export const hobby: Project[] = [
     technologies: ["Unity", "S3", "Cloudfront", "Route 53"],
     banner: "/funnis.png",
   },
+  {
+    id: 3,
+    name: "Windows 98 - Web 3 Edition",
+    company: "Personal Project",
+    github: "https://github.com/rlajous/windows-98-web3",
+    website: "https://windows98.navarrolajous.com",
+    period: "2024",
+    description: "A web version of Windows 98 with a Web 3 twist.",
+    technologies: ["Next.js", "React", "Wagmi", "Vercel"],
+    banner: "/windows98.gif",
+  },
 ];
 
 export const opensource: Project[] = [
