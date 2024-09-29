@@ -9,7 +9,6 @@ This project is built using a powerful stack of technologies for web development
 - [**Next.js**](https://nextjs.org/): A React framework for production.
 - [**TypeScript**](https://www.typescriptlang.org/): A typed superset of JavaScript that compiles to plain JavaScript.
 - [**Tailwind CSS**](https://tailwindcss.com/): A utility-first CSS framework for creating custom designs.
-- [**Supabase**](https://supabase.io/): An open-source Firebase alternative providing backend services.
 - [**Deno**](https://deno.land/): A modern runtime for JavaScript and TypeScript, used for serverless functions.
 
 ## Features
@@ -20,8 +19,6 @@ This project is built using a powerful stack of technologies for web development
 
 ## Recent Enhancements
 
-- **Deno-based Email Automation**: Integration with Deno runtime and Supabase Edge Functions for server-side logic handling email notifications.
-- **Secure Environment Variable Management**: Utilizes Supabase for securely managing and accessing API keys and sensitive information required for email automation.
 - **Improved User Interaction**: Immediate feedback to users upon submitting the contact form, enhancing the overall user experience.
 
 ## Getting Started
@@ -33,7 +30,9 @@ To run this project locally:
    ```bash
    nvm use
    ```
+
    If you don't have nvm installed, you can follow the installation instructions on the nvm GitHub page.
+
 2. Clone the repository:
    ```bash
     git clone https://github.com/rlajous/website.git
