@@ -41,7 +41,7 @@ To run this project locally, follow these steps:
    nvm use
    ```
 
-   If you don't have nvm, make sure you're using the Node.js version specified in the .nvmrc file.
+   If you don't have nvm, make sure you're using the Node.js version specified in the `.nvmrc` file.
 
 3. Copy the environment template:
 
