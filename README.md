@@ -25,30 +25,44 @@ This project is built using a powerful stack of technologies for web development
 
 ## Getting Started
 
-To run this project locally:
+To run this project locally, follow these steps:
 
-1. **Node Version**: This project specifies a Node.js version in a .nvmrc file to ensure compatibility. If you have nvm (Node Version Manager) installed, set your Node version to match the project by running:
+1. Clone the repository:
 
-   nvm use
-
-   If you don't have nvm installed, you can follow the installation instructions on the nvm GitHub page.
-
-2. Clone the repository:
+   ```bash
    git clone https://github.com/rlajous/website.git
    cd website
+   ```
 
-3. Install dependencies:
+2. Set up the correct Node.js version:
+   If you have nvm (Node Version Manager) installed, run:
+
+   ```bash
+   nvm use
+   ```
+
+   If you don't have nvm, make sure you're using the Node.js version specified in the .nvmrc file.
+
+3. Copy the environment template:
+
+   ```bash
+   cp .env.template .env.local
+   ```
+
+4. Update the variables in `.env.local` with your own configuration. You'll need to sign up for a Resend account to get an API key.
+
+5. Install dependencies:
+
+   ```bash
    npm install
+   ```
 
-4. Set up environment variables:
-
-   - Create a .env.local file in the root directory.
-   - Copy the contents of .env.template into .env.local.
-   - Change the values of the environment variables to match your own configuration. You'll need to sign up for a Resend account to get an API key.
-
-5. Start the development server:
+6. Start the development server:
+   ```bash
    npm run dev
-   The site should now be running on http://localhost:3000
+   ```
+
+The site should now be running on http://localhost:3000
 
 ## Deployment
 
