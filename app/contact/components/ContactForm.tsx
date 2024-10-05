@@ -27,7 +27,7 @@ const schema = z.object({
   message: z.string().min(1, "Message is required"),
 });
 
-const ContactForm: React.FC = () => {
+export const ContactForm: React.FC = () => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -119,5 +119,3 @@ const ContactForm: React.FC = () => {
     </Form>
   );
 };
-
-export default ContactForm;
