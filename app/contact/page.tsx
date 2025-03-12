@@ -3,7 +3,7 @@ import { EmailLink } from "./components/EmailLink";
 import { LinkedInLink } from "./components/LinkedInLink";
 
 export default function ContactPage() {
-  const linkedInProfile = "rodrigo-manuel-navarro-lajous";
+  const linkedInProfile = "rodrigo-lajous";
   const email = "rodrigolajous@gmail.com";
 
   return (
