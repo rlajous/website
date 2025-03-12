@@ -30,7 +30,7 @@ export default function Home() {
           <span className="sr-only">Github</span>
         </Link>
         <Link
-          href="https://www.linkedin.com/in/rodrigo-manuel-navarro-lajous/"
+          href="https://www.linkedin.com/in/rodrigo-lajous/"
           rel="noopener noreferrer"
           target="_blank"
         >
