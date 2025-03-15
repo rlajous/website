@@ -1,9 +1,11 @@
-import Github from "@/components/icons/Github";
 import { Button } from "@/components/ui/button";
-import { LinkedinIcon } from "lucide-react";
-import Link from "next/link";
+import { GitHubLink } from "@/components/social/GitHubLink";
+import { LinkedInLink } from "@/components/social/LinkedInLink";
 
 export default function Home() {
+  const githubUsername = "rlajous";
+  const linkedInProfile = "rodrigo-lajous";
+
   return (
     <div className="flex flex-col items-center justify-center px-4 text-center md:px-8 lg:px-16 xl:px-32 row-span-8 lg:row-span-11 ">
       <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">
@@ -20,24 +22,16 @@ export default function Home() {
         With experience in the design, installation, testing,
         <br className="hidden md:inline" /> and maintenance of web systems.
       </p>
-      <div className="flex flex-wrap gap-2 mt-3">
-        <Link
-          href="https://github.com/rlajous"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <Github className="h-7" />
-          <span className="sr-only">Github</span>
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/rodrigo-lajous/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <LinkedinIcon className="h-7 w-7" />
-          <span className="sr-only">LinkedIn</span>
-        </Link>
+
+      <div className="flex items-center space-x-8 mt-6">
+        <GitHubLink username={githubUsername} showText={false} iconSize="lg" />
+        <LinkedInLink
+          profile={linkedInProfile}
+          showText={false}
+          iconSize="lg"
+        />
       </div>
+
       <Button asChild className="mt-8" variant="default">
         <a href="/resume.pdf" download>
           Download Resume

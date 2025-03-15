@@ -1,9 +1,11 @@
 import { ContactForm } from "./components/ContactForm";
-import { EmailLink } from "./components/EmailLink";
-import { LinkedInLink } from "./components/LinkedInLink";
+import { EmailLink } from "@/components/social/EmailLink";
+import { LinkedInLink } from "@/components/social/LinkedInLink";
+import { GitHubLink } from "@/components/social/GitHubLink";
 
 export default function ContactPage() {
   const linkedInProfile = "rodrigo-lajous";
+  const githubUsername = "rlajous";
   const email = "rodrigolajous@gmail.com";
 
   return (
@@ -19,8 +21,9 @@ export default function ContactPage() {
         <ContactForm />
 
         <div className="flex flex-col items-center space-y-4">
-          <LinkedInLink profile={linkedInProfile} />
-          <EmailLink email={email} />
+          <LinkedInLink profile={linkedInProfile} showText={true} />
+          <GitHubLink username={githubUsername} showText={true} />
+          <EmailLink email={email} showText={true} />
         </div>
       </main>
     </div>
