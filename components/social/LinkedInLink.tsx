@@ -22,6 +22,8 @@ export function LinkedInLink({
       label="LinkedIn Profile"
       showText={showText}
       text={`/${profile}`}
+      data-umami-event="LinkedIn Link"
+      data-umami-id={`linkedin-${profile}`}
     />
   );
 }

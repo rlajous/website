@@ -29,9 +29,11 @@ export function GitHubLink({
     <SocialLink
       href={href}
       icon={<Github className={iconSizeClasses[iconSize]} />}
-      label="GitHub Profile or Repository"
+      label={`GitHub: ${username}`}
       showText={showText}
       text={displayText}
+      data-umami-event="GitHub Link"
+      data-umami-id={`github-${username}`}
     />
   );
 }

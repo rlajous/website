@@ -10,13 +10,13 @@ const MobileNavigation: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="lg:hidden">
+        <button className="lg:hidden" data-umami-event="Mobile Menu Toggle">
           <MenuIcon className="h-6 w-6" />
           <span className="sr-only">Toggle navigation menu</span>
         </button>
       </SheetTrigger>
       <SheetContent side="left">
-        <Link href={ROUTES.HOME}>
+        <Link href={ROUTES.HOME} data-umami-event="Mobile Logo Click">
           <Logo className="h-11" />
         </Link>
         <div className="grid gap-2 py-6">

@@ -79,7 +79,12 @@ export const ContactForm: React.FC = () => {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your name" {...field} />
+                <Input
+                  placeholder="Enter your name"
+                  {...field}
+                  data-umami-event="Form Field Focus"
+                  data-umami-event-field="name"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -92,7 +97,13 @@ export const ContactForm: React.FC = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your email" {...field} type="email" />
+                <Input
+                  placeholder="Enter your email"
+                  {...field}
+                  type="email"
+                  data-umami-event="Form Field Focus"
+                  data-umami-event-field="email"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -105,13 +116,23 @@ export const ContactForm: React.FC = () => {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Textarea placeholder="Enter your message" {...field} />
+                <Textarea
+                  placeholder="Enter your message"
+                  {...field}
+                  data-umami-event="Form Field Focus"
+                  data-umami-event-field="message"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button className="w-full" type="submit" disabled={isSubmitting}>
+        <Button
+          className="w-full"
+          type="submit"
+          disabled={isSubmitting}
+          data-umami-event="Contact Form Submit"
+        >
           {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Send message
         </Button>

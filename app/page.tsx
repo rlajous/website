@@ -12,15 +12,13 @@ export default function Home() {
         Hi, I&apos;m Rodrigo 👋
       </h1>
       <p className="mt-2 text-4xl md:text-5xl lg:text-6xl font-black">
-        Engineering the code <br className="hidden lg:inline" />
-        behind innovation, solutions
-        <br className="hidden lg:inline" /> and growth.
+        Software Engineer & <br className="hidden lg:inline" />
+        Digital Nomad
       </p>
       <p className="mt-4 text-base md:text-lg lg:text-xl">
-        A Software Engineer and Master of Science in Engineering.
-        <br className="hidden md:inline" />
-        With experience in the design, installation, testing,
-        <br className="hidden md:inline" /> and maintenance of web systems.
+        Passionate about technology and innovation.
+        <br className="hidden md:inline" />I love to build things that make a
+        difference.
       </p>
 
       <div className="flex items-center space-x-8 mt-6">
@@ -33,7 +31,12 @@ export default function Home() {
       </div>
 
       <Button asChild className="mt-8" variant="default">
-        <a href="/resume.pdf" download>
+        <a
+          href="/resume.pdf"
+          download
+          data-umami-event="Download Resume"
+          data-umami-event-type="PDF"
+        >
           Download Resume
         </a>
       </Button>

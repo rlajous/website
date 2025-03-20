@@ -16,7 +16,11 @@ const Header: React.FC = () => {
   return (
     <header className="fixed top-0 z-10 flex h-20 w-full shrink-0 items-center px-4 md:px-6">
       <MobileNavigation />
-      <Link className="mr-6 hidden lg:flex" href={ROUTES.HOME}>
+      <Link
+        className="mr-6 hidden lg:flex"
+        href={ROUTES.HOME}
+        data-umami-event="Logo Click"
+      >
         <Logo className="h-11" />
       </Link>
       <div className="flex ml-auto items-center gap-4">

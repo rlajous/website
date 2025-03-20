@@ -22,6 +22,7 @@ export function EmailLink({
       label="Send Email"
       showText={showText}
       text={email}
+      data-umami-event="Email Link"
     />
   );
 }

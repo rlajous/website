@@ -26,6 +26,7 @@ const NavigationLink: React.FC<NavigationLinkProps> = ({
       href={href}
       className={linkClass}
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      data-umami-event={`Navigate to ${name}`}
     >
       {name}
     </Link>

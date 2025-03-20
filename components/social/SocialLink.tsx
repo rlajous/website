@@ -10,6 +10,7 @@ interface SocialLinkProps {
   showText?: boolean;
   text?: string;
   className?: string;
+  "data-umami-event"?: string;
 }
 
 export function SocialLink({
@@ -19,6 +20,7 @@ export function SocialLink({
   showText = true,
   text,
   className = "",
+  "data-umami-event": umamiEvent,
 }: SocialLinkProps) {
   return (
     <Link
@@ -27,6 +29,7 @@ export function SocialLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
+      data-umami-event={umamiEvent}
     >
       {icon}
       {showText && text && (

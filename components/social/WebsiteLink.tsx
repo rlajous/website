@@ -21,9 +21,10 @@ export function WebsiteLink({
     <SocialLink
       href={url}
       icon={<Globe className={iconSizeClasses[iconSize]} />}
-      label="Project Website"
+      label="Website"
       showText={showText}
       text={label}
+      data-umami-event="Website Link"
     />
   );
 }
