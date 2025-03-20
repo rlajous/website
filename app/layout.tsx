@@ -9,9 +9,51 @@ import { Toaster } from "@/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Rodrigo Lajous",
+  title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
   description:
-    "Software Engineer, digital nomad, passionate about technology and innovation. I love to build things that make a difference.",
+    "Rodrigo Manuel Navarro Lajous is a Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
+  keywords: [
+    "Rodrigo Manuel Navarro Lajous",
+    "Rodrigo Lajous",
+    "Rodrigo Navarro",
+    "Software Engineer",
+    "Digital Nomad",
+    "Web Developer",
+    "Full Stack Developer",
+    "JavaScript",
+    "React",
+    "Next.js",
+  ],
+  authors: [
+    { name: "Rodrigo Manuel Navarro Lajous", url: "https://navarrolajous.com" },
+  ],
+  creator: "Rodrigo Manuel Navarro Lajous",
+  publisher: "Rodrigo Manuel Navarro Lajous",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  metadataBase: new URL("https://navarrolajous.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
+    description:
+      "Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
+    url: "https://navarrolajous.com",
+    siteName: "Rodrigo Manuel Navarro Lajous",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
+    description:
+      "Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
+    creator: "@rodri_lajous",
+    site: "@rodri_lajous",
+  },
 };
 
 export default function RootLayout({

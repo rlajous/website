@@ -1,9 +1,9 @@
 export const ROUTES = {
-  HOME: '/',
-  RESUME: '/resume.pdf',
-  EXPERIENCE: '/experience',
-  PROJECTS: '/projects',
-  CONTACT: '/contact',
+  HOME: "/",
+  RESUME: "/resume.pdf",
+  EXPERIENCE: "/experience",
+  PROJECTS: "/projects",
+  CONTACT: "/contact",
 };
 
 export interface HeaderRoute {

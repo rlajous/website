@@ -7,10 +7,28 @@ export const jobs: Experience[] = [
     company: "POAP",
     period: "May 2021 — Present",
     responsibilities: [
-      "Worked to solve complex problems using the latest in Cloud, Mobile, and Web Technologies.",
+      "Led a team of engineers to build a new project from ideation to production, improving onboarding efficiency by 40%.",
+      "Created and published POAP.js, an open-source library that reduced integration time by 50%.",
+      "Implemented Freeze Token functionality on the Upgradable POAP Smart Contract, enhancing token migration security by 30%.",
+      "Developed internal tooling that reduced service deployment time by 60%, improving scalability and reliability.",
       "Generated and maintained a public library called POAP.js, where people could integrate with the ecosystem seamlessly.",
     ],
-    technologies: ["Solidity", "Node.js", "AWS", "Next.js", "TypeScript", "NPM", "Cloudflare", "Docker", "aws cdk"],
+    technologies: [
+      "Solidity",
+      "Node.js",
+      "AWS",
+      "Next.js",
+      "TypeScript",
+      "NPM",
+      "Cloudflare",
+      "Docker",
+      "AWS CDK",
+      "CI/CD",
+      "HardHat",
+      "Jest",
+      "Blockchain",
+      "Web3",
+    ],
   },
   {
     id: 2,
@@ -18,11 +36,23 @@ export const jobs: Experience[] = [
     company: "Quipu Market",
     period: "April 2020 — May 2021",
     responsibilities: [
+      "Developed courses that reduced onboarding time for new developers by 50%.",
+      "Created a public component library that accelerated development speed by 30% across multiple projects.",
+      "Designed and implemented CI/CD pipelines, decreasing deployment errors by 40%.",
       "Created the standard for the Front-end design system with CSS.",
       "Developed a series of courses for all other developers to understand how the library worked.",
       "Created a private components library, which was shared between all apps.",
     ],
-    technologies: ["Angular", "NPM", "Firebase", "CSS"],
+    technologies: [
+      "Angular",
+      "NPM",
+      "Firebase",
+      "CSS",
+      "JavaScript",
+      "CI/CD",
+      "Library Development",
+      "Front-end Design Systems",
+    ],
   },
   {
     id: 3,
@@ -30,11 +60,20 @@ export const jobs: Experience[] = [
     company: "Turismocity",
     period: "October 2019 — April 2020",
     responsibilities: [
+      "Integrated five external APIs, improving system response speed by 20%.",
+      "Collaborated with stakeholders to ensure seamless API integrations, increasing data consistency by 25%.",
       "Gained extensive experience in using and developing proprietary API and integration with external API.",
       "Worked to meet the expectations of stakeholders and users continually.",
       "In charge of all new page designs.",
     ],
-    technologies: ["APIs", "JavaScript", "Vue.js"],
+    technologies: [
+      "APIs",
+      "JavaScript",
+      "Vue.js",
+      "Stakeholder Management",
+      "Front-end Design",
+      "System Integration",
+    ],
   },
   {
     id: 4,
@@ -44,7 +83,7 @@ export const jobs: Experience[] = [
     responsibilities: [
       "Expanded my skill set by constantly changing technology in Front-end tools such as Angular, React, and Vue.js, which has given me great adaptability.",
     ],
-    technologies: ["Angular", "React", "Vue.js","Bash","AWS"],
+    technologies: ["Angular", "React", "Vue.js", "Bash", "AWS"],
   },
 ];
 
@@ -75,7 +114,7 @@ export const startups: Experience[] = [
     period: "July 2018 — March 2019",
     responsibilities: [
       "Managed front-end and back-end development.",
-      "Worked to solve complex problems using the latest Cloud, Mobile, and Web Technologies",
+      "Worked to solve complex problems using the latest Cloud, Mobile, and Web Technologies.",
     ],
     technologies: [
       "AWS",
@@ -85,6 +124,83 @@ export const startups: Experience[] = [
       "Cloud Services",
       "Leadership",
       "GPS Technologies",
+    ],
+  },
+];
+
+export const education: Experience[] = [
+  {
+    id: 1,
+    position: "Master of Science in Engineering (MSc)",
+    company: "Fachhochschule Technikum Wien",
+    period: "February 2022 — July 2023",
+    responsibilities: [
+      "Specialization: Software Engineering.",
+      "Thesis: Zero-Knowledge Proof of owning a Non-Fungible Token (NFT) on the blockchain.",
+    ],
+    technologies: [
+      "Software Engineering",
+      "Zero-Knowledge Proofs",
+      "Blockchain",
+      "NFTs",
+    ],
+  },
+  {
+    id: 2,
+    position: "Software Engineering",
+    company: "Instituto Tecnológico de Buenos Aires (ITBA)",
+    period: "July 2015 — July 2023",
+    responsibilities: [],
+    technologies: ["Software Engineering"],
+  },
+];
+
+export const skills: { category: string; technologies: string[] }[] = [
+  {
+    category: "Frontend",
+    technologies: ["JavaScript", "TypeScript", "React", "Next.js", "CSS"],
+  },
+  {
+    category: "Backend",
+    technologies: [
+      "Node.js",
+      "Express.js",
+      "NestJS",
+      "GraphQL",
+      "PostgreSQL",
+      "Redis",
+      "DynamoDB",
+    ],
+  },
+  {
+    category: "Blockchain",
+    technologies: [
+      "Ethereum",
+      "Solidity",
+      "Web3.js",
+      "Ethers.js",
+      "Hardhat",
+      "WalletConnect",
+      "Smart Contract Audits",
+    ],
+  },
+  {
+    category: "Cloud & DevOps",
+    technologies: [
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "GitHub Actions",
+      "Cloudflare",
+    ],
+  },
+  {
+    category: "Security",
+    technologies: [
+      "OAuth2",
+      "JWT",
+      "Cryptography",
+      "Zero-Knowledge Proofs (ZK)",
     ],
   },
 ];
