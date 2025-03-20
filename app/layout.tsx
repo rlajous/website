@@ -69,7 +69,6 @@ export default function RootLayout({
         data-website-id="713a1de9-3ad6-4aaf-a155-be6023b95c4f"
         data-auto-track="true"
         data-domains="navarrolajous.com"
-        data-do-not-track="true"
       ></script>
       <body className={inter.className}>
         <ThemeProvider
