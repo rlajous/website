@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { GitHubLink } from "@/components/social/GitHubLink";
 import { LinkedInLink } from "@/components/social/LinkedInLink";
-import Script from "next/script";
 
 export default function Home() {
   const githubUsername = "rlajous";
@@ -9,64 +8,57 @@ export default function Home() {
 
   return (
     <section
-      className="flex flex-col items-center justify-center px-4 text-center md:px-8 lg:px-16 xl:px-32 row-span-8 lg:row-span-11"
+      className="flex-1 flex flex-col items-center justify-center px-4 pt-10 md:pt-20 pb-8 md:pb-12 text-center md:px-8 lg:px-16 xl:px-32"
       aria-label="Introduction"
     >
-      <Script id="schema-person" type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Rodrigo Manuel Navarro Lajous",
-            "url": "https://navarrolajous.com",
-            "jobTitle": "Software Engineer",
-            "sameAs": [
-              "https://github.com/${githubUsername}",
-              "https://www.linkedin.com/in/${linkedInProfile}"
-            ],
-            "description": "Software Engineer and Digital Nomad, passionate about technology and innovation."
-          }
-        `}
-      </Script>
-      <h1 className="text-sm md:text-lg lg:text-xl font-bold">
-        Hi, I&apos;m{" "}
-        <span className="block md:inline">Rodrigo Manuel Navarro Lajous</span>{" "}
-        👋
-      </h1>
-      <p className="mt-2 text-4xl md:text-5xl lg:text-6xl font-black">
-        <span className="sr-only">I am a </span>
-        Software Engineer & <br className="hidden lg:inline" />
-        Digital Nomad
-      </p>
-      <p className="mt-4 text-base md:text-lg lg:text-xl">
-        Passionate about technology and innovation.
-        <br className="hidden md:inline" />I love to build things that make a
-        difference.
-      </p>
+      <div className="max-w-3xl w-full py-4 md:py-12 lg:py-16">
+        <h1 className="text-2xl md:text-xl lg:text-2xl font-bold">
+          Hi, I&apos;m{" "}
+          <span className="block md:inline">Rodrigo Manuel Navarro Lajous</span>{" "}
+          👋
+        </h1>
+        <p className="mt-4 text-5xl md:text-5xl lg:text-6xl font-black leading-tight">
+          <span className="sr-only">I am a </span>
+          Software Engineer &<br className="md:hidden" />
+          <span className="md:ml-2">Digital Nomad</span>
+        </p>
+        <p className="mt-6 text-xl md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+          Passionate about technology and innovation. I love to build things
+          that make a difference.
+        </p>
 
-      <div
-        className="flex items-center space-x-8 mt-6"
-        aria-label="Social media links"
-      >
-        <GitHubLink username={githubUsername} showText={false} iconSize="lg" />
-        <LinkedInLink
-          profile={linkedInProfile}
-          showText={false}
-          iconSize="lg"
-        />
-      </div>
-
-      <Button asChild className="mt-8" variant="default">
-        <a
-          href="/resume.pdf"
-          download
-          data-umami-event="Download Resume"
-          data-umami-event-type="PDF"
-          aria-label="Download my resume in PDF format"
+        <div
+          className="flex items-center justify-center space-x-12 md:space-x-10 mt-10 md:mt-8"
+          aria-label="Social media links"
         >
-          Download Resume
-        </a>
-      </Button>
+          <GitHubLink
+            username={githubUsername}
+            showText={false}
+            iconSize="lg"
+          />
+          <LinkedInLink
+            profile={linkedInProfile}
+            showText={false}
+            iconSize="lg"
+          />
+        </div>
+
+        <Button
+          asChild
+          className="mt-10 w-full md:w-auto text-lg md:text-base py-7 md:py-6 px-8"
+          variant="default"
+        >
+          <a
+            href="/resume.pdf"
+            download
+            data-umami-event="Download Resume"
+            data-umami-event-type="PDF"
+            aria-label="Download my resume in PDF format"
+          >
+            Download Resume
+          </a>
+        </Button>
+      </div>
     </section>
   );
 }

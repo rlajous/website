@@ -1,3 +1,5 @@
+"use client";
+
 import { Project } from "@/domains/Project";
 import ProjectCard from "../ProjectCard";
 

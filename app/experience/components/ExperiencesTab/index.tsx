@@ -1,3 +1,5 @@
+"use client";
+
 import { Experience } from "@/domains/Experience";
 import ExperienceCard from "../ExperienceCard";
 

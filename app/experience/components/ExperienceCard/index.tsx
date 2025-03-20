@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Experience } from "@/domains/Experience";
@@ -28,7 +30,12 @@ const ExperienceCard: React.FC<Experience> = ({
         </ul>
         <div className="flex flex-wrap gap-2 mt-3">
           {technologies.map((tech, techIndex) => (
-            <Badge key={techIndex} variant="secondary">
+            <Badge
+              key={techIndex}
+              variant="secondary"
+              data-umami-event="Experience Tag Click"
+              data-umami-event-skill={tech}
+            >
               {tech}
             </Badge>
           ))}

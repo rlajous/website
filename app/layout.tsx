@@ -63,13 +63,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <script
-        defer
-        src="https://cloud.umami.is/script.js"
-        data-website-id="713a1de9-3ad6-4aaf-a155-be6023b95c4f"
-        data-auto-track="true"
-        data-domains="navarrolajous.com,www.navarrolajous.com"
-      ></script>
+      <head>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id="713a1de9-3ad6-4aaf-a155-be6023b95c4f"
+          data-auto-track="true"
+          data-domains="navarrolajous.com,www.navarrolajous.com"
+          data-cache="true"
+          data-track-outbound="true"
+          data-disable-adblocker="true"
+        ></script>
+      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"
@@ -77,12 +82,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main>
-            <div className="min-h-svh grid grid-rows-10 lg:grid-rows-12 pt-20">
-              <Header />
-              {children}
-              <Footer />
-            </div>
+          <main className="flex flex-col min-h-svh">
+            <Header />
+            <div className="flex-1 flex flex-col">{children}</div>
+            <Footer />
           </main>
           <Toaster />
         </ThemeProvider>

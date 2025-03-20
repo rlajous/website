@@ -2,6 +2,14 @@ import { freelance, hobby, opensource } from "@/services/projects";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Project } from "@/domains/Project";
 import ProjectsTab from "./components/ProjectTabs";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects | Rodrigo Manuel Navarro Lajous",
+  description:
+    "Portfolio of projects by Rodrigo Manuel Navarro Lajous, including freelance, hobby, and open source work.",
+};
+
 interface Tab {
   key: string;
   title: string;
@@ -16,7 +24,7 @@ const TABS: Tab[] = [
 
 export default function Page() {
   return (
-    <div className="flex flex-col items-center gap-6 row-span-8 lg:row-span-11">
+    <div className="flex flex-col items-center gap-6 py-8 md:py-12">
       <div className="text-center">
         <h1 className="text-3xl font-bold">Projects</h1>
         <p className="text-md mt-2">A list of all my projects</p>

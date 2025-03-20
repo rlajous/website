@@ -2,6 +2,13 @@ import { jobs, startups } from "@/services/experience";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Experience } from "@/domains/Experience";
 import ExperiencesTab from "./components/ExperiencesTab";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experience | Rodrigo Manuel Navarro Lajous",
+  description:
+    "Professional journey of Rodrigo Manuel Navarro Lajous, showcasing his work experience and roles.",
+};
 
 interface Tab {
   key: string;
@@ -16,7 +23,7 @@ const TABS: Tab[] = [
 
 export default function Page() {
   return (
-    <div className="flex flex-col items-center gap-6 row-span-8 lg:row-span-11">
+    <div className="flex flex-col items-center gap-6 py-8 md:py-12">
       <div className="text-center">
         <h1 className="text-3xl font-bold">Experience</h1>
         <p className="text-md mt-2">A timeline of my professional journey</p>
