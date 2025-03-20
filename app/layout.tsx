@@ -68,7 +68,7 @@ export default function RootLayout({
         src="https://cloud.umami.is/script.js"
         data-website-id="713a1de9-3ad6-4aaf-a155-be6023b95c4f"
         data-auto-track="true"
-        data-domains="navarrolajous.com"
+        data-domains="navarrolajous.com,www.navarrolajous.com"
       ></script>
       <body className={inter.className}>
         <ThemeProvider
