@@ -43,7 +43,7 @@ export const freelance: Project[] = [
     name: "Landing Page",
     company: "Seeds",
     github: "",
-    website: "https:/weareseeders.navarrolajous.com",
+    website: "https://weareseeders.navarrolajous.com",
     period: "2020",
     description:
       "Created a landing page for Seeds, a company that helps other companies to grow. Created the contact form that sended them an email via smtp server.",
