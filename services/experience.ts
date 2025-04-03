@@ -3,9 +3,32 @@ import { Experience } from "@/domains/Experience";
 export const jobs: Experience[] = [
   {
     id: 1,
+    position: "Staff Software Engineer",
+    company: "Webacy",
+    period: "March 2024 — Present",
+    responsibilities: [
+      "Leading the development of secure Web3 recovery and safety solutions",
+      "Building innovative blockchain security technologies for cryptocurrency wallet protection",
+      "Developing secure multi-party computation protocols for digital asset recovery",
+      "Implementing cutting-edge security features to protect users' digital assets",
+    ],
+    technologies: [
+      "Blockchain",
+      "Web3",
+      "Security",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Solidity",
+      "Smart Contracts",
+      "Multi-party Computation",
+    ],
+  },
+  {
+    id: 2,
     position: "Senior Software Engineer",
     company: "POAP",
-    period: "May 2021 — Present",
+    period: "May 2021 — March 2024",
     responsibilities: [
       "Led a team of engineers to build a new project from ideation to production, improving onboarding efficiency by 40%.",
       "Created and published POAP.js, an open-source library that reduced integration time by 50%.",
@@ -31,7 +54,7 @@ export const jobs: Experience[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     position: "Full Stack Developer",
     company: "Quipu Market",
     period: "April 2020 — May 2021",
@@ -55,7 +78,7 @@ export const jobs: Experience[] = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     position: "Full Stack Developer",
     company: "Turismocity",
     period: "October 2019 — April 2020",
@@ -76,7 +99,7 @@ export const jobs: Experience[] = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     position: "Frontend Developer",
     company: "WOLOX",
     period: "June 2018 — October 2019",
