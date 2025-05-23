@@ -5,7 +5,7 @@ export const jobs: Experience[] = [
     id: 1,
     position: "Staff Software Engineer",
     company: "Webacy",
-    period: "March 2024 — Present",
+    period: "April 2024 — Present",
     responsibilities: [
       "Leading the development of secure Web3 recovery and safety solutions",
       "Building innovative blockchain security technologies for cryptocurrency wallet protection",
@@ -28,7 +28,7 @@ export const jobs: Experience[] = [
     id: 2,
     position: "Senior Software Engineer",
     company: "POAP",
-    period: "May 2021 — March 2024",
+    period: "May 2021 — April 2024",
     responsibilities: [
       "Led a team of engineers to build a new project from ideation to production, improving onboarding efficiency by 40%.",
       "Created and published POAP.js, an open-source library that reduced integration time by 50%.",
