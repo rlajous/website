@@ -13,8 +13,9 @@ interface ExperiencePageProps {
   };
 }
 
+const allExperiences = [...jobs, ...startups];
+
 export async function generateStaticParams() {
-  const allExperiences = [...jobs, ...startups];
   return allExperiences.map((exp) => ({
     slug: exp.slug,
   }));
@@ -23,7 +24,6 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: ExperiencePageProps): Promise<Metadata> {
-  const allExperiences = [...jobs, ...startups];
   const experience = allExperiences.find((exp) => exp.slug === params.slug);
 
   if (!experience) {
@@ -56,7 +56,6 @@ export async function generateMetadata({
 }
 
 export default function ExperiencePage({ params }: ExperiencePageProps) {
-  const allExperiences = [...jobs, ...startups];
   const experience = allExperiences.find((exp) => exp.slug === params.slug);
 
   if (!experience) {

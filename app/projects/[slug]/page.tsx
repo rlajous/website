@@ -13,8 +13,9 @@ interface ProjectPageProps {
   };
 }
 
+const allProjects = [...freelance, ...hobby, ...opensource];
+
 export async function generateStaticParams() {
-  const allProjects = [...freelance, ...hobby, ...opensource];
   return allProjects.map((project) => ({
     slug: project.slug,
   }));
@@ -23,7 +24,6 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
-  const allProjects = [...freelance, ...hobby, ...opensource];
   const project = allProjects.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -52,7 +52,6 @@ export async function generateMetadata({
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {
-  const allProjects = [...freelance, ...hobby, ...opensource];
   const project = allProjects.find((p) => p.slug === params.slug);
 
   if (!project) {
