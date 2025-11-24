@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { SITE_URL } from "@/constants/routes";
 
 interface ProjectPageProps {
   params: {
@@ -40,7 +41,7 @@ export async function generateMetadata({
       title: `${project.name} - ${project.company}`,
       description: project.detailedDescription || project.description,
       type: "website",
-      images: project.banner ? [`https://navarrolajous.com/assets${project.banner}`] : [],
+      images: project.banner ? [`${SITE_URL}/assets${project.banner}`] : [],
     },
     twitter: {
       card: "summary_large_image",

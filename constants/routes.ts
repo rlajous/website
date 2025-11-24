@@ -1,3 +1,6 @@
+// Site URL configuration - can be overridden with environment variable
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://navarrolajous.com';
+
 export const ROUTES = {
   HOME: "/",
   RESUME: "/resume.pdf",

@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/Footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import SchemaOrgScripts from "@/components/SchemaOrgScripts";
+import { SITE_URL } from "@/constants/routes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     "Next.js",
   ],
   authors: [
-    { name: "Rodrigo Manuel Navarro Lajous", url: "https://navarrolajous.com" },
+    { name: "Rodrigo Manuel Navarro Lajous", url: SITE_URL },
   ],
   creator: "Rodrigo Manuel Navarro Lajous",
   publisher: "Rodrigo Manuel Navarro Lajous",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  metadataBase: new URL("https://navarrolajous.com"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
   },
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
     description:
       "Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
-    url: "https://navarrolajous.com",
+    url: SITE_URL,
     siteName: "Rodrigo Manuel Navarro Lajous",
     locale: "en_US",
     type: "website",

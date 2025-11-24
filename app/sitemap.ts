@@ -3,9 +3,10 @@ import { jobs, startups } from "@/services/experience";
 import { education } from "@/services/education";
 import { freelance, hobby, opensource } from "@/services/projects";
 import { talks } from "@/services/talks";
+import { SITE_URL } from "@/constants/routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://navarrolajous.com";
+  const baseUrl = SITE_URL;
 
   const staticPages: MetadataRoute.Sitemap = [
     {
