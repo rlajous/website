@@ -122,7 +122,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         <div className="flex flex-col gap-2 mb-4">
           <div className="flex items-center gap-3 flex-wrap">
             <h1 className="text-3xl md:text-4xl font-bold">{project.name}</h1>
-            <Badge variant={getTypeColor(project.type) as any} className="text-sm">
+            <Badge variant={getTypeColor(project.type)} className="text-sm">
               {getTypeLabel(project.type)}
             </Badge>
           </div>
