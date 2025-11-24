@@ -37,3 +37,6 @@ next-env.d.ts
 
 # VS Code
 .vscode/*
+
+# Claude Code context
+.claude/.pr-context.json
