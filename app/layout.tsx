@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/Footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
+import SchemaOrgScripts from "@/components/SchemaOrgScripts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -51,8 +52,8 @@ export const metadata: Metadata = {
     title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
     description:
       "Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
-    creator: "@rodri_lajous",
-    site: "@rodri_lajous",
+    creator: "@arlequin_eth",
+    site: "@arlequin_eth",
   },
 };
 
@@ -76,6 +77,7 @@ export default function RootLayout({
         ></script>
       </head>
       <body className={inter.className}>
+        <SchemaOrgScripts />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

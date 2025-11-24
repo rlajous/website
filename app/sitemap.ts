@@ -29,6 +29,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/talks`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/talks/dunecon-2025`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/talks/defi-security-summit-2025`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/projects`,
       lastModified: new Date(),
       changeFrequency: "monthly",
