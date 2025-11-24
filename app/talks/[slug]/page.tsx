@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import YouTubeEmbed from "../components/YouTubeEmbed";
 import PDFViewer from "../components/PDFViewer";
+import { SITE_URL } from "@/constants/routes";
 
 interface TalkPageProps {
   params: {
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: TalkPageProps): Promise<Metad
       title: talk.title,
       description: talk.description,
       type: "article",
-      images: talk.banner ? [`https://navarrolajous.com/assets${talk.banner}`] : [],
+      images: talk.banner ? [`${SITE_URL}/assets${talk.banner}`] : [],
     },
     twitter: {
       card: "summary_large_image",

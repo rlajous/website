@@ -3,9 +3,13 @@ import { Experience } from "@/domains/Experience";
 export const jobs: Experience[] = [
   {
     id: 1,
+    slug: "webacy",
     position: "Staff Software Engineer",
     company: "Webacy",
     period: "April 2024 — Present",
+    type: "job",
+    location: "Remote",
+    companyUrl: "https://webacy.com",
     responsibilities: [
       "Leading the development of secure Web3 recovery and safety solutions",
       "Building innovative blockchain security technologies for cryptocurrency wallet protection",
@@ -26,9 +30,13 @@ export const jobs: Experience[] = [
   },
   {
     id: 2,
+    slug: "poap",
     position: "Senior Software Engineer",
     company: "POAP",
     period: "May 2021 — April 2024",
+    type: "job",
+    location: "Remote",
+    companyUrl: "https://poap.xyz",
     responsibilities: [
       "Led a team of engineers to build a new project from ideation to production, improving onboarding efficiency by 40%.",
       "Created and published POAP.js, an open-source library that reduced integration time by 50%.",
@@ -55,9 +63,13 @@ export const jobs: Experience[] = [
   },
   {
     id: 3,
+    slug: "quipu-market",
     position: "Full Stack Developer",
     company: "Quipu Market",
     period: "April 2020 — May 2021",
+    type: "job",
+    location: "Buenos Aires, Argentina",
+    companyUrl: "https://quipu.com.co/",
     responsibilities: [
       "Developed courses that reduced onboarding time for new developers by 50%.",
       "Created a public component library that accelerated development speed by 30% across multiple projects.",
@@ -79,9 +91,13 @@ export const jobs: Experience[] = [
   },
   {
     id: 4,
+    slug: "turismocity",
     position: "Full Stack Developer",
     company: "Turismocity",
     period: "October 2019 — April 2020",
+    type: "job",
+    location: "Buenos Aires, Argentina",
+    companyUrl: "https://www.turismocity.com.ar/",
     responsibilities: [
       "Integrated five external APIs, improving system response speed by 20%.",
       "Collaborated with stakeholders to ensure seamless API integrations, increasing data consistency by 25%.",
@@ -100,9 +116,13 @@ export const jobs: Experience[] = [
   },
   {
     id: 5,
+    slug: "wolox",
     position: "Frontend Developer",
     company: "WOLOX",
     period: "June 2018 — October 2019",
+    type: "job",
+    location: "Buenos Aires, Argentina",
+    companyUrl: "https://github.com/wolox",
     responsibilities: [
       "Expanded my skill set by constantly changing technology in Front-end tools such as Angular, React, and Vue.js, which has given me great adaptability.",
     ],
@@ -113,9 +133,12 @@ export const jobs: Experience[] = [
 export const startups: Experience[] = [
   {
     id: 1,
+    slug: "dome",
     position: "Founding Member",
     company: "Dome",
     period: "April 2022 — December 2022",
+    type: "startup",
+    location: "Remote",
     responsibilities: [
       "Created the whole application from scratch, including CI/CD pipelines for both front-end and back-end applications.",
     ],
@@ -132,9 +155,12 @@ export const startups: Experience[] = [
   },
   {
     id: 2,
+    slug: "ploti",
     position: "Founding Member",
     company: "PLOTI",
     period: "July 2018 — March 2019",
+    type: "startup",
+    location: "Buenos Aires, Argentina",
     responsibilities: [
       "Managed front-end and back-end development.",
       "Worked to solve complex problems using the latest Cloud, Mobile, and Web Technologies.",
@@ -148,33 +174,6 @@ export const startups: Experience[] = [
       "Leadership",
       "GPS Technologies",
     ],
-  },
-];
-
-export const education: Experience[] = [
-  {
-    id: 1,
-    position: "Master of Science in Engineering (MSc)",
-    company: "Fachhochschule Technikum Wien",
-    period: "February 2022 — July 2023",
-    responsibilities: [
-      "Specialization: Software Engineering.",
-      "Thesis: Zero-Knowledge Proof of owning a Non-Fungible Token (NFT) on the blockchain.",
-    ],
-    technologies: [
-      "Software Engineering",
-      "Zero-Knowledge Proofs",
-      "Blockchain",
-      "NFTs",
-    ],
-  },
-  {
-    id: 2,
-    position: "Software Engineering",
-    company: "Instituto Tecnológico de Buenos Aires (ITBA)",
-    period: "July 2015 — July 2023",
-    responsibilities: [],
-    technologies: ["Software Engineering"],
   },
 ];
 

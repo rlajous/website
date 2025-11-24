@@ -3,8 +3,10 @@ import { Project } from "@/domains/Project";
 export const freelance: Project[] = [
   {
     id: 1,
+    slug: "lukto-landing",
     name: "Landing Page",
     company: "Lukto",
+    type: "freelance",
     github: "",
     website: "https://lukto.navarrolajous.com",
     period: "2021",
@@ -21,8 +23,10 @@ export const freelance: Project[] = [
   },
   {
     id: 2,
+    slug: "bepanthene-landing",
     name: "Landing Page",
     company: "Bepanthene",
+    type: "freelance",
     github: "",
     website: "https://bepanthene.navarrolajous.com",
     period: "2020",
@@ -40,8 +44,10 @@ export const freelance: Project[] = [
   },
   {
     id: 3,
+    slug: "seeds-landing",
     name: "Landing Page",
     company: "Seeds",
+    type: "freelance",
     github: "",
     website: "https://weareseeders.navarrolajous.com",
     period: "2020",
@@ -63,8 +69,10 @@ export const freelance: Project[] = [
 export const hobby: Project[] = [
   {
     id: 1,
+    slug: "portfolio-v1",
     name: "Personal Website",
     company: "V1",
+    type: "hobby",
     github: "https://github.com/rlajous/portfolio",
     website: "https://v1.navarrolajous.com",
     period: "2021",
@@ -83,8 +91,10 @@ export const hobby: Project[] = [
   },
   {
     id: 2,
+    slug: "funnis-game",
     name: "Funnis",
     company: "University Project",
+    type: "hobby",
     github: "",
     website: "https://funnis.navarrolajous.com",
     period: "2021",
@@ -95,8 +105,10 @@ export const hobby: Project[] = [
   },
   {
     id: 3,
+    slug: "windows-98-web3",
     name: "Windows 98 - Web 3 Edition",
     company: "Personal Project",
+    type: "hobby",
     github: "https://github.com/rlajous/windows-98-web3",
     website: "https://windows98.navarrolajous.com",
     period: "2024",
@@ -109,8 +121,10 @@ export const hobby: Project[] = [
 export const opensource: Project[] = [
   {
     id: 1,
+    slug: "poap-js",
     name: "POAP.js",
     company: "POAP",
+    type: "opensource",
     github: "https://github.com/poap-xyz/poap.js",
     website: "https://sdk.poap.tech/",
     period: "2023-2024",

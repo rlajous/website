@@ -1,3 +1,6 @@
+// Site URL configuration - can be overridden with environment variable
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://navarrolajous.com';
+
 export const ROUTES = {
   HOME: "/",
   RESUME: "/resume.pdf",
@@ -7,6 +10,12 @@ export const ROUTES = {
   EDUCATION: "/education",
   TALKS: "/talks",
 };
+
+// Helper functions for detail routes
+export const EXPERIENCE_DETAIL = (slug: string) => `/experience/${slug}`;
+export const PROJECT_DETAIL = (slug: string) => `/projects/${slug}`;
+export const EDUCATION_DETAIL = (slug: string) => `/education/${slug}`;
+export const TALK_DETAIL = (slug: string) => `/talks/${slug}`;
 
 export interface HeaderRoute {
   path: string;
