@@ -18,12 +18,16 @@ const TABS: Tab[] = [
   { key: "startups", title: "Startups", experiences: startups },
 ];
 
+const VALID_TAB_KEYS = TABS.map((tab) => tab.key);
+const DEFAULT_TAB = "jobs";
+
 function ExperienceContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentTab = searchParams.get("tab") || "jobs";
+  const tabParam = searchParams.get("tab");
+  const currentTab = tabParam && VALID_TAB_KEYS.includes(tabParam) ? tabParam : DEFAULT_TAB;
 
   const handleTabChange = useCallback(
     (value: string) => {

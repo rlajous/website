@@ -19,12 +19,16 @@ const TABS: Tab[] = [
   { key: "opensource", title: "Open Source", projects: opensource },
 ];
 
+const VALID_TAB_KEYS = TABS.map((tab) => tab.key);
+const DEFAULT_TAB = "freelance";
+
 function ProjectsContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const currentTab = searchParams.get("tab") || "freelance";
+  const tabParam = searchParams.get("tab");
+  const currentTab = tabParam && VALID_TAB_KEYS.includes(tabParam) ? tabParam : DEFAULT_TAB;
 
   const handleTabChange = useCallback(
     (value: string) => {
