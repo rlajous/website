@@ -9,6 +9,7 @@ import { WebsiteLink } from "@/components/social/WebsiteLink";
 import Image from "next/image";
 
 const ProjectCard: React.FC<Project> = ({
+  slug,
   name,
   company,
   website,
@@ -30,10 +31,8 @@ const ProjectCard: React.FC<Project> = ({
   return (
     <div className="w-full bg-white text-black dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row relative group hover:shadow-xl transition-shadow">
       <Link
-        href={website || "#"}
+        href={`/projects/${slug}`}
         className="absolute inset-0 z-10"
-        rel="noopener noreferrer"
-        target="_blank"
         aria-label={`View project ${name}`}
       >
         <span className="sr-only">View project {name}</span>

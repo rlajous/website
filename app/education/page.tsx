@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import { education } from "@/services/experience";
+import { education } from "@/services/education";
 import EducationCard from "./components/EducationCard";
 
 export const metadata: Metadata = {

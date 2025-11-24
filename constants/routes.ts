@@ -8,6 +8,12 @@ export const ROUTES = {
   TALKS: "/talks",
 };
 
+// Helper functions for detail routes
+export const EXPERIENCE_DETAIL = (slug: string) => `/experience/${slug}`;
+export const PROJECT_DETAIL = (slug: string) => `/projects/${slug}`;
+export const EDUCATION_DETAIL = (slug: string) => `/education/${slug}`;
+export const TALK_DETAIL = (slug: string) => `/talks/${slug}`;
+
 export interface HeaderRoute {
   path: string;
   name: string;

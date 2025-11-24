@@ -2,6 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import Script from "next/script";
+import { jobs, startups } from "@/services/experience";
+import { education } from "@/services/education";
+import { freelance, hobby, opensource } from "@/services/projects";
 
 const SchemaOrgScripts = () => {
   const pathname = usePathname();
@@ -109,6 +112,110 @@ const SchemaOrgScripts = () => {
         `}
       </Script>
     );
+  }
+
+  // Experience detail page schema
+  if (pathname?.startsWith("/experience/")) {
+    const slug = pathname.split("/experience/")[1];
+    const allExperiences = [...jobs, ...startups];
+    const experience = allExperiences.find((exp) => exp.slug === slug);
+
+    if (experience) {
+      return (
+        <Script
+          id="schema-experience-detail"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "JobPosting",
+              "title": "${experience.position}",
+              "description": "${experience.responsibilities.join(" ")}",
+              "hiringOrganization": {
+                "@type": "Organization",
+                "name": "${experience.company}"${experience.companyUrl ? `,\n                "url": "${experience.companyUrl}"` : ""}
+              },
+              "datePosted": "${experience.period.split("—")[0].trim()}",
+              "employmentType": "${experience.type === "job" ? "FULL_TIME" : "SELF_EMPLOYED"}",
+              "jobLocation": {
+                "@type": "Place",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "${experience.location || "Remote"}"
+                }
+              },
+              "skills": ${JSON.stringify(experience.technologies)}
+            }
+          `}
+        </Script>
+      );
+    }
+  }
+
+  // Education detail page schema
+  if (pathname?.startsWith("/education/")) {
+    const slug = pathname.split("/education/")[1];
+    const edu = education.find((e) => e.slug === slug);
+
+    if (edu) {
+      return (
+        <Script
+          id="schema-education-detail"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "EducationalOccupationalCredential",
+              "name": "${edu.degree}",
+              "credentialCategory": "degree",
+              "recognizedBy": {
+                "@type": "EducationalOrganization",
+                "name": "${edu.institution}"${edu.institutionUrl ? `,\n                "url": "${edu.institutionUrl}"` : ""}
+              },
+              "educationalLevel": "Graduate",
+              "about": "${edu.specialization || edu.degree}",
+              "competencyRequired": ${JSON.stringify(edu.technologies)}
+            }
+          `}
+        </Script>
+      );
+    }
+  }
+
+  // Project detail page schema
+  if (pathname?.startsWith("/projects/")) {
+    const slug = pathname.split("/projects/")[1];
+    const allProjects = [...freelance, ...hobby, ...opensource];
+    const project = allProjects.find((p) => p.slug === slug);
+
+    if (project) {
+      return (
+        <Script
+          id="schema-project-detail"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "CreativeWork",
+              "name": "${project.name}",
+              "description": "${project.detailedDescription || project.description}",
+              "author": {
+                "@type": "Person",
+                "name": "Rodrigo Manuel Navarro Lajous"
+              },
+              "dateCreated": "${project.period}",
+              "keywords": ${JSON.stringify(project.technologies.join(", "))}${project.github ? `,\n              "codeRepository": "${project.github}"` : ""}${project.website ? `,\n              "url": "${project.website}"` : ""}${project.banner ? `,\n              "image": "https://navarrolajous.com/assets${project.banner}"` : ""}
+            }
+          `}
+        </Script>
+      );
+    }
   }
 
   // Talks page schema

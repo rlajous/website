@@ -1,14 +1,11 @@
+"use client";
+
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useCallback } from "react";
 import { freelance, hobby, opensource } from "@/services/projects";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Project } from "@/domains/Project";
 import ProjectsTab from "./components/ProjectTabs";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Projects | Rodrigo Manuel Navarro Lajous",
-  description:
-    "Portfolio of projects by Rodrigo Manuel Navarro Lajous, including freelance, hobby, and open source work.",
-};
 
 interface Tab {
   key: string;
@@ -23,6 +20,21 @@ const TABS: Tab[] = [
 ];
 
 export default function Page() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const currentTab = searchParams.get("tab") || "freelance";
+
+  const handleTabChange = useCallback(
+    (value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("tab", value);
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [searchParams, pathname, router]
+  );
+
   return (
     <div className="flex flex-col items-center gap-6 py-8 md:py-12">
       <div className="text-center">
@@ -31,7 +43,8 @@ export default function Page() {
       </div>
       <Tabs
         className="w-full max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl flex flex-col"
-        defaultValue={TABS[0].key}
+        value={currentTab}
+        onValueChange={handleTabChange}
       >
         <TabsList className="flex p-1 space-x-1 rounded-2xl m-auto mb-6">
           {TABS.map(({ key, title }) => (
