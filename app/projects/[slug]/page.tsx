@@ -71,7 +71,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
     }
   };
 
-  const getTypeColor = (type: string) => {
+  const getTypeColor = (
+    type: string
+  ): "default" | "secondary" | "outline" | "destructive" => {
     switch (type) {
       case "freelance":
         return "default";
@@ -235,7 +237,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   height={400}
                   alt={`${project.name} screenshot ${index + 1}`}
                   className="object-cover w-full rounded-lg"
-                  src={screenshot}
+                  src={`/assets${screenshot}`}
                   style={{
                     aspectRatio: "3 / 2",
                     objectFit: "cover",
