@@ -6,6 +6,18 @@ import { jobs, startups } from "@/services/experience";
 import { education } from "@/services/education";
 import { freelance, hobby, opensource } from "@/services/projects";
 
+// Helper function to escape strings for safe JSON-LD embedding
+function escapeJsonString(str: string): string {
+  return str
+    .replace(/\\/g, "\\\\") // Escape backslashes
+    .replace(/"/g, '\\"') // Escape double quotes
+    .replace(/\n/g, "\\n") // Escape newlines
+    .replace(/\r/g, "\\r") // Escape carriage returns
+    .replace(/\t/g, "\\t") // Escape tabs
+    .replace(/\f/g, "\\f") // Escape form feeds
+    .replace(/\b/g, "\\b"); // Escape backspaces
+}
+
 const SchemaOrgScripts = () => {
   const pathname = usePathname();
 
@@ -131,19 +143,19 @@ const SchemaOrgScripts = () => {
             {
               "@context": "https://schema.org",
               "@type": "JobPosting",
-              "title": "${experience.position}",
-              "description": "${experience.responsibilities.join(" ")}",
+              "title": "${escapeJsonString(experience.position)}",
+              "description": "${escapeJsonString(experience.responsibilities.join(" "))}",
               "hiringOrganization": {
                 "@type": "Organization",
-                "name": "${experience.company}"${experience.companyUrl ? `,\n                "url": "${experience.companyUrl}"` : ""}
+                "name": "${escapeJsonString(experience.company)}"${experience.companyUrl ? `,\n                "url": "${escapeJsonString(experience.companyUrl)}"` : ""}
               },
-              "datePosted": "${experience.period.split("—")[0].trim()}",
+              "datePosted": "${escapeJsonString(experience.period.split("—")[0].trim())}",
               "employmentType": "${experience.type === "job" ? "FULL_TIME" : "SELF_EMPLOYED"}",
               "jobLocation": {
                 "@type": "Place",
                 "address": {
                   "@type": "PostalAddress",
-                  "addressLocality": "${experience.location || "Remote"}"
+                  "addressLocality": "${escapeJsonString(experience.location || "Remote")}"
                 }
               },
               "skills": ${JSON.stringify(experience.technologies)}
@@ -170,14 +182,14 @@ const SchemaOrgScripts = () => {
             {
               "@context": "https://schema.org",
               "@type": "EducationalOccupationalCredential",
-              "name": "${edu.degree}",
+              "name": "${escapeJsonString(edu.degree)}",
               "credentialCategory": "degree",
               "recognizedBy": {
                 "@type": "EducationalOrganization",
-                "name": "${edu.institution}"${edu.institutionUrl ? `,\n                "url": "${edu.institutionUrl}"` : ""}
+                "name": "${escapeJsonString(edu.institution)}"${edu.institutionUrl ? `,\n                "url": "${escapeJsonString(edu.institutionUrl)}"` : ""}
               },
               "educationalLevel": "Graduate",
-              "about": "${edu.specialization || edu.degree}",
+              "about": "${escapeJsonString(edu.specialization || edu.degree)}",
               "competencyRequired": ${JSON.stringify(edu.technologies)}
             }
           `}
@@ -203,14 +215,14 @@ const SchemaOrgScripts = () => {
             {
               "@context": "https://schema.org",
               "@type": "CreativeWork",
-              "name": "${project.name}",
-              "description": "${project.detailedDescription || project.description}",
+              "name": "${escapeJsonString(project.name)}",
+              "description": "${escapeJsonString(project.detailedDescription || project.description)}",
               "author": {
                 "@type": "Person",
                 "name": "Rodrigo Manuel Navarro Lajous"
               },
-              "dateCreated": "${project.period}",
-              "keywords": ${JSON.stringify(project.technologies.join(", "))}${project.github ? `,\n              "codeRepository": "${project.github}"` : ""}${project.website ? `,\n              "url": "${project.website}"` : ""}${project.banner ? `,\n              "image": "https://navarrolajous.com/assets${project.banner}"` : ""}
+              "dateCreated": "${escapeJsonString(project.period)}",
+              "keywords": ${JSON.stringify(project.technologies.join(", "))}${project.github ? `,\n              "codeRepository": "${escapeJsonString(project.github)}"` : ""}${project.website ? `,\n              "url": "${escapeJsonString(project.website)}"` : ""}${project.banner ? `,\n              "image": "https://navarrolajous.com/assets${escapeJsonString(project.banner)}"` : ""}
             }
           `}
         </Script>
