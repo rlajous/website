@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, Suspense } from "react";
 import { jobs, startups } from "@/services/experience";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Experience } from "@/domains/Experience";
@@ -18,7 +18,7 @@ const TABS: Tab[] = [
   { key: "startups", title: "Startups", experiences: startups },
 ];
 
-export default function Page() {
+function ExperienceContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -59,5 +59,13 @@ export default function Page() {
         ))}
       </Tabs>
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ExperienceContent />
+    </Suspense>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, Suspense } from "react";
 import { freelance, hobby, opensource } from "@/services/projects";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Project } from "@/domains/Project";
@@ -19,7 +19,7 @@ const TABS: Tab[] = [
   { key: "opensource", title: "Open Source", projects: opensource },
 ];
 
-export default function Page() {
+function ProjectsContent() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -60,5 +60,13 @@ export default function Page() {
         ))}
       </Tabs>
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProjectsContent />
+    </Suspense>
   );
 }
