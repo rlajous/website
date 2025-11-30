@@ -29,10 +29,13 @@ function extractISODate(uploadDate: string): string {
 // Helper function to extract locality from location string
 // Handles multi-word cities like "Buenos Aires" correctly
 function extractLocality(location: string): string {
-  // If location contains a comma, take text after the last comma
+  // If location contains a comma, take text before the last comma
   if (location.includes(",")) {
     const parts = location.split(",");
-    return parts[parts.length - 1].trim();
+    // For "City, Country" format, return the city part
+    if (parts.length >= 2) {
+      return parts[parts.length - 2].trim();
+    }
   }
 
   // If multiple words, return last two words to preserve multi-word cities
@@ -43,6 +46,20 @@ function extractLocality(location: string): string {
 
   // Otherwise return full location
   return location;
+}
+
+// Helper function to parse country from location string
+// Attempts to extract country from "City, Country" format
+function parseCountryFromLocation(location: string): string | null {
+  // If location contains a comma, take text after the last comma as country
+  if (location.includes(",")) {
+    const parts = location.split(",");
+    if (parts.length >= 2) {
+      return parts[parts.length - 1].trim();
+    }
+  }
+  // Cannot determine country from location
+  return null;
 }
 
 const SchemaOrgScripts = () => {
@@ -273,6 +290,9 @@ const SchemaOrgScripts = () => {
           const uploadDate = talk.uploadDate;
           const isoDate = extractISODate(uploadDate);
 
+          // Determine country: use talk.country if available, else try parsing from location
+          const country = talk.country || parseCountryFromLocation(talk.location);
+
           return (
             <Script
               key={talk.id}
@@ -295,8 +315,7 @@ const SchemaOrgScripts = () => {
                     "name": "${escapeJsonString(talk.event)}",
                     "address": {
                       "@type": "PostalAddress",
-                      "addressLocality": "${escapeJsonString(extractLocality(talk.location))}",
-                      "addressCountry": "Argentina"
+                      "addressLocality": "${escapeJsonString(extractLocality(talk.location))}"${country ? `,\n                      "addressCountry": "${escapeJsonString(country)}"` : ''}
                     }
                   },
                   "organizer": {
@@ -322,9 +341,7 @@ const SchemaOrgScripts = () => {
                   "recordedIn": {
                     "@type": "VideoObject",
                     "name": "${escapeJsonString(talk.title)}",
-                    "description": "${escapeJsonString(talk.event)} talk by Rodrigo Navarro Lajous",
-                    "thumbnailUrl": "${SITE_URL}/assets${escapeJsonString(talk.banner || "")}",
-                    "contentUrl": "${escapeJsonString(talk.links?.video || "")}",
+                    "description": "${escapeJsonString(talk.event)} talk by Rodrigo Navarro Lajous"${talk.banner ? `,\n                    "thumbnailUrl": "${SITE_URL}/assets${escapeJsonString(talk.banner)}"` : ''}${talk.links?.video ? `,\n                    "contentUrl": "${escapeJsonString(talk.links.video)}"` : ''},
                     "uploadDate": "${uploadDate}"
                   }
                 }

@@ -7,6 +7,7 @@ export const talks: Talk[] = [
     title: "Patterns in Chaos: Cross-Chain Forensics at Scale",
     event: "DuneCon 25",
     location: "Devconnect Buenos Aires",
+    country: "Argentina",
     date: "November 19, 2025",
     uploadDate: "2025-11-19T12:00:00Z",
     offers: {
@@ -38,6 +39,7 @@ export const talks: Talk[] = [
     title: "AI and the Future of On-Chain Trust and Safety",
     event: "DeFi Security Summit",
     location: "Devconnect Buenos Aires",
+    country: "Argentina",
     date: "November 21, 2025",
     uploadDate: "2025-11-21T12:00:00Z",
     offers: {
