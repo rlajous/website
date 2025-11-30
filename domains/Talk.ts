@@ -14,4 +14,10 @@ export interface Talk {
     article?: string;
   };
   banner?: string;
+  offers?: {
+    price: string;
+    priceCurrency: string;
+    availability: string;
+    url: string;
+  };
 }

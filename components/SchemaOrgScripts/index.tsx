@@ -288,7 +288,14 @@ const SchemaOrgScripts = () => {
                       "@type": "Organization",
                       "name": "Webacy"
                     }
-                  },
+                  },${talk.offers ? `
+                  "offers": {
+                    "@type": "Offer",
+                    "price": "${talk.offers.price}",
+                    "priceCurrency": "${talk.offers.priceCurrency}",
+                    "availability": "${talk.offers.availability}",
+                    "url": "${talk.offers.url}"
+                  },` : ''}
                   "recordedIn": {
                     "@type": "VideoObject",
                     "name": "${escapeJsonString(talk.title)}",
