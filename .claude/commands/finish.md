@@ -188,6 +188,7 @@ rm .claude/.pr-context.json
 - Production deploys automatically when merged to main
 - If `gh` command fails, provide instructions for manual PR creation
 - Multiple commits in a PR are fine
+- **NEVER** include Claude Code attribution or "Co-Authored-By: Claude" in PR descriptions
 
 ## Error Handling
 
