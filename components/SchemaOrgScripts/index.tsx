@@ -5,6 +5,7 @@ import Script from "next/script";
 import { jobs, startups } from "@/services/experience";
 import { education } from "@/services/education";
 import { freelance, hobby, opensource } from "@/services/projects";
+import { talks } from "@/services/talks";
 import { SITE_URL } from "@/constants/routes";
 
 // Helper function to escape strings for safe JSON-LD embedding
@@ -16,6 +17,13 @@ function escapeJsonString(str: string): string {
     .replace(/\r/g, "\\r") // Escape carriage returns
     .replace(/\t/g, "\\t") // Escape tabs
     .replace(/\f/g, "\\f"); // Escape form feeds
+}
+
+// Helper function to convert date string to ISO 8601 format
+// Converts "November 19, 2025" to "2025-11-19"
+function dateToISO8601(dateStr: string): string {
+  const date = new Date(dateStr);
+  return date.toISOString().split("T")[0];
 }
 
 const SchemaOrgScripts = () => {
@@ -230,108 +238,70 @@ const SchemaOrgScripts = () => {
     }
   }
 
-  // Talks page schema
+  // Talks page schema - dynamically generate Event schemas for talks with videos
   if (pathname === "/talks") {
+    // Filter talks that have video links
+    const talksWithVideos = talks.filter((talk) => talk.links?.video);
+
     return (
       <>
-        <Script
-          id="schema-talks-event-1"
-          type="application/ld+json"
-          strategy="afterInteractive"
-        >
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Event",
-              "name": "Patterns in Chaos: Cross-Chain Forensics at Scale",
-              "description": "An in-depth exploration of multi-chain forensics challenges and solutions. Presented 5 key forensic patterns including sniper detection, cross-chain attribution, function signature risks, behavioral attacks, and bonding curve concentration.",
-              "startDate": "2025-11-19",
-              "endDate": "2025-11-19",
-              "eventStatus": "https://schema.org/EventScheduled",
-              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-              "location": {
-                "@type": "Place",
-                "name": "DuneCon 25",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Buenos Aires",
-                  "addressCountry": "Argentina"
+        {talksWithVideos.map((talk, index) => {
+          const isoDate = dateToISO8601(talk.date);
+          // Use uploadDate if available, otherwise use event date with default time
+          const uploadDate = talk.uploadDate || `${isoDate}T12:00:00Z`;
+
+          return (
+            <Script
+              key={talk.id}
+              id={`schema-talks-event-${index + 1}`}
+              type="application/ld+json"
+              strategy="afterInteractive"
+            >
+              {`
+                {
+                  "@context": "https://schema.org",
+                  "@type": "Event",
+                  "name": "${escapeJsonString(talk.title)}",
+                  "description": "${escapeJsonString(talk.description)}",
+                  "startDate": "${isoDate}",
+                  "endDate": "${isoDate}",
+                  "eventStatus": "https://schema.org/EventScheduled",
+                  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                  "location": {
+                    "@type": "Place",
+                    "name": "${escapeJsonString(talk.event)}",
+                    "address": {
+                      "@type": "PostalAddress",
+                      "addressLocality": "${escapeJsonString(talk.location.split(" ").pop() || talk.location)}",
+                      "addressCountry": "Argentina"
+                    }
+                  },
+                  "organizer": {
+                    "@type": "Organization",
+                    "name": "${escapeJsonString(talk.event)}"
+                  },
+                  "performer": {
+                    "@type": "Person",
+                    "name": "Rodrigo Manuel Navarro Lajous",
+                    "jobTitle": "Staff Software Engineer",
+                    "worksFor": {
+                      "@type": "Organization",
+                      "name": "Webacy"
+                    }
+                  },
+                  "recordedIn": {
+                    "@type": "VideoObject",
+                    "name": "${escapeJsonString(talk.title)}",
+                    "description": "${escapeJsonString(talk.event)} talk by Rodrigo Navarro Lajous",
+                    "thumbnailUrl": "${SITE_URL}/assets${escapeJsonString(talk.banner || "")}",
+                    "contentUrl": "${escapeJsonString(talk.links?.video || "")}",
+                    "uploadDate": "${uploadDate}"
+                  }
                 }
-              },
-              "organizer": {
-                "@type": "Organization",
-                "name": "Dune Analytics",
-                "url": "https://dune.com/dunecon"
-              },
-              "performer": {
-                "@type": "Person",
-                "name": "Rodrigo Manuel Navarro Lajous",
-                "jobTitle": "Staff Software Engineer",
-                "worksFor": {
-                  "@type": "Organization",
-                  "name": "Webacy"
-                }
-              },
-              "recordedIn": {
-                "@type": "VideoObject",
-                "name": "Patterns in Chaos: Cross-Chain Forensics at Scale",
-                "description": "DuneCon 25 talk by Rodrigo Navarro Lajous",
-                "thumbnailUrl": "${SITE_URL}/assets/talks/dunecon-banner.jpeg",
-                "contentUrl": "https://youtu.be/2t7ICJPKWnE",
-                "uploadDate": "2025-11-19"
-              }
-            }
-          `}
-        </Script>
-        <Script
-          id="schema-talks-event-2"
-          type="application/ld+json"
-          strategy="afterInteractive"
-        >
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Event",
-              "name": "AI and the Future of On-Chain Trust and Safety",
-              "description": "Building security detection at scale for Web3. Explored the massive threat landscape of 100+ blockchains and 100M+ daily transactions. Demonstrated how AI and behavioral analysis can detect scams before users are impacted.",
-              "startDate": "2025-11-21",
-              "endDate": "2025-11-21",
-              "eventStatus": "https://schema.org/EventScheduled",
-              "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-              "location": {
-                "@type": "Place",
-                "name": "DeFi Security Summit",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "Buenos Aires",
-                  "addressCountry": "Argentina"
-                }
-              },
-              "organizer": {
-                "@type": "Organization",
-                "name": "DeFi Security Summit",
-                "url": "https://defisecuritysummit.org/"
-              },
-              "performer": {
-                "@type": "Person",
-                "name": "Rodrigo Manuel Navarro Lajous",
-                "jobTitle": "Staff Software Engineer",
-                "worksFor": {
-                  "@type": "Organization",
-                  "name": "Webacy"
-                }
-              },
-              "recordedIn": {
-                "@type": "VideoObject",
-                "name": "AI and the Future of On-Chain Trust and Safety",
-                "description": "DSS talk by Rodrigo Navarro Lajous",
-                "thumbnailUrl": "${SITE_URL}/assets/talks/dss-banner.jpeg",
-                "contentUrl": "https://www.youtube.com/watch?v=dkVCX-inxFI",
-                "uploadDate": "2025-11-21"
-              }
-            }
-          `}
-        </Script>
+              `}
+            </Script>
+          );
+        })}
       </>
     );
   }
