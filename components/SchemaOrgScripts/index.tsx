@@ -274,19 +274,16 @@ const SchemaOrgScripts = () => {
     }
   }
 
-  // Talks page schema - dynamically generate Event schemas for talks with videos
+  // Talks page schema - dynamically generate Event schemas for all talks
   if (pathname === "/talks") {
-    // Filter talks that have video links
-    const talksWithVideos = talks.filter((talk) => talk.links?.video);
-
     return (
       <>
-        {talksWithVideos.map((talk, index) => {
-          // Extract ISO date from uploadDate (no timezone conversion)
-          // uploadDate is required and already in ISO format (e.g., "2025-11-19T12:00:00Z")
+        {talks.map((talk, index) => {
+          // Skip talks without uploadDate - Event schema requires startDate which we derive from uploadDate
           if (!talk.uploadDate) {
-            throw new Error(`Talk "${talk.title}" is missing required uploadDate field`);
+            return null;
           }
+
           const uploadDate = talk.uploadDate;
           const isoDate = extractISODate(uploadDate);
 
@@ -330,20 +327,22 @@ const SchemaOrgScripts = () => {
                       "@type": "Organization",
                       "name": "Webacy"
                     }
-                  },${talk.offers ? `
+                  },${talk.banner ? `
+                  "image": "${SITE_URL}/assets${escapeJsonString(talk.banner)}",` : ''}${talk.offers ? `
                   "offers": {
                     "@type": "Offer",
                     "price": "${talk.offers.price}",
                     "priceCurrency": "${talk.offers.priceCurrency}",
                     "availability": "${talk.offers.availability}",
                     "url": "${talk.offers.url}"
-                  },` : ''}
+                  },` : ''}${talk.links?.video ? `
                   "recordedIn": {
                     "@type": "VideoObject",
                     "name": "${escapeJsonString(talk.title)}",
-                    "description": "${escapeJsonString(talk.event)} talk by Rodrigo Navarro Lajous"${talk.banner ? `,\n                    "thumbnailUrl": "${SITE_URL}/assets${escapeJsonString(talk.banner)}"` : ''}${talk.links?.video ? `,\n                    "contentUrl": "${escapeJsonString(talk.links.video)}"` : ''},
+                    "description": "${escapeJsonString(talk.event)} talk by Rodrigo Navarro Lajous"${talk.banner ? `,\n                    "thumbnailUrl": "${SITE_URL}/assets${escapeJsonString(talk.banner)}"` : ''},
+                    "contentUrl": "${escapeJsonString(talk.links.video)}",
                     "uploadDate": "${uploadDate}"
-                  }
+                  }` : ''}
                 }
               `}
             </Script>
