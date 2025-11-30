@@ -19,11 +19,11 @@ function escapeJsonString(str: string): string {
     .replace(/\f/g, "\\f"); // Escape form feeds
 }
 
-// Helper function to convert date string to ISO 8601 format
-// Converts "November 19, 2025" to "2025-11-19"
-function dateToISO8601(dateStr: string): string {
-  const date = new Date(dateStr);
-  return date.toISOString().split("T")[0];
+// Helper function to extract ISO date from uploadDate
+// Extracts "2025-11-19" from "2025-11-19T12:00:00Z"
+// No timezone conversion - direct string split
+function extractISODate(uploadDate: string): string {
+  return uploadDate.split("T")[0];
 }
 
 // Helper function to extract locality from location string
@@ -265,9 +265,13 @@ const SchemaOrgScripts = () => {
     return (
       <>
         {talksWithVideos.map((talk, index) => {
-          const isoDate = dateToISO8601(talk.date);
-          // Use uploadDate if available, otherwise use event date with default time
-          const uploadDate = talk.uploadDate || `${isoDate}T12:00:00Z`;
+          // Extract ISO date from uploadDate (no timezone conversion)
+          // uploadDate is required and already in ISO format (e.g., "2025-11-19T12:00:00Z")
+          if (!talk.uploadDate) {
+            throw new Error(`Talk "${talk.title}" is missing required uploadDate field`);
+          }
+          const uploadDate = talk.uploadDate;
+          const isoDate = extractISODate(uploadDate);
 
           return (
             <Script
