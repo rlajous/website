@@ -26,6 +26,25 @@ function dateToISO8601(dateStr: string): string {
   return date.toISOString().split("T")[0];
 }
 
+// Helper function to extract locality from location string
+// Handles multi-word cities like "Buenos Aires" correctly
+function extractLocality(location: string): string {
+  // If location contains a comma, take text after the last comma
+  if (location.includes(",")) {
+    const parts = location.split(",");
+    return parts[parts.length - 1].trim();
+  }
+
+  // If multiple words, return last two words to preserve multi-word cities
+  const words = location.trim().split(/\s+/);
+  if (words.length >= 2) {
+    return words.slice(-2).join(" ");
+  }
+
+  // Otherwise return full location
+  return location;
+}
+
 const SchemaOrgScripts = () => {
   const pathname = usePathname();
 
@@ -272,7 +291,7 @@ const SchemaOrgScripts = () => {
                     "name": "${escapeJsonString(talk.event)}",
                     "address": {
                       "@type": "PostalAddress",
-                      "addressLocality": "${escapeJsonString(talk.location.split(" ").pop() || talk.location)}",
+                      "addressLocality": "${escapeJsonString(extractLocality(talk.location))}",
                       "addressCountry": "Argentina"
                     }
                   },
