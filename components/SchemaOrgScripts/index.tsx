@@ -290,6 +290,76 @@ const SchemaOrgScripts = () => {
           // Determine country: use talk.country if available, else try parsing from location
           const country = talk.country || parseCountryFromLocation(talk.location);
 
+          // Build address object
+          const address: Record<string, string> = {
+            "@type": "PostalAddress",
+            addressLocality: extractLocality(talk.location),
+          };
+          if (country) {
+            address.addressCountry = country;
+          }
+
+          // Build Event schema as JavaScript object to avoid manual comma management
+          const eventSchema: Record<string, any> = {
+            "@context": "https://schema.org",
+            "@type": "Event",
+            name: talk.title,
+            description: talk.description,
+            startDate: isoDate,
+            endDate: isoDate,
+            eventStatus: "https://schema.org/EventScheduled",
+            eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+            location: {
+              "@type": "Place",
+              name: talk.event,
+              address,
+            },
+            organizer: {
+              "@type": "Organization",
+              name: talk.event,
+            },
+            performer: {
+              "@type": "Person",
+              name: "Rodrigo Manuel Navarro Lajous",
+              jobTitle: "Staff Software Engineer",
+              worksFor: {
+                "@type": "Organization",
+                name: "Webacy",
+              },
+            },
+          };
+
+          // Add optional image field
+          if (talk.banner) {
+            eventSchema.image = `${SITE_URL}/assets${talk.banner}`;
+          }
+
+          // Add optional offers field
+          if (talk.offers) {
+            eventSchema.offers = {
+              "@type": "Offer",
+              price: talk.offers.price,
+              priceCurrency: talk.offers.priceCurrency,
+              availability: talk.offers.availability,
+              url: talk.offers.url,
+            };
+          }
+
+          // Add optional recordedIn field (VideoObject)
+          if (talk.links?.video) {
+            const videoObject: Record<string, string> = {
+              "@type": "VideoObject",
+              name: talk.title,
+              description: `${talk.event} talk by Rodrigo Navarro Lajous`,
+              contentUrl: talk.links.video,
+              uploadDate: uploadDate,
+            };
+            if (talk.banner) {
+              videoObject.thumbnailUrl = `${SITE_URL}/assets${talk.banner}`;
+            }
+            eventSchema.recordedIn = videoObject;
+          }
+
           return (
             <Script
               key={talk.id}
@@ -297,54 +367,7 @@ const SchemaOrgScripts = () => {
               type="application/ld+json"
               strategy="afterInteractive"
             >
-              {`
-                {
-                  "@context": "https://schema.org",
-                  "@type": "Event",
-                  "name": "${escapeJsonString(talk.title)}",
-                  "description": "${escapeJsonString(talk.description)}",
-                  "startDate": "${isoDate}",
-                  "endDate": "${isoDate}",
-                  "eventStatus": "https://schema.org/EventScheduled",
-                  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                  "location": {
-                    "@type": "Place",
-                    "name": "${escapeJsonString(talk.event)}",
-                    "address": {
-                      "@type": "PostalAddress",
-                      "addressLocality": "${escapeJsonString(extractLocality(talk.location))}"${country ? `,\n                      "addressCountry": "${escapeJsonString(country)}"` : ''}
-                    }
-                  },
-                  "organizer": {
-                    "@type": "Organization",
-                    "name": "${escapeJsonString(talk.event)}"
-                  },
-                  "performer": {
-                    "@type": "Person",
-                    "name": "Rodrigo Manuel Navarro Lajous",
-                    "jobTitle": "Staff Software Engineer",
-                    "worksFor": {
-                      "@type": "Organization",
-                      "name": "Webacy"
-                    }
-                  },${talk.banner ? `
-                  "image": "${SITE_URL}/assets${escapeJsonString(talk.banner)}",` : ''}${talk.offers ? `
-                  "offers": {
-                    "@type": "Offer",
-                    "price": "${talk.offers.price}",
-                    "priceCurrency": "${talk.offers.priceCurrency}",
-                    "availability": "${talk.offers.availability}",
-                    "url": "${talk.offers.url}"
-                  },` : ''}${talk.links?.video ? `
-                  "recordedIn": {
-                    "@type": "VideoObject",
-                    "name": "${escapeJsonString(talk.title)}",
-                    "description": "${escapeJsonString(talk.event)} talk by Rodrigo Navarro Lajous"${talk.banner ? `,\n                    "thumbnailUrl": "${SITE_URL}/assets${escapeJsonString(talk.banner)}"` : ''},
-                    "contentUrl": "${escapeJsonString(talk.links.video)}",
-                    "uploadDate": "${uploadDate}"
-                  }` : ''}
-                }
-              `}
+              {JSON.stringify(eventSchema, null, 2)}
             </Script>
           );
         })}
