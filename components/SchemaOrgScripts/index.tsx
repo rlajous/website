@@ -317,6 +317,7 @@ const SchemaOrgScripts = () => {
             organizer: {
               "@type": "Organization",
               name: talk.event,
+              ...(talk.organizerUrl && { url: talk.organizerUrl }),
             },
             performer: {
               "@type": "Person",
@@ -342,6 +343,7 @@ const SchemaOrgScripts = () => {
               priceCurrency: talk.offers.priceCurrency,
               availability: talk.offers.availability,
               url: talk.offers.url,
+              validFrom: uploadDate,
             };
           }
 

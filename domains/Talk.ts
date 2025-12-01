@@ -3,6 +3,7 @@ export interface Talk {
   slug: string;
   title: string;
   event: string;
+  organizerUrl?: string;
   location: string;
   country?: string; // ISO 3166-1 country name (e.g., "Argentina", "United States")
   date: string;
