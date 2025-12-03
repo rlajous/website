@@ -10,7 +10,6 @@ const recipientEmail = getEnv(process.env.RECIPIENT_EMAIL, "RECIPIENT_EMAIL");
 const ContactSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email({ message: "Valid email is required" }),
-  subject: z.string().optional(),
   message: z.string().min(1, "Message is required"),
 });
 
