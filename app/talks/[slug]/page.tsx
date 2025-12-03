@@ -11,9 +11,9 @@ import PDFViewer from "../components/PDFViewer";
 import { SITE_URL } from "@/constants/routes";
 
 interface TalkPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -23,7 +23,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: TalkPageProps): Promise<Metadata> {
-  const talk = talks.find((t) => t.slug === params.slug);
+  const { slug } = await params;
+  const talk = talks.find((t) => t.slug === slug);
 
   if (!talk) {
     return {
@@ -50,8 +51,9 @@ export async function generateMetadata({ params }: TalkPageProps): Promise<Metad
   };
 }
 
-export default function TalkPage({ params }: TalkPageProps) {
-  const talk = talks.find((t) => t.slug === params.slug);
+export default async function TalkPage({ params }: TalkPageProps) {
+  const { slug } = await params;
+  const talk = talks.find((t) => t.slug === slug);
 
   if (!talk) {
     notFound();

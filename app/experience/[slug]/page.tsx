@@ -8,9 +8,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface ExperiencePageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 const allExperiences = [...jobs, ...startups];
@@ -24,7 +24,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: ExperiencePageProps): Promise<Metadata> {
-  const experience = allExperiences.find((exp) => exp.slug === params.slug);
+  const { slug } = await params;
+  const experience = allExperiences.find((exp) => exp.slug === slug);
 
   if (!experience) {
     return {
@@ -55,8 +56,9 @@ export async function generateMetadata({
   };
 }
 
-export default function ExperiencePage({ params }: ExperiencePageProps) {
-  const experience = allExperiences.find((exp) => exp.slug === params.slug);
+export default async function ExperiencePage({ params }: ExperiencePageProps) {
+  const { slug } = await params;
+  const experience = allExperiences.find((exp) => exp.slug === slug);
 
   if (!experience) {
     notFound();
