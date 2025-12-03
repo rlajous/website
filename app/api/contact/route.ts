@@ -19,14 +19,16 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      return NextResponse.json({ error }, { status: 500 });
+      console.error("Resend error:", JSON.stringify(error, null, 2));
+      return NextResponse.json({ error: error.message || "Failed to send email" }, { status: 500 });
     }
 
     return NextResponse.json({ message: "Email sent successfully", data });
   } catch (error) {
     console.error("Error sending email:", error);
+    const errorMessage = error instanceof Error ? error.message : "Internal Server Error";
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: errorMessage },
       { status: 500 }
     );
   }

@@ -15,9 +15,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface EducationPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -29,7 +29,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: EducationPageProps): Promise<Metadata> {
-  const edu = education.find((e) => e.slug === params.slug);
+  const { slug } = await params;
+  const edu = education.find((e) => e.slug === slug);
 
   if (!edu) {
     return {
@@ -67,8 +68,9 @@ export async function generateMetadata({
   };
 }
 
-export default function EducationPage({ params }: EducationPageProps) {
-  const edu = education.find((e) => e.slug === params.slug);
+export default async function EducationPage({ params }: EducationPageProps) {
+  const { slug } = await params;
+  const edu = education.find((e) => e.slug === slug);
 
   if (!edu) {
     notFound();

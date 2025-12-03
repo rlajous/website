@@ -9,9 +9,9 @@ import Link from "next/link";
 import { SITE_URL } from "@/constants/routes";
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 const allProjects = [...freelance, ...hobby, ...opensource];
@@ -25,7 +25,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
-  const project = allProjects.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const project = allProjects.find((p) => p.slug === slug);
 
   if (!project) {
     return {
@@ -52,8 +53,9 @@ export async function generateMetadata({
   };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = allProjects.find((p) => p.slug === params.slug);
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { slug } = await params;
+  const project = allProjects.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
