@@ -64,7 +64,7 @@ export const talks: Talk[] = [
     ],
     links: {
       slides: "/assets/talks/dss-ai-onchain-trust-safety.pdf",
-      video: "https://www.youtube.com/watch?v=dkVCX-inxFI",
+      video: "https://www.youtube.com/watch?v=9wq2BhjKAFI",
     },
     banner: "/talks/dss-banner.jpeg",
   },
