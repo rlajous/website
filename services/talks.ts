@@ -2,6 +2,39 @@ import { Talk } from "@/domains/Talk";
 
 export const talks: Talk[] = [
   {
+    id: 3,
+    slug: "ethdenver-2026",
+    title: "Behavior-Based Security for the Next Billion On-Chain Users",
+    event: "ETHDenver",
+    organizerUrl: "https://www.ethdenver.com/",
+    location: "Denver, Colorado",
+    country: "United States",
+    date: "February 20, 2026",
+    uploadDate: "2026-02-20T12:00:00Z",
+    offers: {
+      price: "0",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: "https://navarrolajous.com/talks/ethdenver-2026",
+    },
+    description:
+      "This talk presents a practical framework for detecting malicious token launches by analyzing on-chain behavioral patterns. Instead of waiting for user reports or post-exploit analysis, Rodrigo demonstrates how to identify threats within seconds of deployment using six core behavioral signals—sniper coordination, deployer history, fund flow tracing, timing patterns, retention analysis, and confidence scoring—giving wallets, DEXes, and researchers actionable tools to protect the next billion on-chain users.",
+    topics: [
+      "Blockchain Security",
+      "Behavioral Analysis",
+      "Threat Detection",
+      "Smart Contract Security",
+      "Web3 Security",
+      "On-Chain Analytics",
+      "Rug Pull Prevention",
+    ],
+    links: {
+      slides: "/assets/talks/ethdenver-behavior-based-security.pdf",
+      video: "https://youtu.be/GENujsJ3szI",
+    },
+    banner: "/talks/ETHDenver_2026_Banner_Compressed.jpg",
+  },
+  {
     id: 1,
     slug: "dunecon-2025",
     title: "Patterns in Chaos: Cross-Chain Forensics at Scale",
