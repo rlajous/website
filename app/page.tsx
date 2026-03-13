@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { GitHubLink } from "@/components/social/GitHubLink";
 import { LinkedInLink } from "@/components/social/LinkedInLink";
+import { SubstackSubscribeForm } from "@/components/SubstackSubscribeForm";
 
 export default function Home() {
   const githubUsername = "rlajous";
@@ -43,21 +43,9 @@ export default function Home() {
           />
         </div>
 
-        <Button
-          asChild
-          className="mt-10 w-full md:w-auto text-lg md:text-base py-7 md:py-6 px-8"
-          variant="default"
-        >
-          <a
-            href="/resume.pdf"
-            download
-            data-umami-event="Download Resume"
-            data-umami-event-type="PDF"
-            aria-label="Download my resume in PDF format"
-          >
-            Download Resume
-          </a>
-        </Button>
+        <div className="mt-10">
+          <SubstackSubscribeForm />
+        </div>
       </div>
     </section>
   );
