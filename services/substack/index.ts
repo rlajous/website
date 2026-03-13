@@ -1,4 +1,15 @@
-export async function subscribeToSubstack(email: string) {
+interface SubscribeResponse {
+  message: string;
+}
+
+interface SubscribeErrorResponse {
+  error?: string;
+}
+
+/** Sends a subscribe request to the Substack newsletter API route. */
+export async function subscribeToSubstack(
+  email: string
+): Promise<SubscribeResponse> {
   try {
     const response = await fetch("/api/substack/subscribe", {
       method: "POST",
@@ -9,14 +20,17 @@ export async function subscribeToSubstack(email: string) {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData: SubscribeErrorResponse = await response.json();
       throw new Error(errorData.error || "Failed to subscribe");
     }
 
-    const result = await response.json();
+    const result: SubscribeResponse = await response.json();
     return result;
-  } catch (error) {
-    console.error("Error in subscribeToSubstack:", error);
+  } catch (error: unknown) {
+    console.error(
+      "Error in subscribeToSubstack:",
+      error instanceof Error ? error.message : error
+    );
     throw error;
   }
 }

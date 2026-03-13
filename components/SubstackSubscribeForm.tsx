@@ -14,6 +14,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 
@@ -32,6 +33,7 @@ export const SubstackSubscribeForm: React.FC = () => {
   const { handleSubmit, control } = form;
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
+  /** Validates and submits the email to the newsletter subscription service. */
   async function onSubmit(values: z.infer<typeof schema>) {
     setIsSubmitting(true);
 
@@ -74,6 +76,7 @@ export const SubstackSubscribeForm: React.FC = () => {
             name="email"
             render={({ field }) => (
               <FormItem className="flex-1">
+                <FormLabel className="sr-only">Email address</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="your@email.com"
