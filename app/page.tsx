@@ -1,10 +1,14 @@
 import { GitHubLink } from "@/components/social/GitHubLink";
 import { LinkedInLink } from "@/components/social/LinkedInLink";
-import { SubstackSubscribeForm } from "@/components/SubstackSubscribeForm";
+import { TwitterLink } from "@/components/social/TwitterLink";
+import { Button } from "@/components/ui/button";
+import { Download, Newspaper } from "lucide-react";
 
 export default function Home() {
   const githubUsername = "rlajous";
   const linkedInProfile = "rodrigo-lajous";
+  const twitterUsername = "ro_lajous";
+  const substackUrl = process.env.NEXT_PUBLIC_SUBSTACK_PUBLICATION_URL;
 
   return (
     <section
@@ -41,10 +45,28 @@ export default function Home() {
             showText={false}
             iconSize="lg"
           />
+          <TwitterLink
+            username={twitterUsername}
+            showText={false}
+            iconSize="lg"
+          />
         </div>
 
-        <div className="mt-10">
-          <SubstackSubscribeForm />
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+          <Button asChild size="lg" className="w-full sm:w-auto" variant="default">
+            <a href="/resume.pdf" download data-umami-event="Download Resume" data-umami-event-type="PDF" aria-label="Download my resume in PDF format">
+              <Download className="mr-2 h-4 w-4" />
+              Download Resume
+            </a>
+          </Button>
+          {substackUrl && (
+            <Button asChild size="lg" className="w-full sm:w-auto" variant="outline">
+              <a href={substackUrl} target="_blank" rel="noopener noreferrer" data-umami-event="Subscribe Newsletter" aria-label="Subscribe to my newsletter on Substack">
+                <Newspaper className="mr-2 h-4 w-4" />
+                Subscribe
+              </a>
+            </Button>
+          )}
         </div>
       </div>
     </section>
