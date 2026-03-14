@@ -40,3 +40,6 @@ next-env.d.ts
 
 # Claude Code context
 .claude/.pr-context.json
+
+# Playwright MCP
+.playwright-mcp/
