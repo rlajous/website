@@ -38,6 +38,9 @@ export async function generateMetadata({
     title: `${project.name} - ${project.company} | Rodrigo Manuel Navarro Lajous`,
     description: project.detailedDescription || project.description,
     keywords: [...project.technologies, project.name, project.company, project.type],
+    alternates: {
+      canonical: `/projects/${slug}`,
+    },
     openGraph: {
       title: `${project.name} - ${project.company}`,
       description: project.detailedDescription || project.description,

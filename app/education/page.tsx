@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Education | Rodrigo Manuel Navarro Lajous",
   description:
     "Academic background of Rodrigo Manuel Navarro Lajous, including his master's in software engineering and bachelor's degree.",
+  alternates: {
+    canonical: "/education",
+  },
 };
 
 export default function EducationPage() {

@@ -36,9 +36,6 @@ export const metadata: Metadata = {
     follow: true,
   },
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
     description:

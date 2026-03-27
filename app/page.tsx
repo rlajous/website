@@ -1,8 +1,15 @@
+import { Metadata } from "next";
 import { GitHubLink } from "@/components/social/GitHubLink";
 import { LinkedInLink } from "@/components/social/LinkedInLink";
 import { TwitterLink } from "@/components/social/TwitterLink";
 import { Button } from "@/components/ui/button";
 import { Download, Newspaper } from "lucide-react";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   const githubUsername = "rlajous";

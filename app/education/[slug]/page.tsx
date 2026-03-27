@@ -50,6 +50,9 @@ export async function generateMetadata({
       "education",
       "academic",
     ],
+    alternates: {
+      canonical: `/education/${slug}`,
+    },
     openGraph: {
       title: `${edu.degree} at ${edu.institution}`,
       description: edu.specialization

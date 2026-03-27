@@ -42,6 +42,9 @@ export async function generateMetadata({
       experience.position,
       experience.type === "job" ? "employment" : "startup",
     ],
+    alternates: {
+      canonical: `/experience/${slug}`,
+    },
     openGraph: {
       title: `${experience.position} at ${experience.company}`,
       description: experience.responsibilities.join(" "),
