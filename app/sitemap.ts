@@ -5,6 +5,15 @@ import { freelance, hobby, opensource } from "@/services/projects";
 import { talks } from "@/services/talks";
 import { SITE_URL } from "@/constants/routes";
 
+/**
+ * Generates the XML sitemap for all static pages and dynamic detail pages
+ * (experience, education, projects, talks).
+ *
+ * Used by Next.js to produce `/sitemap.xml`. Aggregates data from all service
+ * modules to include every detail page route.
+ *
+ * @returns Array of sitemap entries with URL, lastModified, changeFrequency, and priority.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_URL;
 

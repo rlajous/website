@@ -6,6 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Education } from "@/domains/Education";
 import { School, Calendar } from "lucide-react";
 
+/**
+ * Card displaying an education entry summary (degree, institution, period, specialization, tech badges).
+ *
+ * Links to the detail page at `/education/[slug]`. The period is shown in a left sidebar
+ * on desktop and inline with a calendar icon on mobile. Props match the {@link Education} interface.
+ *
+ * Client component — uses interactive link behavior.
+ */
 const EducationCard: React.FC<Education> = ({
   slug,
   degree,

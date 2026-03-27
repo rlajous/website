@@ -6,6 +6,12 @@ import NavigationLink from "../NavigationLink";
 import Logo from "@/components/icons/Logo";
 import Link from "next/link";
 
+/**
+ * Slide-out mobile navigation menu using shadcn Sheet.
+ *
+ * Visible only below the `lg` breakpoint. Renders the same routes as the
+ * desktop navigation via {@link NavigationLink} components in a vertical grid layout.
+ */
 const MobileNavigation: React.FC = () => {
   return (
     <Sheet>

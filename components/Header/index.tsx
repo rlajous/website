@@ -13,6 +13,15 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 
+/**
+ * Sticky site header with scroll-aware background transition.
+ *
+ * Uses an Intersection Observer on an invisible sentinel element at the top of the page
+ * to detect scroll position. When scrolled, applies a blurred backdrop and shadow.
+ * Contains the desktop navigation menu, mobile hamburger menu, and theme toggle.
+ *
+ * Client component — requires browser APIs (IntersectionObserver, useState).
+ */
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef<HTMLDivElement>(null);

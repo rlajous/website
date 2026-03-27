@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 
+/** Metadata for the experience section (title, description, canonical URL). */
 export const metadata: Metadata = {
   title: "Experience | Rodrigo Manuel Navarro Lajous",
   description:
@@ -9,6 +10,12 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Layout wrapper for the experience section providing section-level metadata.
+ * Renders children without additional visual chrome.
+ *
+ * @param props.children - The experience page content.
+ */
 export default function ExperienceLayout({
   children,
 }: {

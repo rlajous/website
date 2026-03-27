@@ -1,5 +1,13 @@
+/**
+ * @module services/projects
+ * @description Portfolio project data categorized by engagement type.
+ * Consumed by the projects pages, LLM text generation, and Schema.org scripts.
+ */
 import { Project } from "@/domains/Project";
 
+/**
+ * Client freelance projects displayed on the Freelance tab of `/projects`.
+ */
 export const freelance: Project[] = [
   {
     id: 1,
@@ -66,6 +74,9 @@ export const freelance: Project[] = [
   },
 ];
 
+/**
+ * Personal hobby and side projects displayed on the Hobby tab of `/projects`.
+ */
 export const hobby: Project[] = [
   {
     id: 1,
@@ -118,6 +129,9 @@ export const hobby: Project[] = [
   },
 ];
 
+/**
+ * Open-source contributions displayed on the Open Source tab of `/projects`.
+ */
 export const opensource: Project[] = [
   {
     id: 1,

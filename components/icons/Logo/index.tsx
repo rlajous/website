@@ -2,6 +2,14 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import styles from "./Logo.module.css";
 
+/**
+ * Custom SVG logo for the portfolio site.
+ *
+ * Applies CSS module styling for fill color inheritance and accepts
+ * a `className` prop for external sizing control.
+ *
+ * @param props - Standard SVG/HTML attributes forwarded to the `<svg>` element.
+ */
 const Logo: React.FC<any> = ({ className, ...props }) => {
   return (
     <svg

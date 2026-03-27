@@ -10,6 +10,9 @@ import { SITE_URL } from "@/constants/routes";
 
 const inter = Inter({ subsets: ["latin"] });
 
+/**
+ * Site-wide default metadata including OpenGraph, Twitter cards, SEO keywords, and canonical base URL.
+ */
 export const metadata: Metadata = {
   title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
   description:
@@ -55,6 +58,14 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Root layout providing the HTML structure, Inter font, theme provider, header,
+ * footer, toaster, Schema.org scripts, and Umami analytics.
+ *
+ * Wraps all pages and is rendered on every route.
+ *
+ * @param props.children - The page content rendered within the layout.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{

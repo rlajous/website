@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SITE_URL } from "@/constants/routes";
 
+/** Props for the project detail page, receiving the slug from the dynamic route. */
 interface ProjectPageProps {
   params: Promise<{
     slug: string;
@@ -16,12 +17,23 @@ interface ProjectPageProps {
 
 const allProjects = [...freelance, ...hobby, ...opensource];
 
+/**
+ * Pre-renders all project detail pages at build time from the combined freelance, hobby, and opensource data.
+ *
+ * @returns Array of slug params for static generation.
+ */
 export async function generateStaticParams() {
   return allProjects.map((project) => ({
     slug: project.slug,
   }));
 }
 
+/**
+ * Generates dynamic SEO metadata (title, description, keywords, OpenGraph) from project data.
+ *
+ * @param props - Page props containing the route slug.
+ * @returns Metadata object for the project detail page.
+ */
 export async function generateMetadata({
   params,
 }: ProjectPageProps): Promise<Metadata> {
@@ -56,6 +68,14 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Project detail page rendering banner, description, features, challenges,
+ * impact statement, screenshots, and technology badges.
+ *
+ * Server component — statically generated at build time via {@link generateStaticParams}.
+ *
+ * @param props - Page props containing the route slug.
+ */
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = allProjects.find((p) => p.slug === slug);
@@ -64,6 +84,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  /** Maps a project type key to its human-readable display label. */
   const getTypeLabel = (type: string) => {
     switch (type) {
       case "freelance":
@@ -77,6 +98,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     }
   };
 
+  /** Maps a project type key to a Badge variant for visual differentiation. */
   const getTypeColor = (
     type: string
   ): "default" | "secondary" | "outline" | "destructive" => {

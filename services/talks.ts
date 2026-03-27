@@ -1,5 +1,13 @@
+/**
+ * @module services/talks
+ * @description Conference talks and speaking engagement data.
+ * Consumed by the talks pages, LLM text generation, and Schema.org Event structured data.
+ */
 import { Talk } from "@/domains/Talk";
 
+/**
+ * Conference talks rendered as {@link TalkCard} components on `/talks` and as individual detail pages.
+ */
 export const talks: Talk[] = [
   {
     id: 3,

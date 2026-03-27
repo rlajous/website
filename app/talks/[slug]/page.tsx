@@ -10,18 +10,30 @@ import YouTubeEmbed from "../components/YouTubeEmbed";
 import PDFViewer from "../components/PDFViewer";
 import { SITE_URL } from "@/constants/routes";
 
+/** Props for the talk detail page, receiving the slug from the dynamic route. */
 interface TalkPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
 
+/**
+ * Pre-renders all talk detail pages at build time from the talks data.
+ *
+ * @returns Array of slug params for static generation.
+ */
 export async function generateStaticParams() {
   return talks.map((talk) => ({
     slug: talk.slug,
   }));
 }
 
+/**
+ * Generates dynamic SEO metadata (title, description, keywords, OpenGraph, video) from talk data.
+ *
+ * @param props - Page props containing the route slug.
+ * @returns Metadata object for the talk detail page.
+ */
 export async function generateMetadata({ params }: TalkPageProps): Promise<Metadata> {
   const { slug } = await params;
   const talk = talks.find((t) => t.slug === slug);
@@ -54,6 +66,14 @@ export async function generateMetadata({ params }: TalkPageProps): Promise<Metad
   };
 }
 
+/**
+ * Talk detail page rendering banner, title, event details, description, topic badges,
+ * and optional {@link YouTubeEmbed} and {@link PDFViewer} for video and slides.
+ *
+ * Server component — statically generated at build time via {@link generateStaticParams}.
+ *
+ * @param props - Page props containing the route slug.
+ */
 export default async function TalkPage({ params }: TalkPageProps) {
   const { slug } = await params;
   const talk = talks.find((t) => t.slug === slug);

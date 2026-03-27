@@ -3,6 +3,12 @@
 import { SocialLink } from "./SocialLink";
 import { IconSize, iconSizeClasses } from "@/utils/iconUtils";
 
+/**
+ * Custom X (formerly Twitter) logo SVG icon.
+ * Inline implementation since lucide-react does not include the X brand icon.
+ *
+ * @param props.className - Tailwind classes for sizing (e.g. from {@link iconSizeClasses}).
+ */
 function XIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -16,12 +22,23 @@ function XIcon({ className }: { className?: string }) {
   );
 }
 
+/**
+ * Props for the {@link TwitterLink} component.
+ */
 interface TwitterLinkProps {
+  /** X/Twitter username without the @ prefix (e.g. "rodrigo_codes"). */
   username: string;
+  /** Whether to display the @username text. Defaults to true. */
   showText?: boolean;
+  /** Icon size token. Defaults to "md". */
   iconSize?: IconSize;
 }
 
+/**
+ * X (formerly Twitter) profile link component.
+ * Constructs the URL from the username (e.g. `x.com/{username}`).
+ * Composes {@link SocialLink} with the custom {@link XIcon}.
+ */
 export function TwitterLink({
   username,
   showText = true,

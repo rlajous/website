@@ -7,6 +7,7 @@ import { MapPin, Calendar, ArrowLeft, Briefcase, ExternalLink } from "lucide-rea
 import Link from "next/link";
 import Image from "next/image";
 
+/** Props for the experience detail page, receiving the slug from the dynamic route. */
 interface ExperiencePageProps {
   params: Promise<{
     slug: string;
@@ -15,12 +16,23 @@ interface ExperiencePageProps {
 
 const allExperiences = [...jobs, ...startups];
 
+/**
+ * Pre-renders all experience detail pages at build time from the combined jobs and startups data.
+ *
+ * @returns Array of slug params for static generation.
+ */
 export async function generateStaticParams() {
   return allExperiences.map((exp) => ({
     slug: exp.slug,
   }));
 }
 
+/**
+ * Generates dynamic SEO metadata (title, description, keywords, OpenGraph) from experience data.
+ *
+ * @param props - Page props containing the route slug.
+ * @returns Metadata object for the experience detail page.
+ */
 export async function generateMetadata({
   params,
 }: ExperiencePageProps): Promise<Metadata> {
@@ -59,6 +71,14 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Experience detail page rendering banner, position, company link, period,
+ * location, responsibilities, achievements, and technology badges.
+ *
+ * Server component — statically generated at build time via {@link generateStaticParams}.
+ *
+ * @param props - Page props containing the route slug.
+ */
 export default async function ExperiencePage({ params }: ExperiencePageProps) {
   const { slug } = await params;
   const experience = allExperiences.find((exp) => exp.slug === slug);

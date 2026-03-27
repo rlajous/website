@@ -4,6 +4,16 @@ import { education } from "@/services/education";
 import { freelance, hobby, opensource } from "@/services/projects";
 import { talks } from "@/services/talks";
 
+/**
+ * Generates a concise Markdown summary of the portfolio following the llms.txt convention.
+ *
+ * Aggregates data from all services (experience, education, talks, projects, skills)
+ * into a compact one-line-per-entry format. Served at the `/llms.txt` route.
+ *
+ * @returns Plain-text Markdown string suitable for LLM consumption.
+ *
+ * @see https://llmstxt.org/
+ */
 export function generateLlmsTxt(): string {
   const lines: string[] = [];
 
@@ -84,6 +94,16 @@ export function generateLlmsTxt(): string {
   return lines.join("\n");
 }
 
+/**
+ * Generates a comprehensive Markdown document with full detail for each portfolio section.
+ *
+ * Unlike {@link generateLlmsTxt}, this version includes responsibilities, thesis details,
+ * talk descriptions, project features, and more. Served at the `/llms-full.txt` route.
+ *
+ * @returns Plain-text Markdown string with expanded content for each entry.
+ *
+ * @see https://llmstxt.org/
+ */
 export function generateLlmsFullTxt(): string {
   const lines: string[] = [];
 

@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { talks } from "@/services/talks";
 import TalkCard from "./components/TalkCard";
 
+/** Metadata for the talks page (title, description, canonical URL). */
 export const metadata: Metadata = {
   title: "Talks | Rodrigo Manuel Navarro Lajous",
   description:
@@ -12,6 +13,10 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Talks list page rendering all speaking engagements as {@link TalkCard} components.
+ * Server component — data is imported statically from the talks service.
+ */
 export default function TalksPage() {
   return (
     <div className="flex flex-col items-center gap-6 py-8 md:py-12">

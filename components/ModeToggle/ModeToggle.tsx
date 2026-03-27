@@ -12,6 +12,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+/**
+ * Dark/light/system theme switcher dropdown.
+ *
+ * Uses `next-themes` `setTheme` to toggle between light, dark, and system modes.
+ * Renders a sun/moon icon button that opens a dropdown menu with theme options.
+ * Each option triggers a Umami analytics event.
+ *
+ * Client component — requires `useTheme` hook.
+ */
 export function ModeToggle() {
   const { setTheme } = useTheme();
 
