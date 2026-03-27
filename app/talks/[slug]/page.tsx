@@ -36,6 +36,9 @@ export async function generateMetadata({ params }: TalkPageProps): Promise<Metad
     title: `${talk.title} | Rodrigo Manuel Navarro Lajous`,
     description: talk.description,
     keywords: [...talk.topics, talk.event, "conference talk", "presentation"],
+    alternates: {
+      canonical: `/talks/${slug}`,
+    },
     openGraph: {
       title: talk.title,
       description: talk.description,

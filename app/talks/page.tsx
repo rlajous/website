@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Talks | Rodrigo Manuel Navarro Lajous",
   description:
     "Speaking engagements and conference talks by Rodrigo Manuel Navarro Lajous, including presentations at Devconnect and other blockchain conferences.",
+  alternates: {
+    canonical: "/talks",
+  },
 };
 
 export default function TalksPage() {
