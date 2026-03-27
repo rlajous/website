@@ -1,5 +1,14 @@
+/**
+ * @module services/education
+ * @description Academic credentials data.
+ * Consumed by the education pages, LLM text generation, and Schema.org structured data.
+ */
 import { Education } from "@/domains/Education";
 
+/**
+ * Academic degrees ordered by most recent first.
+ * Rendered as {@link EducationCard} components on `/education` and as individual detail pages.
+ */
 export const education: Education[] = [
   {
     id: 1,

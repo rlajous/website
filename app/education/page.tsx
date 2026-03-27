@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { education } from "@/services/education";
 import EducationCard from "./components/EducationCard";
 
+/** Metadata for the education page (title, description, canonical URL). */
 export const metadata: Metadata = {
   title: "Education | Rodrigo Manuel Navarro Lajous",
   description:
@@ -12,6 +13,10 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Education list page rendering all education entries as {@link EducationCard} components.
+ * Server component — data is imported statically from the education service.
+ */
 export default function EducationPage() {
   return (
     <div className="flex flex-col items-center gap-6 py-8 md:py-12">

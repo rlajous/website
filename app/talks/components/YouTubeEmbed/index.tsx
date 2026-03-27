@@ -4,13 +4,32 @@ import React from "react";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 
+/**
+ * Props for the {@link YouTubeEmbed} component.
+ */
 interface YouTubeEmbedProps {
+  /** Full YouTube URL (supports youtu.be, watch, embed, and other formats). */
   videoUrl: string;
+  /** Title used for the iframe's `title` attribute and the external link text. */
   title: string;
 }
 
+/**
+ * Responsive YouTube video embed with 16:9 aspect ratio.
+ *
+ * Extracts the video ID from various YouTube URL formats using regex.
+ * Falls back to an error message for invalid URLs. Includes an external
+ * "Watch on YouTube" link below the embed.
+ *
+ * Client component — renders an iframe.
+ */
 const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ videoUrl, title }) => {
-  // Extract video ID from YouTube URL
+  /**
+   * Extracts the 11-character video ID from a YouTube URL.
+   *
+   * @param url - YouTube URL in any standard format.
+   * @returns The video ID, or null if the URL is invalid.
+   */
   const getVideoId = (url: string) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);

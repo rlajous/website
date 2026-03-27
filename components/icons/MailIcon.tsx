@@ -1,3 +1,8 @@
+/**
+ * Mail envelope SVG icon rendered inline.
+ *
+ * @param props - Standard SVG attributes forwarded to the `<svg>` element.
+ */
 function MailIcon(props: any) {
   return (
     <svg

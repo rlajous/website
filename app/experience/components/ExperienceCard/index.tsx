@@ -5,6 +5,14 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Experience } from "@/domains/Experience";
 
+/**
+ * Card displaying an experience summary (position, company, period, responsibilities, tech badges).
+ *
+ * Links to the detail page at `/experience/[slug]`. The period is shown in a left sidebar
+ * on desktop and inline on mobile. Props match the {@link Experience} interface.
+ *
+ * Client component — uses interactive link behavior.
+ */
 const ExperienceCard: React.FC<Experience> = ({
   slug,
   position,

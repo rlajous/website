@@ -8,7 +8,12 @@ import { freelance, hobby, opensource } from "@/services/projects";
 import { talks } from "@/services/talks";
 import { SITE_URL } from "@/constants/routes";
 
-// Helper function to escape strings for safe JSON-LD embedding
+/**
+ * Escapes special characters in a string for safe embedding inside JSON-LD `<script>` tags.
+ *
+ * @param str - The raw string to escape.
+ * @returns The escaped string safe for JSON-LD embedding.
+ */
 function escapeJsonString(str: string): string {
   return str
     .replace(/\\/g, "\\\\") // Escape backslashes
@@ -19,15 +24,25 @@ function escapeJsonString(str: string): string {
     .replace(/\f/g, "\\f"); // Escape form feeds
 }
 
-// Helper function to extract ISO date from uploadDate
-// Extracts "2025-11-19" from "2025-11-19T12:00:00Z"
-// No timezone conversion - direct string split
+/**
+ * Extracts the date portion from an ISO 8601 timestamp.
+ *
+ * @param uploadDate - ISO 8601 timestamp (e.g. "2025-11-19T12:00:00Z").
+ * @returns The date portion as "YYYY-MM-DD" (e.g. "2025-11-19").
+ */
 function extractISODate(uploadDate: string): string {
   return uploadDate.split("T")[0];
 }
 
-// Helper function to extract locality from location string
-// Handles multi-word cities like "Buenos Aires" correctly
+/**
+ * Extracts the city/locality from a location string.
+ *
+ * Handles "City, Country" format and multi-word cities like "Buenos Aires".
+ * Used for Schema.org PostalAddress `addressLocality`.
+ *
+ * @param location - Location string (e.g. "Buenos Aires, Argentina" or "Denver, Colorado").
+ * @returns The city/locality portion of the location.
+ */
 function extractLocality(location: string): string {
   // If location contains a comma, take text before the last comma
   if (location.includes(",")) {
@@ -48,8 +63,12 @@ function extractLocality(location: string): string {
   return location;
 }
 
-// Helper function to parse country from location string
-// Attempts to extract country from "City, Country" format
+/**
+ * Attempts to extract the country name from a "City, Country" location string.
+ *
+ * @param location - Location string (e.g. "Buenos Aires, Argentina").
+ * @returns The country name, or null if the format cannot be parsed.
+ */
 function parseCountryFromLocation(location: string): string | null {
   // If location contains a comma, take text after the last comma as country
   if (location.includes(",")) {
@@ -62,6 +81,15 @@ function parseCountryFromLocation(location: string): string | null {
   return null;
 }
 
+/**
+ * Generates JSON-LD structured data (Schema.org) based on the current route.
+ *
+ * Renders `<Script>` tags with schema types including Person, WebSite, JobPosting,
+ * EducationalOccupationalCredential, CreativeWork, and Event depending on the page.
+ * Data is sourced from the service modules.
+ *
+ * Client component — requires `usePathname` for route-based schema selection.
+ */
 const SchemaOrgScripts = () => {
   const pathname = usePathname();
 

@@ -1,5 +1,14 @@
+/**
+ * @module services/experience
+ * @description Professional experience data used across experience pages, LLM text generation,
+ * and Schema.org structured data scripts.
+ */
 import { Experience } from "@/domains/Experience";
 
+/**
+ * Employment positions ordered by most recent first.
+ * Rendered as {@link ExperienceCard} components on the Jobs tab of `/experience`.
+ */
 export const jobs: Experience[] = [
   {
     id: 1,
@@ -130,6 +139,10 @@ export const jobs: Experience[] = [
   },
 ];
 
+/**
+ * Startup and entrepreneurial ventures ordered by most recent first.
+ * Rendered on the Startups tab of `/experience`.
+ */
 export const startups: Experience[] = [
   {
     id: 1,
@@ -177,6 +190,10 @@ export const startups: Experience[] = [
   },
 ];
 
+/**
+ * Skill categories with associated technologies.
+ * Used by {@link generateLlmsTxt} and {@link generateLlmsFullTxt} for the Skills section.
+ */
 export const skills: { category: string; technologies: string[] }[] = [
   {
     category: "Frontend",

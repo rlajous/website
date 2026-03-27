@@ -14,18 +14,30 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+/** Props for the education detail page, receiving the slug from the dynamic route. */
 interface EducationPageProps {
   params: Promise<{
     slug: string;
   }>;
 }
 
+/**
+ * Pre-renders all education detail pages at build time from the education data.
+ *
+ * @returns Array of slug params for static generation.
+ */
 export async function generateStaticParams() {
   return education.map((edu) => ({
     slug: edu.slug,
   }));
 }
 
+/**
+ * Generates dynamic SEO metadata (title, description, keywords) from education data.
+ *
+ * @param props - Page props containing the route slug.
+ * @returns Metadata object for the education detail page.
+ */
 export async function generateMetadata({
   params,
 }: EducationPageProps): Promise<Metadata> {
@@ -71,6 +83,14 @@ export async function generateMetadata({
   };
 }
 
+/**
+ * Education detail page rendering banner, degree, institution link, period,
+ * location, specialization, thesis, coursework, achievements, and technology badges.
+ *
+ * Server component — statically generated at build time via {@link generateStaticParams}.
+ *
+ * @param props - Page props containing the route slug.
+ */
 export default async function EducationPage({ params }: EducationPageProps) {
   const { slug } = await params;
   const edu = education.find((e) => e.slug === slug);

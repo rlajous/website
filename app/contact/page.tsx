@@ -3,6 +3,7 @@ import { ContactForm } from "./components/ContactForm";
 import { LinkedInLink } from "@/components/social/LinkedInLink";
 import { GitHubLink } from "@/components/social/GitHubLink";
 
+/** Metadata for the contact page (title, description, canonical URL). */
 export const metadata: Metadata = {
   title: "Contact | Rodrigo Manuel Navarro Lajous",
   description:
@@ -12,6 +13,10 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Contact page rendering the {@link ContactForm} and social links (LinkedIn, GitHub).
+ * Server component — the form itself is a client component.
+ */
 export default function ContactPage() {
   const linkedInProfile = "rodrigo-lajous";
   const githubUsername = "rlajous";

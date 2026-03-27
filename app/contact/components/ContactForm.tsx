@@ -21,12 +21,25 @@ import { createContact } from "@/services/contacts";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
+/**
+ * Zod validation schema for the contact form.
+ * Mirrors the server-side validation in the `/api/contact` route handler.
+ */
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email").min(1, "Email is required"),
   message: z.string().min(1, "Message is required"),
 });
 
+/**
+ * Contact form with Zod validation, react-hook-form integration, and toast notifications.
+ *
+ * Submits to the `/api/contact` endpoint via the {@link createContact} service.
+ * Shows a success toast on success and a destructive toast with a retry action on failure.
+ * Tracks form interactions via Umami analytics.
+ *
+ * Client component — requires `useForm`, `useToast`, and `useState`.
+ */
 export const ContactForm: React.FC = () => {
   const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),

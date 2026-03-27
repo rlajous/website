@@ -5,12 +5,18 @@ import { TwitterLink } from "@/components/social/TwitterLink";
 import { Button } from "@/components/ui/button";
 import { Download, Newspaper } from "lucide-react";
 
+/** Canonical URL metadata for the home page. */
 export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
 };
 
+/**
+ * Landing page introducing the site owner with social links, resume download, and newsletter CTA.
+ *
+ * Server component — renders static content with social link client components.
+ */
 export default function Home() {
   const githubUsername = "rlajous";
   const linkedInProfile = "rodrigo-lajous";

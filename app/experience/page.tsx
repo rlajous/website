@@ -7,9 +7,13 @@ import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Experience } from "@/domains/Experience";
 import ExperiencesTab from "./components/ExperiencesTab";
 
+/** Configuration for an experience category tab. */
 interface Tab {
+  /** URL query parameter value for this tab. */
   key: string;
+  /** Display label shown on the tab trigger. */
   title: string;
+  /** Experience entries displayed when this tab is active. */
   experiences: Experience[];
 }
 
@@ -21,6 +25,10 @@ const TABS: Tab[] = [
 const VALID_TAB_KEYS = TABS.map((tab) => tab.key);
 const DEFAULT_TAB = "jobs";
 
+/**
+ * Client component managing tab state via URL search params for shareable/bookmarkable tab selection.
+ * Renders Jobs and Startups tabs using the experience data from the service layer.
+ */
 function ExperienceContent() {
   const router = useRouter();
   const pathname = usePathname();
@@ -66,6 +74,10 @@ function ExperienceContent() {
   );
 }
 
+/**
+ * Experience list page wrapping {@link ExperienceContent} in Suspense
+ * for `useSearchParams` compatibility.
+ */
 export default function Page() {
   return (
     <Suspense fallback={<div>Loading...</div>}>

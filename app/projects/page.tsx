@@ -7,9 +7,13 @@ import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Project } from "@/domains/Project";
 import ProjectsTab from "./components/ProjectTabs";
 
+/** Configuration for a project category tab. */
 interface Tab {
+  /** URL query parameter value for this tab. */
   key: string;
+  /** Display label shown on the tab trigger. */
   title: string;
+  /** Project entries displayed when this tab is active. */
   projects: Project[];
 }
 
@@ -22,6 +26,10 @@ const TABS: Tab[] = [
 const VALID_TAB_KEYS = TABS.map((tab) => tab.key);
 const DEFAULT_TAB = "freelance";
 
+/**
+ * Client component managing tab state via URL search params for shareable/bookmarkable tab selection.
+ * Renders Freelance, Hobby, and Open Source tabs using the project data from the service layer.
+ */
 function ProjectsContent() {
   const router = useRouter();
   const pathname = usePathname();
@@ -67,6 +75,10 @@ function ProjectsContent() {
   );
 }
 
+/**
+ * Projects list page wrapping {@link ProjectsContent} in Suspense
+ * for `useSearchParams` compatibility.
+ */
 export default function Page() {
   return (
     <Suspense fallback={<div>Loading...</div>}>

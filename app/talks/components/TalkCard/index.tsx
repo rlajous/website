@@ -7,6 +7,14 @@ import { Badge } from "@/components/ui/badge";
 import { Talk } from "@/domains/Talk";
 import { Presentation, Video, MapPin } from "lucide-react";
 
+/**
+ * Card displaying a talk summary with optional banner, event info, location,
+ * topic badges, and availability indicators for slides and video.
+ *
+ * Links to the detail page at `/talks/[slug]`. Props match the {@link Talk} interface.
+ *
+ * Client component — uses interactive link behavior.
+ */
 const TalkCard: React.FC<Talk> = ({
   slug,
   title,

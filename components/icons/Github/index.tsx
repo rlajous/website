@@ -2,6 +2,13 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import styles from "./Github.module.css";
 
+/**
+ * Custom GitHub SVG icon with CSS module styling for fill color inheritance.
+ *
+ * Used by {@link GitHubLink} instead of the lucide-react GitHub icon for brand accuracy.
+ *
+ * @param props - Standard SVG/HTML attributes forwarded to the `<svg>` element.
+ */
 const Github: React.FC<any> = ({ className, ...props }) => {
   return (
     <svg

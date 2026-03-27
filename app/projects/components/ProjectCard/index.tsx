@@ -8,6 +8,16 @@ import { GitHubLink } from "@/components/social/GitHubLink";
 import { WebsiteLink } from "@/components/social/WebsiteLink";
 import Image from "next/image";
 
+/**
+ * Card displaying a project summary with banner image, description, tech badges,
+ * and optional GitHub/website links.
+ *
+ * The entire card links to `/projects/[slug]`. GitHub and website links use `z-20`
+ * to escape the card's overlay link and remain independently clickable.
+ * Parses the GitHub username and repository from the full URL.
+ *
+ * Client component — uses interactive link behavior.
+ */
 const ProjectCard: React.FC<Project> = ({
   slug,
   name,

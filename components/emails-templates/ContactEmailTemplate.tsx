@@ -10,12 +10,28 @@ import {
   Link,
 } from "@react-email/components";
 
+/**
+ * Props for the {@link EmailTemplate} component.
+ */
 interface EmailTemplateProps {
+  /** Body of the contact form message. */
   message: string;
+  /** Name of the person who submitted the form. */
   name: string;
+  /** Email address of the sender (used for the reply button). */
   email: string;
 }
 
+/**
+ * React Email template for contact form notification emails.
+ *
+ * Rendered server-side by Resend when sending notification emails via the
+ * `/api/contact` endpoint. Includes the sender's details and a "Reply to message"
+ * button with a pre-filled subject line.
+ *
+ * @param props - Contact form submission data.
+ * @returns React Email JSX rendered to HTML by Resend.
+ */
 export default function EmailTemplate({
   message,
   name,

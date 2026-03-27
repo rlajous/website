@@ -7,12 +7,31 @@ import getEnv from "@/utils/getEnv";
 const resend = new Resend(getEnv(process.env.RESEND_API_KEY, "RESEND_API_KEY"));
 const recipientEmail = getEnv(process.env.RECIPIENT_EMAIL, "RECIPIENT_EMAIL");
 
+/**
+ * Server-side Zod validation schema for the contact form payload.
+ * Mirrors the client-side schema in {@link ContactForm}.
+ */
 const ContactSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email({ message: "Valid email is required" }),
   message: z.string().min(1, "Message is required"),
 });
 
+/**
+ * Handles contact form submissions.
+ *
+ * **Endpoint:** `POST /api/contact`
+ *
+ * **Request body:** JSON with `name`, `email`, and `message` fields.
+ *
+ * **Responses:**
+ * - `200` — `{ message, data }` on successful email delivery.
+ * - `400` — `{ error, issues }` when Zod validation fails.
+ * - `500` — `{ error }` when Resend or an unexpected error occurs.
+ *
+ * @param request - The incoming HTTP request with a JSON body.
+ * @returns A NextResponse with the result or error details.
+ */
 export async function POST(request: Request): Promise<NextResponse> {
   try {
     const body = await request.json();
