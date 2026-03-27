@@ -21,6 +21,8 @@ interface SocialLinkProps {
   className?: string;
   /** Umami analytics event name for tracking clicks. */
   "data-umami-event"?: string;
+  /** Umami analytics identifier for distinguishing link instances. */
+  "data-umami-id"?: string;
 }
 
 /**
@@ -40,6 +42,7 @@ export function SocialLink({
   text,
   className = "",
   "data-umami-event": umamiEvent,
+  "data-umami-id": umamiId,
 }: SocialLinkProps) {
   return (
     <Link
@@ -49,6 +52,7 @@ export function SocialLink({
       rel="noopener noreferrer"
       aria-label={label}
       data-umami-event={umamiEvent}
+      data-umami-id={umamiId}
     >
       {icon}
       {showText && text && (

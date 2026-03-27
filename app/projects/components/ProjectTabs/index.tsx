@@ -7,7 +7,7 @@ import ProjectCard from "../ProjectCard";
  * Props for the {@link ProjectsTab} component.
  */
 interface ProjectsTabProps {
-  /** Array of projects to display, sorted by year (newest first). */
+  /** Array of projects to display; sorted by year (newest first) internally. */
   projects: Project[];
 }
 

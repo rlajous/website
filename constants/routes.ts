@@ -24,7 +24,7 @@ export const ROUTES = {
  * @param slug - URL-safe identifier of the experience.
  * @returns The absolute path to the experience detail page.
  */
-export const EXPERIENCE_DETAIL = (slug: string) => `/experience/${slug}`;
+export const EXPERIENCE_DETAIL = (slug: string) => `${ROUTES.EXPERIENCE}/${slug}`;
 
 /**
  * Constructs the detail page path for a project entry.
@@ -32,7 +32,7 @@ export const EXPERIENCE_DETAIL = (slug: string) => `/experience/${slug}`;
  * @param slug - URL-safe identifier of the project.
  * @returns The absolute path to the project detail page.
  */
-export const PROJECT_DETAIL = (slug: string) => `/projects/${slug}`;
+export const PROJECT_DETAIL = (slug: string) => `${ROUTES.PROJECTS}/${slug}`;
 
 /**
  * Constructs the detail page path for an education entry.
@@ -40,7 +40,7 @@ export const PROJECT_DETAIL = (slug: string) => `/projects/${slug}`;
  * @param slug - URL-safe identifier of the education entry.
  * @returns The absolute path to the education detail page.
  */
-export const EDUCATION_DETAIL = (slug: string) => `/education/${slug}`;
+export const EDUCATION_DETAIL = (slug: string) => `${ROUTES.EDUCATION}/${slug}`;
 
 /**
  * Constructs the detail page path for a talk entry.
@@ -48,7 +48,7 @@ export const EDUCATION_DETAIL = (slug: string) => `/education/${slug}`;
  * @param slug - URL-safe identifier of the talk.
  * @returns The absolute path to the talk detail page.
  */
-export const TALK_DETAIL = (slug: string) => `/talks/${slug}`;
+export const TALK_DETAIL = (slug: string) => `${ROUTES.TALKS}/${slug}`;
 
 /**
  * Configuration for a navigation item rendered in the site header.

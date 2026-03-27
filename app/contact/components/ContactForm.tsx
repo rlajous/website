@@ -22,8 +22,9 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 
 /**
- * Zod validation schema for the contact form.
- * Mirrors the server-side validation in the `/api/contact` route handler.
+ * Client-side Zod validation schema for the contact form.
+ * Provides immediate feedback before submission; the server-side schema
+ * in `/api/contact` is authoritative and may differ in validation details.
  */
 const schema = z.object({
   name: z.string().min(1, "Name is required"),

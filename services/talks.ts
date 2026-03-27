@@ -6,8 +6,7 @@
 import { Talk } from "@/domains/Talk";
 
 /**
- * Conference talks ordered by date (most recent first by id).
- * Rendered as {@link TalkCard} components on `/talks` and as individual detail pages.
+ * Conference talks rendered as {@link TalkCard} components on `/talks` and as individual detail pages.
  */
 export const talks: Talk[] = [
   {
