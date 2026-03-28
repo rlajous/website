@@ -429,7 +429,7 @@ This release includes {MIGRATION_COUNT} database migration(s):
 
 **If OpenAPI Changed:**
 
-```markdown
+````markdown
 ## API Documentation Update
 
 The OpenAPI specification was modified in this release.
@@ -441,7 +441,7 @@ After merge, create documentation tag:
 git tag docs-v{OPENAPI_VERSION}
 git push origin docs-v{OPENAPI_VERSION}
 ```
-```
+````
 
 ## Step 14: Create PR to Production
 

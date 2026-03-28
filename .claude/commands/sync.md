@@ -48,17 +48,16 @@ DEV_BRANCH=$(config.workflow.developmentBranch || "staging")
 # Get current branch
 CURRENT=$(git branch --show-current)
 
+# Validate we're on the production branch before pulling
+if [ "$CURRENT" != "$PROD_BRANCH" ]; then
+  echo "You should be on ${PROD_BRANCH} branch to create a sync PR."
+  echo "Run: git checkout ${PROD_BRANCH} && git pull"
+  exit 1
+fi
+
 # Pull latest
 git pull origin ${PROD_BRANCH}
 ```
-
-**Validation:**
-
-- If not on production branch:
-  ```text
-  You should be on {PROD_BRANCH} branch to create a sync PR.
-  Run: git checkout {PROD_BRANCH} && git pull
-  ```
 
 ## Step 3: Get Current Version
 

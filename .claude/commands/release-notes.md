@@ -48,6 +48,7 @@ Check that you're on the production branch and up-to-date:
 
 ```bash
 PROD_BRANCH=$(config.workflow.productionBranch || "main")
+DEV_BRANCH=$(config.workflow.developmentBranch || "staging")
 
 # Get current branch
 CURRENT=$(git branch --show-current)
