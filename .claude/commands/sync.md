@@ -1,170 +1,339 @@
 ---
-description: Sync your feature branch with latest main to avoid conflicts
+description: Back-merge main to staging after a release to keep branches synchronized
+disable-model-invocation: true
+allowed-tools: Read, Grep, Glob, Bash
+user-invocable: true
 ---
 
-You are helping sync a feature branch with the latest changes from main. This prevents merge conflicts and ensures your PR is up-to-date.
+You are helping sync the production branch changes back to the development branch. This command should be run AFTER a release has been merged to production and deployed to keep branches aligned.
 
-## When to Use This
+## Step 1: Load Configuration
 
-Use this command when:
-
-- Your feature branch is behind main
-- You want to incorporate recent changes from main
-- GitHub shows your branch is out of date
-- You want to test your changes with latest main
-
-## Step 1: Verify Current Branch
-
-Check that you are NOT on the `main` branch:
+Check for configuration:
 
 ```bash
-git branch --show-current
+[ -f ".claude/config.yaml" ] && echo "CONFIG=true" || echo "CONFIG=false"
 ```
 
-If on `main`:
+**Load from `.claude/config.yaml` (if exists):**
 
-- Inform user this command is for feature branches
-- Ask which feature branch they want to sync
-
-## Step 2: Fetch Latest Main
-
-Get the latest changes from remote:
-
-```bash
-git fetch origin main
+```yaml
+workflow:
+  developmentBranch: staging
+  productionBranch: main
+branches:
+  sync: "sync/main-to-{devBranch}"
+versioning:
+  file: auto
 ```
 
-Show how many commits behind:
+**Default Values:**
+
+```yaml
+workflow:
+  developmentBranch: staging
+  productionBranch: main
+branches:
+  sync: "sync/main-to-{devBranch}"
+```
+
+## Step 2: Verify Current State
+
+Check that you're on the production branch and up-to-date:
 
 ```bash
-git rev-list --left-right --count HEAD...origin/main
+PROD_BRANCH=$(config.workflow.productionBranch || "main")
+DEV_BRANCH=$(config.workflow.developmentBranch || "staging")
+
+# Get current branch
+CURRENT=$(git branch --show-current)
+
+# Pull latest
+git pull origin ${PROD_BRANCH}
+```
+
+**Validation:**
+
+- If not on production branch:
+  ```
+  You should be on {PROD_BRANCH} branch to create a sync PR.
+  Run: git checkout {PROD_BRANCH} && git pull
+  ```
+
+## Step 3: Get Current Version
+
+Read the version for reference in PR:
+
+```bash
+# Auto-detect version file
+if [ -f "package.json" ]; then
+  VERSION=$(node -p "require('./package.json').version")
+elif [ -f "pyproject.toml" ]; then
+  VERSION=$(grep -Po '(?<=version = ")[^"]*' pyproject.toml)
+elif [ -f "Cargo.toml" ]; then
+  VERSION=$(grep -Po '(?<=^version = ")[^"]*' Cargo.toml)
+elif [ -f "VERSION" ]; then
+  VERSION=$(cat VERSION)
+else
+  VERSION="unknown"
+fi
+```
+
+## Step 4: Check What Needs Syncing
+
+Show what commits will be synced:
+
+```bash
+git fetch origin ${DEV_BRANCH}
+git log origin/${DEV_BRANCH}..origin/${PROD_BRANCH} --oneline --no-merges
 ```
 
 Display to user:
 
 ```
-Your branch is {N} commits behind origin/main
-Syncing will merge these changes into your feature branch
+Commits to sync from {PROD_BRANCH} to {DEV_BRANCH}:
+
+abc1234 2.77.0
+def5678 Merge pull request #679 from org/release/2.77.0
+ghi9012 [Fix] Hotfix for production issue (#680)
+
+These changes from release v{VERSION} need to be back-merged.
 ```
 
-## Step 3: Merge Main into Feature Branch
+**If No Commits:**
 
-Merge the latest main into your current branch:
+```
+{DEV_BRANCH} is already up-to-date with {PROD_BRANCH}.
+No sync needed!
+```
+
+Exit early if nothing to sync.
+
+## Step 5: Create Sync Branch
+
+Generate sync branch name from pattern:
 
 ```bash
-git merge origin/main
+SYNC_PATTERN=$(config.branches.sync || "sync/main-to-{devBranch}")
+SYNC_BRANCH=${SYNC_PATTERN/\{devBranch\}/${DEV_BRANCH}}
+
+# Create sync branch from production
+git checkout -b ${SYNC_BRANCH}
 ```
 
-## Step 4: Handle Conflicts (if any)
+Example: `sync/main-to-staging`
 
-If merge conflicts occur:
-
-1. Show the conflicted files:
-
-   ```bash
-   git status
-   ```
-
-2. Display to user:
-
-   ```
-   ⚠️  Merge conflicts detected in:
-   {list of conflicted files}
-
-   Please resolve the conflicts:
-   1. Open each file and fix the conflicts
-   2. Remove conflict markers (<<<<<<<, =======, >>>>>>>)
-   3. Save the files
-   4. Let me know when you're done
-   ```
-
-3. After user resolves conflicts, stage the files:
-
-   ```bash
-   git add {conflicted_files}
-   ```
-
-4. Complete the merge:
-
-   ```bash
-   git commit -m "[ Merge ] Sync with latest main"
-   ```
-
-## Step 5: Push Updated Branch
-
-Push the updated branch to remote:
+## Step 6: Push Sync Branch
 
 ```bash
-git push origin {branch_name}
+git push -u origin ${SYNC_BRANCH}
 ```
 
-If the push is rejected (branch has diverged), ask user:
+## Step 7: Rebase onto Development Branch
 
-```
-Your branch has diverged from the remote. This can happen if you rebased locally.
-
-Options:
-1. Force push with lease (safer): git push --force-with-lease
-2. Cancel and review changes first
-
-Which option do you prefer?
-```
-
-If user chooses option 1:
+**Critical Step**: Rebase to skip commits already in development:
 
 ```bash
-git push --force-with-lease origin {branch_name}
+git fetch origin ${DEV_BRANCH}
+git rebase origin/${DEV_BRANCH}
 ```
 
-## Step 6: Confirm
+**What Happens:**
 
-Output a confirmation message:
+- Git automatically skips commits already in development branch
+- Usually 90%+ of commits are skipped (already merged via feature PRs)
+- Typically only version bump commit remains
+- This is expected and correct!
+
+**Example Output:**
 
 ```
-✅ Feature branch synced with latest main
-✅ {N} commits merged from main
-✅ Branch pushed to remote
-
-Your PR is now up-to-date with main.
-Next: Continue working or run `/finish` to create/update PR
+warning: skipped previously applied commit 357fab94
+warning: skipped previously applied commit 9de0e8fd
+...
+Successfully rebased and updated refs/heads/sync/main-to-staging.
 ```
 
-## Important Notes
-
-- NEVER run this on `main` branch
-- Always fetch before merging to get latest changes
-- Use `--force-with-lease` instead of `--force` if needed (safer)
-- Resolve conflicts carefully - ask for help if unsure
-- Test your changes after syncing to ensure nothing broke
-- If your PR already exists, GitHub will update it automatically
-
-## Alternative: Rebase Instead of Merge
-
-If you prefer a cleaner history without merge commits, you can rebase instead:
-
-**Warning**: Only rebase if you're comfortable with it, as it rewrites history.
+After rebase, force-push:
 
 ```bash
-git fetch origin main
-git rebase origin/main
+git push origin ${SYNC_BRANCH} --force-with-lease
 ```
 
-If conflicts occur during rebase:
+Check remaining commits:
 
-1. Resolve conflicts in each file
-2. Stage resolved files: `git add {files}`
-3. Continue rebase: `git rebase --continue`
-4. Repeat until rebase is complete
-5. Force push: `git push --force-with-lease origin {branch_name}`
+```bash
+git log origin/${DEV_BRANCH}..${SYNC_BRANCH} --oneline
+```
 
-**When to use rebase vs merge**:
+**Expected Result**: Usually just 1-2 commits (version bump, release merge commit).
 
-- **Merge** (default): Safer, preserves history, creates merge commit
-- **Rebase**: Cleaner history, but rewrites commits (use with caution)
+If 0 commits remain, development is already in sync - no PR needed.
+
+## Step 8: Generate Sync PR Description
+
+```markdown
+# Sync {PROD_BRANCH} to {DEV_BRANCH} (Post-Release v{VERSION})
+
+## Description
+
+Back-merge production changes from {PROD_BRANCH} to {DEV_BRANCH} to keep branches aligned after release v{VERSION} deployment.
+
+### Commits Being Synced
+
+{LIST_OF_REMAINING_COMMITS}
+
+### Purpose
+
+This PR ensures {DEV_BRANCH} branch includes all production changes and version bumps from the latest release. This is a standard post-release sync operation.
+
+### What's Included
+
+- Version bump to {VERSION}
+- Any hotfixes that went to production
+- Release PR merge commit
+
+## Checklist
+
+- [x] {PROD_BRANCH} branch is up-to-date
+- [x] Rebased onto {DEV_BRANCH} to skip duplicate commits
+- [ ] Code review completed (fast-track expected)
+- [ ] Ready to merge
+
+---
+
+**Note**: This is an automated sync PR. All changes have already been reviewed and merged to {PROD_BRANCH} via the release PR.
+```
+
+## Step 9: Create PR to Development
+
+```bash
+gh pr create \
+  --base ${DEV_BRANCH} \
+  --title "[SYNC] Back-merge ${PROD_BRANCH} to ${DEV_BRANCH} (post-release v${VERSION})" \
+  --body "$(cat <<'EOF'
+{GENERATED_DESCRIPTION}
+EOF
+)"
+```
+
+**Important**: Sync PRs target development branch (opposite of feature PRs).
+
+## Step 10: Confirm
+
+```
+Sync branch created: {SYNC_BRANCH}
+PR created: {PR_URL}
+Title: [SYNC] Back-merge {PROD_BRANCH} to {DEV_BRANCH} (post-release v{VERSION})
+
+This sync PR back-merges changes from release v{VERSION}.
+
+Next steps:
+1. Review PR (should be straightforward)
+2. Get fast-track approval
+3. Merge to {DEV_BRANCH}
+
+---
+
+Release workflow complete!
+- Release v{VERSION} deployed to production
+- GitHub release created with detailed notes
+- {PROD_BRANCH} and {DEV_BRANCH} synchronized
+```
+
+## Configuration Reference
+
+| Setting                      | Default                    | Description                    |
+| ---------------------------- | -------------------------- | ------------------------------ |
+| `workflow.developmentBranch` | `staging`                  | Development branch name        |
+| `workflow.productionBranch`  | `main`                     | Production branch name         |
+| `branches.sync`              | `sync/main-to-{devBranch}` | Sync branch naming pattern     |
 
 ## Error Handling
 
-- If merge fails: Show error and help user understand the issue
-- If push fails: Check if user has push permissions
-- If conflicts are complex: Suggest creating a new branch and starting fresh
-- If unsure: Always prefer merge over rebase for safety
+| Scenario                | Action                                         |
+| ----------------------- | ---------------------------------------------- |
+| Not on production branch | Instruct to checkout and pull                 |
+| No commits to sync      | Exit early with success message               |
+| Sync branch exists      | Ask to delete and recreate                    |
+| Rebase conflicts        | Show resolution instructions                  |
+| gh not authenticated    | Provide auth instructions                     |
+
+## Conflict Resolution
+
+If conflicts occur during rebase:
+
+```
+Conflicts detected during rebase:
+
+{LIST_OF_CONFLICTING_FILES}
+
+To resolve:
+
+1. Open each file and resolve conflicts
+2. Stage resolved files:
+   git add {files}
+3. Continue rebase:
+   git rebase --continue
+4. Force push:
+   git push origin {SYNC_BRANCH} --force-with-lease
+
+Or abort and resolve manually:
+   git rebase --abort
+```
+
+## When to Run This Command
+
+**Always run `/sync` after:**
+
+1. Release PR merged to production
+2. Hotfix PR merged to production
+3. Any direct merge to production that needs to be in development
+
+**Typical sequence:**
+
+```
+/release → Review → Merge → Deploy → /release-notes → /sync → Merge sync PR
+```
+
+## Example Flow
+
+```bash
+# User runs: /sync
+# Checks: on main, up-to-date ✓
+# Gets: version 2.77.0 from package.json
+# Lists: 5 commits to sync initially
+# Creates: sync/main-to-staging branch
+# Pushes: sync/main-to-staging
+# Rebases: onto origin/staging
+# Result: 4 commits skipped, 1 remains (version bump)
+# Force pushes: updated branch
+# Creates: PR #680 to staging
+# Output: Success with completion message
+```
+
+## Alternative Workflows
+
+### Tag-Based Workflow
+
+For projects without a staging branch:
+
+```yaml
+workflow:
+  type: tag-based
+  developmentBranch: develop
+  productionBranch: main
+```
+
+### Direct Workflow
+
+For simpler projects:
+
+```yaml
+workflow:
+  type: direct
+  developmentBranch: main
+  productionBranch: main
+```
+
+In direct workflow, sync is not needed as there's only one branch.
