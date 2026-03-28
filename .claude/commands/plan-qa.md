@@ -74,10 +74,10 @@ const sqsQueue = sqsMatch ? sqsMatch[1] : sqsEnvMatch ? `\${${sqsEnvMatch[1]}}` 
 
 // Remaining is description (strip all flags)
 const description = args
-  .replace(ticketMatch || '', '')
-  .replace(urlMatch || '', '')
-  .replace(sqsMatch || '', '')
-  .replace(sqsEnvMatch || '', '')
+  .replace(ticketMatch?.[0] || '', '')
+  .replace(urlMatch?.[0] || '', '')
+  .replace(sqsMatch?.[0] || '', '')
+  .replace(sqsEnvMatch?.[0] || '', '')
   .trim();
 ```
 

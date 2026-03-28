@@ -102,8 +102,11 @@ elif [ -f "Cargo.toml" ]; then
 elif [ -f "VERSION" ]; then
   VERSION_FILE="VERSION"
   VERSION_TYPE="plain"
-elif [ -f "build.gradle" ] || [ -f "build.gradle.kts" ]; then
+elif [ -f "build.gradle" ]; then
   VERSION_FILE="build.gradle"
+  VERSION_TYPE="gradle"
+elif [ -f "build.gradle.kts" ]; then
+  VERSION_FILE="build.gradle.kts"
   VERSION_TYPE="gradle"
 else
   VERSION_FILE="VERSION"
@@ -119,7 +122,7 @@ fi
 | Python   | `grep -Po '(?<=version = ")[^"]*' pyproject.toml`          |
 | Rust     | `grep -Po '(?<=^version = ")[^"]*' Cargo.toml`             |
 | Plain    | `cat VERSION`                                              |
-| Gradle   | `grep -Po '(?<=version = ")[^"]*' build.gradle`            |
+| Gradle   | `grep -Po '(?<=version = ")[^"]*' ${VERSION_FILE}`         |
 
 ## Step 4: Ask for Version Type
 
@@ -323,7 +326,8 @@ Based on detected version file type:
 
 ```bash
 npm version ${BUMP_TYPE} --no-git-tag-version
-git add package.json package-lock.json
+git add package.json
+[ -f package-lock.json ] && git add package-lock.json
 git commit -m "${NEW_VERSION}"
 git tag "v${NEW_VERSION}"
 ```
