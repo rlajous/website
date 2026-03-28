@@ -17,11 +17,18 @@ Check for project configuration:
 # Check for config
 [ -f ".claude/config.yaml" ] && echo "CONFIG=true" || echo "CONFIG=false"
 
-# Detect project type
-[ -f "package.json" ] && echo "TYPE=node"
-[ -f "pyproject.toml" ] && echo "TYPE=python"
-[ -f "Cargo.toml" ] && echo "TYPE=rust"
-[ -f "go.mod" ] && echo "TYPE=go"
+# Detect project type (prioritized order)
+if [ -f "package.json" ]; then
+  echo "TYPE=node"
+elif [ -f "pyproject.toml" ]; then
+  echo "TYPE=python"
+elif [ -f "Cargo.toml" ]; then
+  echo "TYPE=rust"
+elif [ -f "go.mod" ]; then
+  echo "TYPE=go"
+else
+  echo "TYPE=unknown"
+fi
 ```
 
 ### 2. Version Check
@@ -102,13 +109,27 @@ Check for vulnerable dependencies:
 
 ```bash
 # Node.js
-npm audit --audit-level=high 2>/dev/null
+if command -v npm &> /dev/null; then
+  npm audit --audit-level=high
+else
+  echo "SKIP: npm not available"
+fi
 
 # Python
-pip-audit 2>/dev/null || safety check 2>/dev/null
+if command -v pip-audit &> /dev/null; then
+  pip-audit
+elif command -v safety &> /dev/null; then
+  safety check
+else
+  echo "SKIP: No Python audit tools available (pip-audit, safety)"
+fi
 
 # Rust
-cargo audit 2>/dev/null
+if command -v cargo &> /dev/null; then
+  cargo audit 2>&1 || echo "SKIP: cargo-audit not installed (run: cargo install cargo-audit)"
+else
+  echo "SKIP: cargo not available"
+fi
 ```
 
 ### 8. Changelog Verification

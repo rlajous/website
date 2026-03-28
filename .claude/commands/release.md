@@ -243,7 +243,11 @@ if git diff --quiet origin/${PROD_BRANCH}..origin/${DEV_BRANCH} -- "${OPENAPI_FI
 else
   OPENAPI_CHANGED=true
   # Extract version from OpenAPI spec if present
-  OPENAPI_VERSION=$(jq -r '.info.version // "unknown"' "${OPENAPI_FILE}" 2>/dev/null)
+  if [ -f "${OPENAPI_FILE}" ] && jq empty "${OPENAPI_FILE}" 2>/dev/null; then
+    OPENAPI_VERSION=$(jq -r '.info.version // "unknown"' "${OPENAPI_FILE}")
+  else
+    OPENAPI_VERSION="unknown (failed to parse)"
+  fi
 fi
 ```
 

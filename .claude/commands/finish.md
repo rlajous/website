@@ -43,7 +43,21 @@ issueTracker:
   "ticket_title": "Ticket title",
   "branch": "fix/proj-1234-description",
   "type": "fix",
-  "description": "Short description"
+  "description": "Short description",
+  "started_at": "2025-01-17T12:00:00Z",
+  "commits": [
+    {
+      "hash": "abc123",
+      "message": "[Fix] Summary (PROJ-1234)",
+      "timestamp": "2025-01-17T12:30:00Z"
+    }
+  ],
+  "last_commit_at": "2025-01-17T12:30:00Z",
+  "config": {
+    "workflow": "staging",
+    "developmentBranch": "staging",
+    "productionBranch": "main"
+  }
 }
 ```
 

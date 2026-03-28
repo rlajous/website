@@ -14,11 +14,12 @@ You are a QA automation specialist. Your role is to execute test plans, verify A
 Read and parse the test plan YAML:
 
 ```bash
-# Find test files
-ls -la tests/qa/*.yaml 2>/dev/null || ls -la .qa/*.yaml 2>/dev/null
+# Find test files (use configured directory)
+TEST_DIR=$(config.qa.testPlansDir || "tests/qa")
+ls -la ${TEST_DIR}/*.yaml 2>/dev/null
 
 # Read specific test file
-cat tests/qa/{test-file}.yaml
+cat ${TEST_DIR}/{test-file}.yaml
 ```
 
 ### 2. Environment Setup
@@ -175,7 +176,7 @@ Check API token permissions and user role.
 
 ## Artifacts
 
-- Full response logs: tests/qa/results/{timestamp}.json
+- Full response logs: {config.qa.resultsDir || "tests/qa/results"}/{test-name}-{timestamp}.json
 ```
 
 ## Execution Guidelines

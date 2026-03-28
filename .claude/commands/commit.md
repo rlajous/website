@@ -35,8 +35,18 @@ attribution:
 ```json
 {
   "ticket_id": "PROJ-1234",
+  "ticket_url": "https://issue-tracker.com/PROJ-1234",
+  "ticket_title": "Title from issue tracker",
   "type": "fix",
-  "branch": "fix/proj-1234-description"
+  "branch": "fix/proj-1234-description",
+  "description": "Short description",
+  "started_at": "2025-01-17T12:00:00Z",
+  "commits": [],
+  "config": {
+    "workflow": "staging",
+    "developmentBranch": "staging",
+    "productionBranch": "main"
+  }
 }
 ```
 

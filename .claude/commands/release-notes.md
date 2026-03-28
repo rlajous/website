@@ -80,6 +80,11 @@ elif [ -f "VERSION" ]; then
   VERSION=$(cat VERSION)
 fi
 
+if [ -z "$VERSION" ]; then
+  echo "Error: No version file found. Checked: package.json, pyproject.toml, Cargo.toml, VERSION"
+  exit 1
+fi
+
 TAG_NAME="v${VERSION}"
 ```
 

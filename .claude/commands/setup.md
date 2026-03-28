@@ -213,6 +213,13 @@ commits:
     - Docs
     - Test
     - Chore
+  requireTicket: false
+  ticketPattern: "^[A-Z]+-\\d+$"
+
+# Attribution (optional)
+attribution:
+  enabled: false
+  format: "Co-Authored-By: Claude <noreply@anthropic.com>"
 ```
 
 Write to `.claude/config.yaml`

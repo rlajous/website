@@ -72,8 +72,13 @@ const sqsMatch = args.match(/--sqs\s+(\S+)/);
 const sqsEnvMatch = args.match(/--sqs-env\s+(\S+)/);
 const sqsQueue = sqsMatch ? sqsMatch[1] : sqsEnvMatch ? `\${${sqsEnvMatch[1]}}` : null;
 
-// Remaining is description
-const description = args.replace(ticketMatch, '').replace(urlMatch, '').trim();
+// Remaining is description (strip all flags)
+const description = args
+  .replace(ticketMatch || '', '')
+  .replace(urlMatch || '', '')
+  .replace(sqsMatch || '', '')
+  .replace(sqsEnvMatch || '', '')
+  .trim();
 ```
 
 ## Step 3: Fetch Ticket Details (If ID Provided)

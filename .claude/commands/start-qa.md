@@ -119,13 +119,25 @@ fi
 # Execute request
 START_TIME=$(date +%s%N)
 
+# Validate HTTP method
+if [[ ! "$METHOD" =~ ^(GET|POST|PUT|DELETE|PATCH|HEAD|OPTIONS)$ ]]; then
+  echo "Error: Invalid HTTP method: $METHOD"
+  exit 1
+fi
+
+# Write body to temp file to prevent injection
+BODY_FILE=$(mktemp)
+echo "$BODY" > "$BODY_FILE"
+
 RESPONSE=$(curl -s -w "\n%{http_code}" \
   -X "$METHOD" \
   -H "Content-Type: application/json" \
   ${HEADERS[@]} \
-  -d "$BODY" \
+  -d @"$BODY_FILE" \
   --max-time $TIMEOUT \
   "$URL")
+
+rm -f "$BODY_FILE"
 
 END_TIME=$(date +%s%N)
 DURATION_MS=$(( (END_TIME - START_TIME) / 1000000 ))

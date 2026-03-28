@@ -24,7 +24,13 @@ Scan for existing RFC files to determine the next number:
 latest=$(ls docs/rfcs/rfc-*.md 2>/dev/null | sort -V | tail -1)
 if [ -n "$latest" ]; then
   current=$(basename "$latest" | sed 's/rfc-\([0-9]*\)-.*/\1/')
-  next=$((10#$current + 1))
+  # Validate extracted number
+  if ! [[ "$current" =~ ^[0-9]+$ ]]; then
+    echo "Warning: Could not parse RFC number from $latest, starting at 001"
+    next=1
+  else
+    next=$((10#$current + 1))
+  fi
 else
   next=1
 fi
