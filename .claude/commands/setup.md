@@ -12,7 +12,7 @@ You are helping set up Claude Code commands for this project. Your task is to in
 
 Display a welcome message:
 
-```
+```text
 Welcome to Claude Code Commands Setup!
 
 This will help you configure:
@@ -228,7 +228,7 @@ Write to `.claude/config.yaml`
 
 Display a summary of what was configured:
 
-```
+```text
 Setup Complete!
 
 MCP Servers configured:
@@ -252,7 +252,7 @@ Next steps:
 
 If Linear or Jira was configured, remind about authentication:
 
-```
+```text
 Authentication Note:
 MCP servers handle authentication automatically.
 On first use, you'll be prompted to authenticate:
@@ -273,7 +273,7 @@ On first use, you'll be prompted to authenticate:
 
 ### Example 1: Linear Only
 
-```
+```text
 User: /setup
 Agent: Which issue tracker(s)? -> Linear
 Agent: Where to save? -> Project
@@ -282,7 +282,7 @@ Result: .claude/settings.json with Linear MCP configured
 
 ### Example 2: Jira + GitHub
 
-```
+```text
 User: /setup
 Agent: Which issue tracker(s)? -> Jira, GitHub Issues
 Agent: Jira URL? -> https://acme.atlassian.net
@@ -296,7 +296,7 @@ Result: ~/.claude/settings.json with Jira MCP
 
 ### Example 3: No Issue Tracker
 
-```
+```text
 User: /setup
 Agent: Which issue tracker(s)? -> None
 Agent: Configure workflow? -> Yes

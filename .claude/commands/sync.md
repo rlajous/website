@@ -55,7 +55,7 @@ git pull origin ${PROD_BRANCH}
 **Validation:**
 
 - If not on production branch:
-  ```
+  ```text
   You should be on {PROD_BRANCH} branch to create a sync PR.
   Run: git checkout {PROD_BRANCH} && git pull
   ```
@@ -90,7 +90,7 @@ git log origin/${DEV_BRANCH}..origin/${PROD_BRANCH} --oneline --no-merges
 
 Display to user:
 
-```
+```text
 Commits to sync from {PROD_BRANCH} to {DEV_BRANCH}:
 
 abc1234 2.77.0
@@ -102,7 +102,7 @@ These changes from release v{VERSION} need to be back-merged.
 
 **If No Commits:**
 
-```
+```text
 {DEV_BRANCH} is already up-to-date with {PROD_BRANCH}.
 No sync needed!
 ```
@@ -147,7 +147,7 @@ git rebase origin/${DEV_BRANCH}
 
 **Example Output:**
 
-```
+```text
 warning: skipped previously applied commit 357fab94
 warning: skipped previously applied commit 9de0e8fd
 ...
@@ -221,7 +221,7 @@ EOF
 
 ## Step 10: Confirm
 
-```
+```text
 Sync branch created: {SYNC_BRANCH}
 PR created: {PR_URL}
 Title: [SYNC] Back-merge {PROD_BRANCH} to {DEV_BRANCH} (post-release v{VERSION})
@@ -263,7 +263,7 @@ Release workflow complete!
 
 If conflicts occur during rebase:
 
-```
+```text
 Conflicts detected during rebase:
 
 {LIST_OF_CONFLICTING_FILES}
@@ -292,7 +292,7 @@ Or abort and resolve manually:
 
 **Typical sequence:**
 
-```
+```text
 /release → Review → Merge → Deploy → /release-notes → /sync → Merge sync PR
 ```
 

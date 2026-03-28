@@ -195,7 +195,7 @@ git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 5
 For each, get a brief summary:
 
 ```bash
-gh release view v{VERSION} --json tagName,name,body 2>/dev/null | jq -r '.name'
+gh release view ${TAG} --json tagName,name,body 2>/dev/null | jq -r '.name'
 ```
 
 Format as:

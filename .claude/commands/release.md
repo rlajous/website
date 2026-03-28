@@ -70,17 +70,17 @@ git status
 **Validation:**
 
 - If not on development branch:
-  ```
+  ```text
   You must be on {DEV_BRANCH} branch to create a release.
   Run: git checkout {DEV_BRANCH} && git pull
   ```
 - If behind remote:
-  ```
+  ```text
   Your {DEV_BRANCH} branch is behind origin.
   Run: git pull origin {DEV_BRANCH}
   ```
 - If there are uncommitted changes:
-  ```
+  ```text
   You have uncommitted changes. Commit or stash them first.
   ```
 
@@ -138,7 +138,7 @@ Ask the user which version bump to perform (use AskUserQuestion tool):
 
 **Display**:
 
-```
+```text
 Current version: {CURRENT_VERSION}
 Version file: {VERSION_FILE}
 
@@ -152,7 +152,7 @@ Select version bump:
 
 Based on user selection:
 
-```
+```text
 Current: 1.2.3
 Patch:   1.2.4
 Minor:   1.3.0
@@ -178,7 +178,7 @@ switch (bumpType) {
 
 Confirm with user:
 
-```
+```text
 Current version: 1.2.3
 New version: 1.3.0
 
@@ -461,7 +461,7 @@ EOF
 
 ## Step 15: Confirm and Next Steps
 
-```
+```text
 Release branch created: {RELEASE_BRANCH}
 Version bumped: {OLD_VERSION} → {NEW_VERSION}
 PR created: {PR_URL}
@@ -529,7 +529,7 @@ version = "1.2.3"
 
 ### VERSION
 
-```
+```text
 1.2.3
 ```
 
