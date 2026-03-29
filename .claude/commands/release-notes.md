@@ -53,15 +53,16 @@ DEV_BRANCH=$(config.workflow.developmentBranch || "staging")
 # Get current branch
 CURRENT=$(git branch --show-current)
 
+# Validate we're on the production branch before pulling
+if [ "$CURRENT" != "$PROD_BRANCH" ]; then
+  echo "You should be on ${PROD_BRANCH} branch after the release PR is merged."
+  echo "Run: git checkout ${PROD_BRANCH} && git pull"
+  exit 1
+fi
+
 # Pull latest
 git pull origin ${PROD_BRANCH}
 ```
-
-**Validation:**
-
-- If not on production branch:
-  ```
-  You should be on {PROD_BRANCH} branch after the release PR is merged.
   Run: git checkout {PROD_BRANCH} && git pull
   ```
 
@@ -99,16 +100,28 @@ Release tag: v{VERSION}
 ## Step 4: Check if Release Exists
 
 ```bash
-gh release view v${VERSION} 2>&1
+# Check if release exists
+if gh release view "v${VERSION}" &>/dev/null; then
+  RELEASE_EXISTS=true
+else
+  RELEASE_EXISTS=false
+fi
+
+# Check if tag exists
+if git rev-parse "v${VERSION}" &>/dev/null; then
+  TAG_EXISTS=true
+else
+  TAG_EXISTS=false
+fi
 ```
 
 **Possible States:**
 
-1. Release exists → Will update with enhanced notes
-2. Release doesn't exist → Will create new release
-3. Tag doesn't exist → Error, release flow not completed
+1. `RELEASE_EXISTS=true` → Will update with enhanced notes
+2. `RELEASE_EXISTS=false`, `TAG_EXISTS=true` → Will create new release from existing tag
+3. `TAG_EXISTS=false` → Tag not yet created; will use HEAD for commit range
 
-Store this result for Step 8 (create vs edit).
+Store `RELEASE_EXISTS` and `TAG_EXISTS` for Step 6 and Step 8.
 
 ## Step 5: Get Previous Release
 
@@ -129,7 +142,12 @@ fi
 Get commits between previous and current release:
 
 ```bash
-git log ${PREV_TAG}..v${VERSION} --pretty=format:"%H|%s|%b" --no-merges
+# Use tag if it exists, otherwise fall back to HEAD
+if [ "$TAG_EXISTS" = "true" ]; then
+  git log ${PREV_TAG}..v${VERSION} --pretty=format:"%H|%s|%b" --no-merges
+else
+  git log ${PREV_TAG}..HEAD --pretty=format:"%H|%s|%b" --no-merges
+fi
 ```
 
 ### Parse and Categorize

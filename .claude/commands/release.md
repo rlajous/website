@@ -60,29 +60,27 @@ CURRENT=$(git branch --show-current)
 echo "Current branch: $CURRENT"
 echo "Expected: $DEV_BRANCH"
 
-# Fetch latest
+# Validate we're on the development branch
+if [ "$CURRENT" != "$DEV_BRANCH" ]; then
+  echo "You must be on ${DEV_BRANCH} branch to create a release."
+  echo "Run: git checkout ${DEV_BRANCH} && git pull"
+  exit 1
+fi
+
+# Check for uncommitted changes
+if [ -n "$(git status --porcelain)" ]; then
+  echo "You have uncommitted changes. Commit or stash them first."
+  exit 1
+fi
+
+# Fetch latest and check if up-to-date
 git fetch origin
-
-# Check if up-to-date
-git status
+if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/${DEV_BRANCH})" ]; then
+  echo "Your ${DEV_BRANCH} branch is not in sync with origin."
+  echo "Run: git pull origin ${DEV_BRANCH}"
+  exit 1
+fi
 ```
-
-**Validation:**
-
-- If not on development branch:
-  ```text
-  You must be on {DEV_BRANCH} branch to create a release.
-  Run: git checkout {DEV_BRANCH} && git pull
-  ```
-- If behind remote:
-  ```text
-  Your {DEV_BRANCH} branch is behind origin.
-  Run: git pull origin {DEV_BRANCH}
-  ```
-- If there are uncommitted changes:
-  ```text
-  You have uncommitted changes. Commit or stash them first.
-  ```
 
 ## Step 3: Detect Version File
 
@@ -329,8 +327,9 @@ npm version ${BUMP_TYPE} --no-git-tag-version
 git add package.json
 [ -f package-lock.json ] && git add package-lock.json
 git commit -m "${NEW_VERSION}"
-git tag "v${NEW_VERSION}"
 ```
+
+**Note:** Do NOT create the git tag here. The tag should be created from `{PROD_BRANCH}` HEAD after the PR is merged, via `/release-notes`.
 
 ### Python (pyproject.toml)
 
@@ -339,7 +338,6 @@ git tag "v${NEW_VERSION}"
 poetry version ${BUMP_TYPE}
 git add pyproject.toml
 git commit -m "${NEW_VERSION}"
-git tag "v${NEW_VERSION}"
 
 # Or using hatch
 hatch version ${BUMP_TYPE}
@@ -355,7 +353,6 @@ sed -i 's/version = "[^"]*"/version = "'${NEW_VERSION}'"/' pyproject.toml
 cargo set-version ${NEW_VERSION}
 git add Cargo.toml Cargo.lock
 git commit -m "${NEW_VERSION}"
-git tag "v${NEW_VERSION}"
 ```
 
 ### Plain VERSION file
@@ -364,13 +361,12 @@ git tag "v${NEW_VERSION}"
 echo "${NEW_VERSION}" > VERSION
 git add VERSION
 git commit -m "${NEW_VERSION}"
-git tag "v${NEW_VERSION}"
 ```
 
 ## Step 12: Push Release Branch
 
 ```bash
-git push -u origin ${RELEASE_BRANCH} --follow-tags
+git push -u origin ${RELEASE_BRANCH}
 ```
 
 ## Step 13: Generate Release PR Description

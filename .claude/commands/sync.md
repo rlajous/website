@@ -167,7 +167,17 @@ git log origin/${DEV_BRANCH}..${SYNC_BRANCH} --oneline
 
 **Expected Result**: Usually just 1-2 commits (version bump, release merge commit).
 
-If 0 commits remain, development is already in sync - no PR needed.
+If 0 commits remain, development is already in sync - no PR needed:
+
+```bash
+REMAINING=$(git log origin/${DEV_BRANCH}..${SYNC_BRANCH} --oneline | wc -l)
+if [ "$REMAINING" -eq 0 ]; then
+  echo "${DEV_BRANCH} is already in sync with ${PROD_BRANCH} after rebase. No PR needed!"
+  git checkout ${PROD_BRANCH}
+  git branch -D ${SYNC_BRANCH}
+  exit 0
+fi
+```
 
 ## Step 8: Generate Sync PR Description
 
