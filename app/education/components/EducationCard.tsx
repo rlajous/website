@@ -24,22 +24,22 @@ const EducationCard: React.FC<Education> = ({
 }) => {
   return (
     <Link href={`/education/${slug}`} className="block group">
-      <div className="bg-white text-black dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row w-full hover:shadow-xl transition-shadow cursor-pointer">
+      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-lg flex flex-col md:flex-row w-full hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 cursor-pointer border-l-2 border-l-transparent hover:border-l-primary">
         <div className="md:w-1/4 pr-4 border-r hidden md:block">
           <h2 className="text-xl font-semibold">{period}</h2>
         </div>
         <div className="md:w-3/4 md:pl-4">
           <h3 className="text-lg font-semibold">{degree}</h3>
-          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+          <div className="flex items-center gap-2 text-muted-foreground">
             <School className="h-4 w-4" />
             <span>{institution}</span>
           </div>
-          <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 md:hidden">
+          <div className="flex items-center gap-2 text-muted-foreground md:hidden">
             <Calendar className="h-4 w-4" />
             <span>{period}</span>
           </div>
           {specialization && (
-            <p className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+            <p className="mt-2 text-sm text-muted-foreground">
               Specialization: {specialization}
             </p>
           )}

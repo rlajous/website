@@ -29,7 +29,7 @@ interface NavigationLinkProps
 const NavigationLink = forwardRef<HTMLAnchorElement, NavigationLinkProps>(
   ({ href, name, isExternal, ...props }, ref) => {
     const isActive = usePathname() === href;
-    const linkClass = cn("text-sm font-semibold py-2 inline-block border-b-2", {
+    const linkClass = cn("text-sm font-semibold py-2 inline-block border-b-2 transition-colors duration-200 hover:text-primary", {
       "border-transparent": !isActive,
       "border-primary": isActive,
     });

@@ -29,23 +29,23 @@ export default function Home() {
       aria-label="Introduction"
     >
       <div className="max-w-3xl w-full py-4 md:py-12 lg:py-16">
-        <h1 className="text-2xl md:text-xl lg:text-2xl font-bold">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold animate-fade-in-up">
           Hi, I&apos;m{" "}
           <span className="block md:inline">Rodrigo Manuel Navarro Lajous</span>{" "}
           👋
         </h1>
-        <p className="mt-4 text-5xl md:text-5xl lg:text-6xl font-black leading-tight">
+        <p className="mt-4 text-5xl lg:text-6xl font-black leading-tight animate-fade-in-up [animation-delay:100ms]">
           <span className="sr-only">I am a </span>
           Software Engineer &<br className="md:hidden" />
           <span className="md:ml-2">Digital Nomad</span>
         </p>
-        <p className="mt-6 text-xl md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-6 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed text-muted-foreground animate-fade-in-up [animation-delay:200ms]">
           Passionate about technology and innovation. I love to build things
           that make a difference.
         </p>
 
         <div
-          className="flex items-center justify-center space-x-12 md:space-x-10 mt-10 md:mt-8"
+          className="flex items-center justify-center space-x-8 md:space-x-12 mt-10 md:mt-8 animate-fade-in-up [animation-delay:300ms]"
           aria-label="Social media links"
         >
           <GitHubLink
@@ -65,7 +65,7 @@ export default function Home() {
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8 animate-fade-in-up [animation-delay:400ms]">
           <Button asChild size="lg" className="w-full sm:w-auto" variant="default">
             <a href="/resume.pdf" download data-umami-event="Download Resume" data-umami-event-type="PDF" aria-label="Download my resume in PDF format">
               <Download className="mr-2 h-4 w-4" />

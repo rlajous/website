@@ -26,8 +26,14 @@ const ProjectsTab: React.FC<ProjectsTabProps> = ({ projects }) => {
           (a, b) =>
             parseInt(b.period.split("-")[0]) - parseInt(a.period.split("-")[0])
         )
-        .map((project) => (
-          <ProjectCard key={project.id} {...project} />
+        .map((project, index) => (
+          <div
+            key={project.id}
+            className="w-full animate-fade-in-up"
+            style={{ animationDelay: `${index * 80}ms` }}
+          >
+            <ProjectCard {...project} />
+          </div>
         ))}
     </div>
   );

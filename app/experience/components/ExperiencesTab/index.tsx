@@ -19,8 +19,14 @@ interface ExperiencesTabProps {
  */
 const ExperiencesTab: React.FC<ExperiencesTabProps> = ({ experiences }) => (
   <div className="flex flex-col items-center gap-6 mt-6">
-    {experiences.map((experience) => (
-      <ExperienceCard key={experience.id} {...experience} />
+    {experiences.map((experience, index) => (
+      <div
+        key={experience.id}
+        className="w-full animate-fade-in-up"
+        style={{ animationDelay: `${index * 80}ms` }}
+      >
+        <ExperienceCard {...experience} />
+      </div>
     ))}
   </div>
 );

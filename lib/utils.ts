@@ -15,3 +15,12 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+/**
+ * Lightweight base64-encoded SVG used as a blur placeholder for Next.js Image components.
+ *
+ * Renders a neutral gray rectangle that matches the muted background token,
+ * preventing content pop-in while images load.
+ */
+export const blurDataURL =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZTVlNWU1Ii8+PC9zdmc+";

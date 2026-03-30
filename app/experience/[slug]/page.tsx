@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, ArrowLeft, Briefcase, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { blurDataURL } from "@/lib/utils";
 
 /** Props for the experience detail page, receiving the slug from the dynamic route. */
 interface ExperiencePageProps {
@@ -91,12 +92,12 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
   const tabParam = experience.type === "job" ? "jobs" : "startups";
 
   return (
-    <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4">
+    <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4 animate-fade-in-up">
       {/* Back Button */}
       <div className="w-full max-w-4xl">
         <Link
           href={`/experience?tab=${tabParam}`}
-          className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to experience</span>
@@ -113,9 +114,10 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
             className="object-cover w-full rounded-lg"
             src={experience.banner}
             priority
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             style={{
               aspectRatio: "2 / 1",
-              objectFit: "cover",
             }}
           />
         </div>
@@ -139,19 +141,19 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
               href={experience.companyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl md:text-2xl text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+              className="text-xl md:text-2xl text-link hover:underline inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
             >
               {experience.company}
               <ExternalLink className="w-5 h-5" />
             </a>
           ) : (
-            <h2 className="text-xl md:text-2xl text-blue-600 dark:text-blue-400">
+            <h2 className="text-xl md:text-2xl text-link">
               {experience.company}
             </h2>
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 mb-6 text-gray-600 dark:text-gray-300">
+        <div className="flex flex-col md:flex-row gap-4 mb-6 text-muted-foreground">
           <div className="inline-flex items-center gap-2">
             <Calendar className="w-5 h-5" />
             <span>{experience.period}</span>
@@ -172,7 +174,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
           </h3>
           <ul className="list-disc list-inside space-y-2">
             {experience.responsibilities.map((responsibility, index) => (
-              <li key={index} className="text-gray-700 dark:text-gray-300">
+              <li key={index} className="text-muted-foreground">
                 {responsibility}
               </li>
             ))}
@@ -185,7 +187,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
             <h3 className="text-xl font-semibold mb-3">Key Achievements</h3>
             <ul className="list-disc list-inside space-y-2">
               {experience.achievements.map((achievement, index) => (
-                <li key={index} className="text-gray-700 dark:text-gray-300">
+                <li key={index} className="text-muted-foreground">
                   {achievement}
                 </li>
               ))}

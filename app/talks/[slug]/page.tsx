@@ -5,6 +5,7 @@ import { talks } from "@/services/talks";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, ArrowLeft } from "lucide-react";
 import Image from "next/image";
+import { blurDataURL } from "@/lib/utils";
 import Link from "next/link";
 import YouTubeEmbed from "../components/YouTubeEmbed";
 import PDFViewer from "../components/PDFViewer";
@@ -83,12 +84,12 @@ export default async function TalkPage({ params }: TalkPageProps) {
   }
 
   return (
-    <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4">
+    <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4 animate-fade-in-up">
       {/* Back Button */}
       <div className="w-full max-w-4xl">
         <Link
           href="/talks"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to all talks</span>
@@ -105,9 +106,10 @@ export default async function TalkPage({ params }: TalkPageProps) {
             className="object-cover w-full rounded-lg"
             src={`/assets${talk.banner}`}
             priority
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             style={{
               aspectRatio: "2 / 1",
-              objectFit: "cover",
             }}
           />
         </div>
@@ -118,7 +120,7 @@ export default async function TalkPage({ params }: TalkPageProps) {
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{talk.title}</h1>
 
         <div className="flex flex-col md:flex-row gap-4 mb-4 justify-center md:justify-start">
-          <div className="inline-flex items-center gap-2 text-lg font-semibold text-blue-600 dark:text-blue-400">
+          <div className="inline-flex items-center gap-2 text-lg font-semibold text-link">
             {talk.event}
           </div>
           <div className="inline-flex items-center gap-2">
