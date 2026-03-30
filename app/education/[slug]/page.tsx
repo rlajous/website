@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { blurDataURL } from "@/lib/utils";
 
 /** Props for the education detail page, receiving the slug from the dynamic route. */
 interface EducationPageProps {
@@ -100,12 +101,12 @@ export default async function EducationPage({ params }: EducationPageProps) {
   }
 
   return (
-    <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4">
+    <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4 animate-fade-in-up">
       {/* Back Button */}
       <div className="w-full max-w-4xl">
         <Link
           href="/education"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to education</span>
@@ -122,9 +123,10 @@ export default async function EducationPage({ params }: EducationPageProps) {
             className="object-cover w-full rounded-lg"
             src={edu.banner}
             priority
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             style={{
               aspectRatio: "2 / 1",
-              objectFit: "cover",
             }}
           />
         </div>
@@ -134,7 +136,7 @@ export default async function EducationPage({ params }: EducationPageProps) {
       <div className="w-full max-w-4xl">
         <div className="flex flex-col gap-2 mb-4">
           <div className="flex items-center gap-3">
-            <GraduationCap className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+            <GraduationCap className="w-8 h-8 text-link" />
             <h1 className="text-3xl md:text-4xl font-bold">{edu.degree}</h1>
           </div>
 
@@ -143,19 +145,19 @@ export default async function EducationPage({ params }: EducationPageProps) {
               href={edu.institutionUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xl md:text-2xl text-blue-600 dark:text-blue-400 hover:underline inline-flex items-center gap-2"
+              className="text-xl md:text-2xl text-link hover:underline inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
             >
               {edu.institution}
               <ExternalLink className="w-5 h-5" />
             </a>
           ) : (
-            <h2 className="text-xl md:text-2xl text-blue-600 dark:text-blue-400">
+            <h2 className="text-xl md:text-2xl text-link">
               {edu.institution}
             </h2>
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 mb-6 text-gray-600 dark:text-gray-300">
+        <div className="flex flex-col md:flex-row gap-4 mb-6 text-muted-foreground">
           <div className="inline-flex items-center gap-2">
             <Calendar className="w-5 h-5" />
             <span>{edu.period}</span>
@@ -172,7 +174,7 @@ export default async function EducationPage({ params }: EducationPageProps) {
         {edu.specialization && (
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-2">Specialization</h3>
-            <p className="text-lg text-gray-700 dark:text-gray-300">
+            <p className="text-lg text-muted-foreground">
               {edu.specialization}
             </p>
           </div>
@@ -180,15 +182,15 @@ export default async function EducationPage({ params }: EducationPageProps) {
 
         {/* Thesis */}
         {edu.thesis && (
-          <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+          <div className="mb-6 p-4 bg-muted rounded-lg">
             <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
               <FileText className="w-5 h-5" />
               Thesis
             </h3>
-            <h4 className="text-lg font-medium mb-2 text-blue-600 dark:text-blue-400">
+            <h4 className="text-lg font-medium mb-2 text-link">
               {edu.thesis.title}
             </h4>
-            <p className="text-gray-700 dark:text-gray-300 mb-3">
+            <p className="text-muted-foreground mb-3">
               {edu.thesis.description}
             </p>
             {edu.thesis.link && (
@@ -196,7 +198,7 @@ export default async function EducationPage({ params }: EducationPageProps) {
                 href={edu.thesis.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline"
+                className="inline-flex items-center gap-2 text-link hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span>View Thesis</span>
@@ -211,7 +213,7 @@ export default async function EducationPage({ params }: EducationPageProps) {
             <h3 className="text-xl font-semibold mb-3">Key Coursework</h3>
             <ul className="list-disc list-inside space-y-2">
               {edu.coursework.map((course, index) => (
-                <li key={index} className="text-gray-700 dark:text-gray-300">
+                <li key={index} className="text-muted-foreground">
                   {course}
                 </li>
               ))}
@@ -225,7 +227,7 @@ export default async function EducationPage({ params }: EducationPageProps) {
             <h3 className="text-xl font-semibold mb-3">Achievements & Honors</h3>
             <ul className="list-disc list-inside space-y-2">
               {edu.achievements.map((achievement, index) => (
-                <li key={index} className="text-gray-700 dark:text-gray-300">
+                <li key={index} className="text-muted-foreground">
                   {achievement}
                 </li>
               ))}

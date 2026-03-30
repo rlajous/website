@@ -16,7 +16,7 @@ const MobileNavigation: React.FC = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="lg:hidden" data-umami-event="Mobile Menu Toggle">
+        <button className="lg:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md" data-umami-event="Mobile Menu Toggle">
           <MenuIcon className="h-6 w-6" />
           <span className="sr-only">Toggle navigation menu</span>
         </button>

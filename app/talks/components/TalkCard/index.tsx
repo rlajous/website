@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { blurDataURL } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Talk } from "@/domains/Talk";
 import { Presentation, Video, MapPin } from "lucide-react";
@@ -28,7 +29,7 @@ const TalkCard: React.FC<Talk> = ({
 }) => {
   return (
     <Link href={`/talks/${slug}`} className="block group">
-      <div className="bg-white text-black dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow-lg flex flex-col hover:shadow-xl transition-shadow cursor-pointer">
+      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-lg flex flex-col hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 cursor-pointer border-l-2 border-l-transparent hover:border-l-primary">
         {banner && (
           <div className="mb-4">
             <Image
@@ -37,9 +38,10 @@ const TalkCard: React.FC<Talk> = ({
               alt={title}
               className="object-cover w-full rounded-lg"
               src={`/assets${banner}`}
+              placeholder="blur"
+              blurDataURL={blurDataURL}
               style={{
                 aspectRatio: "2 / 1",
-                objectFit: "cover",
               }}
             />
           </div>
@@ -48,8 +50,8 @@ const TalkCard: React.FC<Talk> = ({
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/4 pr-4 md:border-r">
             <h2 className="text-xl font-semibold mb-2">{event}</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-300">{date}</p>
-            <div className="flex items-center gap-1 mt-2 text-sm text-gray-600 dark:text-gray-300">
+            <p className="text-sm text-muted-foreground">{date}</p>
+            <div className="flex items-center gap-1 mt-2 text-sm text-muted-foreground">
               <MapPin className="w-4 h-4" />
               <span>{location}</span>
             </div>
@@ -57,7 +59,7 @@ const TalkCard: React.FC<Talk> = ({
 
           <div className="md:w-3/4 md:pl-4 mt-4 md:mt-0">
             <h3 className="text-lg font-semibold mb-2">{title}</h3>
-            <p className="text-sm mb-3">{description}</p>
+            <p className="text-sm mb-3 line-clamp-2">{description}</p>
 
             <div className="flex flex-wrap gap-2 mb-3">
               {topics.map((topic, index) => (
@@ -75,13 +77,13 @@ const TalkCard: React.FC<Talk> = ({
             {links && (links.slides || links.video) && (
               <div className="flex flex-wrap gap-4 mt-4">
                 {links.slides && (
-                  <span className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400">
+                  <span className="flex items-center gap-2 text-sm text-link">
                     <Presentation className="w-4 h-4" />
                     <span>Slides Available</span>
                   </span>
                 )}
                 {links.video && (
-                  <span className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400">
+                  <span className="flex items-center gap-2 text-sm text-link">
                     <Video className="w-4 h-4" />
                     <span>Video Available</span>
                   </span>

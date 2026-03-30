@@ -284,7 +284,8 @@ const descSlug = description
   .replace(/[^a-z0-9]+/g, '-')
   .slice(0, 50);
 
-const fileName = `${slug || descSlug}-test.yaml`;
+const finalSlug = (slug || descSlug || "untitled").replace(/^-+|-+$/g, '');
+const fileName = `${finalSlug}-test.yaml`;
 ```
 
 Save to configured directory:

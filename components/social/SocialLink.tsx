@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 /**
  * Props for the {@link SocialLink} component.
@@ -46,7 +47,7 @@ export function SocialLink({
 }: SocialLinkProps) {
   return (
     <Link
-      className={`flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors ${className}`}
+      className={cn("flex items-center space-x-2 text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200", className)}
       href={href}
       target="_blank"
       rel="noopener noreferrer"

@@ -1,7 +1,7 @@
 ---
 name: pr-reviewer
 description: Expert code reviewer. Use proactively after code changes to review for quality, security, and best practices.
-tools: Read, Grep, Glob
+tools: Read, Grep, Glob, Bash
 model: sonnet
 ---
 

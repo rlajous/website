@@ -25,7 +25,7 @@ interface PDFViewerProps {
 const PDFViewer: React.FC<PDFViewerProps> = ({ pdfUrl, title }) => {
   return (
     <div className="space-y-4">
-      <div className="w-full h-[600px] border rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+      <div className="w-full h-[400px] md:h-[600px] lg:h-[700px] border rounded-lg overflow-hidden bg-muted">
         <iframe
           src={pdfUrl}
           className="w-full h-full"

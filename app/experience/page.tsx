@@ -48,9 +48,10 @@ function ExperienceContent() {
 
   return (
     <div className="flex flex-col items-center gap-6 py-8 md:py-12">
-      <div className="text-center">
+      <div className="text-center animate-fade-in-up">
         <h1 className="text-3xl font-bold">Experience</h1>
-        <p className="text-md mt-2">A timeline of my professional journey</p>
+        <div className="mx-auto mt-3 h-0.5 w-12 rounded-full bg-primary" />
+        <p className="text-base mt-3 text-muted-foreground">A timeline of my professional journey</p>
       </div>
       <Tabs
         className="max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl flex flex-col"
@@ -80,7 +81,20 @@ function ExperienceContent() {
  */
 export default function Page() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={
+        <div className="flex flex-col items-center gap-6 py-8 md:py-12">
+          <div className="animate-pulse space-y-4 w-full max-w-3xl px-4">
+            <div className="h-8 bg-muted rounded w-1/3 mx-auto" />
+            <div className="h-4 bg-muted rounded w-1/2 mx-auto" />
+            <div className="h-10 bg-muted rounded w-2/3 mx-auto mt-4" />
+            <div className="space-y-4 mt-6">
+              <div className="h-36 bg-muted rounded" />
+              <div className="h-36 bg-muted rounded" />
+              <div className="h-36 bg-muted rounded" />
+            </div>
+          </div>
+        </div>
+      }>
       <ExperienceContent />
     </Suspense>
   );

@@ -40,7 +40,7 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ videoUrl, title }) => {
 
   if (!videoId) {
     return (
-      <div className="text-center p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+      <div className="text-center p-4 bg-muted rounded-lg">
         <p>Invalid YouTube URL</p>
       </div>
     );
@@ -57,6 +57,7 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ videoUrl, title }) => {
           title={title}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+          loading="lazy"
         />
       </div>
       <div className="flex justify-center">
@@ -64,7 +65,7 @@ const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ videoUrl, title }) => {
           href={videoUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"
+          className="inline-flex items-center gap-2 text-sm text-link hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
           data-umami-event="External YouTube Link"
           data-umami-event-talk={title}
         >

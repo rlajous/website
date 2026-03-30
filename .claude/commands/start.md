@@ -180,7 +180,7 @@ Result: fix/proj-1234-add-user-auth
 
 ```bash
 # Ensure we're on the development branch and up-to-date
-git checkout {workflow.developmentBranch} 2>/dev/null || git checkout main
+git checkout {workflow.developmentBranch} || { echo "Error: Branch '{workflow.developmentBranch}' not found."; exit 1; }
 git pull
 
 # Create feature branch

@@ -67,6 +67,7 @@ export const ContactForm: React.FC = () => {
         description:
           "Your message has been sent successfully. I'll get back to you soon.",
       });
+      form.reset();
     } catch (error) {
       toast({
         variant: "destructive",

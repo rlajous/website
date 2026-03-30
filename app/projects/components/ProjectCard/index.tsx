@@ -7,6 +7,7 @@ import { Project } from "@/domains/Project";
 import { GitHubLink } from "@/components/social/GitHubLink";
 import { WebsiteLink } from "@/components/social/WebsiteLink";
 import Image from "next/image";
+import { blurDataURL } from "@/lib/utils";
 
 /**
  * Card displaying a project summary with banner image, description, tech badges,
@@ -39,7 +40,7 @@ const ProjectCard: React.FC<Project> = ({
   }
 
   return (
-    <div className="w-full bg-white text-black dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row relative group hover:shadow-xl transition-shadow">
+    <div className="w-full bg-card text-card-foreground p-6 rounded-lg shadow-lg flex flex-col md:flex-row relative group hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 border-l-2 border-l-transparent hover:border-l-primary">
       <Link
         href={`/projects/${slug}`}
         className="absolute inset-0 z-10"
@@ -55,9 +56,10 @@ const ProjectCard: React.FC<Project> = ({
           alt={name}
           className="object-cover w-full md:w-auto md:h-44"
           src={`/assets${banner}`}
+          placeholder="blur"
+          blurDataURL={blurDataURL}
           style={{
             aspectRatio: "2 / 1",
-            objectFit: "fill",
           }}
         />
       </div>
@@ -65,14 +67,19 @@ const ProjectCard: React.FC<Project> = ({
         <h3 className="text-lg font-semibold">
           {name} {company && <>· {company}</>}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300">{period}</p>
-        <p className="mt-2 text-sm">{description}</p>
+        <p className="text-muted-foreground">{period}</p>
+        <p className="mt-2 text-sm line-clamp-2">{description}</p>
         <div className="flex flex-wrap gap-2 mt-3">
-          {technologies.map((tech, techIndex) => (
+          {technologies.slice(0, 5).map((tech, techIndex) => (
             <Badge key={techIndex} variant="secondary">
               {tech}
             </Badge>
           ))}
+          {technologies.length > 5 && (
+            <span className="text-xs text-link self-center">
+              +{technologies.length - 5} more
+            </span>
+          )}
         </div>
         <div className="flex flex-wrap gap-4 mt-3 relative z-20">
           {github && (

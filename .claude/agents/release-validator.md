@@ -66,14 +66,13 @@ fi
 Ensure the project builds:
 
 ```bash
-# Node.js
-npm run build 2>/dev/null
-
-# Python
-python -m build 2>/dev/null
-
-# Rust
-cargo build --release 2>/dev/null
+if [ -f "package.json" ]; then
+  npm run build
+elif [ -f "pyproject.toml" ] || [ -f "setup.cfg" ]; then
+  python -m build
+elif [ -f "Cargo.toml" ]; then
+  cargo build --release
+fi
 ```
 
 ### 5. Lint Check
@@ -166,11 +165,11 @@ Look for pending migrations:
 # Prisma
 [ -d "prisma/migrations" ] && ls -la prisma/migrations/
 
-# Django
-python manage.py showmigrations 2>/dev/null
+# Django (only if manage.py exists)
+[ -f "manage.py" ] && python manage.py showmigrations 2>/dev/null
 
-# Alembic
-alembic current 2>/dev/null
+# Alembic (only if installed and configured)
+command -v alembic &>/dev/null && [ -f "alembic.ini" ] && alembic current 2>/dev/null
 ```
 
 ## Validation Report Format

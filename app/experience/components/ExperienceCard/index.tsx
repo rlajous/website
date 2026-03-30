@@ -23,7 +23,7 @@ const ExperienceCard: React.FC<Experience> = ({
 }) => {
   return (
     <Link href={`/experience/${slug}`} className="block group">
-      <div className="bg-white text-black dark:bg-gray-700 dark:text-white p-6 rounded-lg shadow-lg flex flex-col md:flex-row hover:shadow-xl transition-shadow cursor-pointer">
+      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-lg flex flex-col md:flex-row hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 cursor-pointer border-l-2 border-l-transparent hover:border-l-primary">
         <div className="md:w-1/4 pr-4 border-r hidden md:block">
           <h2 className="text-xl font-semibold">{period}</h2>
         </div>
@@ -31,14 +31,19 @@ const ExperienceCard: React.FC<Experience> = ({
           <h3 className="text-lg font-semibold">
             {position} · {company}
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 md:hidden">{period}</p>
+          <p className="text-muted-foreground md:hidden">{period}</p>
           <ul className="list-disc ml-5 space-y-1">
-            {responsibilities.map((item, itemIndex) => (
+            {responsibilities.slice(0, 3).map((item, itemIndex) => (
               <li key={itemIndex} className="mt-2 text-sm">
                 {item}
               </li>
             ))}
           </ul>
+          {responsibilities.length > 3 && (
+            <p className="text-sm text-link mt-1 ml-5">
+              +{responsibilities.length - 3} more
+            </p>
+          )}
           <div className="flex flex-wrap gap-2 mt-3">
             {technologies.map((tech, techIndex) => (
               <Badge

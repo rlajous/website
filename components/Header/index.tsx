@@ -62,11 +62,11 @@ const Header: React.FC = () => {
       >
         <MobileNavigation />
         <Link
-          className="mr-6 hidden lg:flex"
+          className="mr-6 flex"
           href={ROUTES.HOME}
           data-umami-event="Logo Click"
         >
-          <Logo className="h-11" />
+          <Logo className="h-9 lg:h-11" />
         </Link>
         <div className="flex ml-auto items-center gap-4">
           <NavigationMenu className="hidden lg:flex">

@@ -5,6 +5,7 @@ import { freelance, hobby, opensource } from "@/services/projects";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
+import { blurDataURL } from "@/lib/utils";
 import Link from "next/link";
 import { SITE_URL } from "@/constants/routes";
 
@@ -115,12 +116,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4">
+    <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4 animate-fade-in-up">
       {/* Back Button */}
       <div className="w-full max-w-4xl">
         <Link
           href={`/projects?tab=${project.type}`}
-          className="inline-flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to projects</span>
@@ -137,9 +138,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             className="object-cover w-full rounded-lg"
             src={`/assets${project.banner}`}
             priority
+            placeholder="blur"
+            blurDataURL={blurDataURL}
             style={{
               aspectRatio: "2 / 1",
-              objectFit: "cover",
             }}
           />
         </div>
@@ -155,12 +157,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </Badge>
           </div>
 
-          <h2 className="text-xl md:text-2xl text-blue-600 dark:text-blue-400">
+          <h2 className="text-xl md:text-2xl text-link">
             {project.company}
           </h2>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 mb-6 text-gray-600 dark:text-gray-300">
+        <div className="flex flex-col md:flex-row gap-4 mb-6 text-muted-foreground">
           <div className="inline-flex items-center gap-2">
             <Calendar className="w-5 h-5" />
             <span>{project.period}</span>
@@ -174,7 +176,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               data-umami-event="Project GitHub Click"
               data-umami-event-project={project.name}
             >
@@ -187,7 +189,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               href={project.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-link text-link-foreground rounded-lg hover:bg-link/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               data-umami-event="Project Website Click"
               data-umami-event-project={project.name}
             >
@@ -200,7 +202,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {/* Description */}
         <div className="mb-6">
           <h3 className="text-xl font-semibold mb-3">About</h3>
-          <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p className="text-muted-foreground leading-relaxed">
             {project.detailedDescription || project.description}
           </p>
         </div>
@@ -211,7 +213,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h3 className="text-xl font-semibold mb-3">Key Features</h3>
             <ul className="list-disc list-inside space-y-2">
               {project.features.map((feature, index) => (
-                <li key={index} className="text-gray-700 dark:text-gray-300">
+                <li key={index} className="text-muted-foreground">
                   {feature}
                 </li>
               ))}
@@ -225,7 +227,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h3 className="text-xl font-semibold mb-3">Technical Challenges</h3>
             <ul className="list-disc list-inside space-y-2">
               {project.challenges.map((challenge, index) => (
-                <li key={index} className="text-gray-700 dark:text-gray-300">
+                <li key={index} className="text-muted-foreground">
                   {challenge}
                 </li>
               ))}
@@ -237,7 +239,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {project.impact && (
           <div className="mb-6">
             <h3 className="text-xl font-semibold mb-3">Impact & Results</h3>
-            <p className="text-gray-700 dark:text-gray-300">{project.impact}</p>
+            <p className="text-muted-foreground">{project.impact}</p>
           </div>
         )}
 
@@ -266,9 +268,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   alt={`${project.name} screenshot ${index + 1}`}
                   className="object-cover w-full rounded-lg"
                   src={`/assets${screenshot}`}
+                  placeholder="blur"
+                  blurDataURL={blurDataURL}
                   style={{
                     aspectRatio: "3 / 2",
-                    objectFit: "cover",
                   }}
                 />
               ))}

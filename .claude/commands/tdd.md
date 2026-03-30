@@ -247,10 +247,11 @@ For bugs, attempt to reproduce the issue:
 If `qa.tdd.autoStartServer: true`:
 
 ```bash
-# Detect and start dev server (background)
+# Detect and start dev server (background), capture PID for cleanup
 npm run dev &
-# or
-pnpm dev &
+DEV_SERVER_PID=$!
+trap "kill $DEV_SERVER_PID 2>/dev/null" EXIT
+
 # Wait for server to be ready
 sleep 5
 ```
