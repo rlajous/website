@@ -33,7 +33,7 @@
 
 ## Overview
 
-This is a professional portfolio website built with Next.js 16 (App Router) and TypeScript, featuring a modern design system with dark mode support, comprehensive SEO optimization, and dynamic content sections. The site showcases professional experience, project portfolio, academic background, and speaking engagements at conferences.
+This is a professional portfolio website built with Next.js 16 (App Router) and TypeScript, featuring a modern design system with dark mode support, comprehensive SEO, and dynamic content sections. The site showcases professional experience, project portfolio, academic background, and speaking engagements at conferences.
 
 **Key Highlights:**
 - 📱 Fully responsive design (mobile-first approach)

@@ -111,7 +111,7 @@ const SchemaOrgScripts = () => {
             "sameAs": [
               "https://github.com/rlajous",
               "https://www.linkedin.com/in/rodrigo-lajous",
-              "https://twitter.com/arlequin_eth"
+              "https://twitter.com/ro_lajous"
             ],
             "description": "Software Engineer and Digital Nomad, passionate about technology and innovation."
           }
@@ -190,7 +190,7 @@ const SchemaOrgScripts = () => {
             "sameAs": [
               "https://github.com/rlajous",
               "https://www.linkedin.com/in/rodrigo-lajous",
-              "https://twitter.com/arlequin_eth"
+              "https://twitter.com/ro_lajous"
             ]
           }
         `}
