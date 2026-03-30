@@ -56,14 +56,14 @@ const Footer: React.FC = () => {
               <Link
                 key={href}
                 href={href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 hover:underline underline-offset-4"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 hover:underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
               >
                 {label}
               </Link>
             ))}
             <Link
               href={ROUTES.CONTACT}
-              className="text-sm text-link hover:underline font-medium"
+              className="text-sm text-link hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
             >
               Get in touch
             </Link>
