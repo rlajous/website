@@ -79,7 +79,7 @@ export async function generateMetadata({
       description: edu.specialization
         ? `Specialization in ${edu.specialization}`
         : edu.degree,
-      creator: "@arlequin_eth",
+      creator: "@ro_lajous",
     },
   };
 }

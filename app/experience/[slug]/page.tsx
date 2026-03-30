@@ -67,7 +67,7 @@ export async function generateMetadata({
       card: "summary",
       title: `${experience.position} at ${experience.company}`,
       description: experience.responsibilities.join(" "),
-      creator: "@arlequin_eth",
+      creator: "@ro_lajous",
     },
   };
 }

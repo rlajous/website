@@ -53,8 +53,8 @@ export const metadata: Metadata = {
     title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
     description:
       "Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
-    creator: "@arlequin_eth",
-    site: "@arlequin_eth",
+    creator: "@ro_lajous",
+    site: "@ro_lajous",
   },
 };
 

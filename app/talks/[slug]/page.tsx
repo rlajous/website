@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: TalkPageProps): Promise<Metad
       card: "summary_large_image",
       title: talk.title,
       description: talk.description,
-      creator: "@arlequin_eth",
+      creator: "@ro_lajous",
     },
   };
 }

@@ -1,8 +1,9 @@
 # Portfolio Website - Rodrigo Manuel Navarro Lajous
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.1.4-black?style=flat&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38bdf8?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=flat&logo=tailwind-css)](https://tailwindcss.com/)
+[![React](https://img.shields.io/badge/React-19-61dafb?style=flat&logo=react)](https://react.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 > A modern, SEO-optimized portfolio website showcasing professional experience, projects, speaking engagements, and education.
@@ -32,7 +33,7 @@
 
 ## Overview
 
-This is a professional portfolio website built with Next.js 14 (App Router) and TypeScript, featuring a modern design system with dark mode support, comprehensive SEO optimization, and dynamic content sections. The site showcases professional experience, project portfolio, academic background, and speaking engagements at conferences.
+This is a professional portfolio website built with Next.js 16 (App Router) and TypeScript, featuring a modern design system with dark mode support, comprehensive SEO, and dynamic content sections. The site showcases professional experience, project portfolio, academic background, and speaking engagements at conferences.
 
 **Key Highlights:**
 - 📱 Fully responsive design (mobile-first approach)
@@ -42,6 +43,8 @@ This is a professional portfolio website built with Next.js 14 (App Router) and 
 - 📊 Integrated Umami Analytics
 - 📧 Contact form with Resend email integration
 - 🎤 Speaking engagements and conference talks showcase
+- 🤖 LLM-friendly endpoints (`/llms.txt`, `/llms-full.txt`)
+- ♿ Accessibility features (skip-to-content navigation)
 
 ---
 
@@ -81,25 +84,29 @@ This is a professional portfolio website built with Next.js 14 (App Router) and 
 ### Additional Features
 
 - **📄 Resume Download**: Direct PDF download from header navigation
-- **🔗 Social Links**: GitHub and LinkedIn integration
+- **🔗 Social Links**: GitHub, LinkedIn, and Twitter integration
 - **🎨 Theme Toggle**: Smooth dark/light mode switching with persistence
 - **📱 Mobile Navigation**: Responsive header with mobile menu
 - **🔍 SEO**: Meta tags, OpenGraph, Twitter cards, and JSON-LD structured data
 - **🗺️ Sitemap**: Auto-generated sitemap for all routes
-- **🤖 Robots.txt**: Search engine crawler configuration
+- **🤖 Robots.txt**: Search engine crawler configuration (blocks API routes from crawlers)
 - **📈 Analytics**: Umami Analytics integration for privacy-friendly tracking
+- **🤖 LLM Endpoints**: `/llms.txt` and `/llms-full.txt` for AI-friendly site context
+- **📰 Newsletter CTA**: Optional Substack newsletter subscription on homepage
+- **♿ Accessibility**: Skip-to-content link for keyboard navigation
+- **✨ Animations**: Staggered fade-in-up entrance animations on homepage
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend Framework
-- **[Next.js 14](https://nextjs.org/)** - React framework with App Router
-- **[React 18](https://react.dev/)** - UI library
-- **[TypeScript 5](https://www.typescriptlang.org/)** - Type-safe JavaScript (strict mode)
+- **[Next.js 16](https://nextjs.org/)** - React framework with App Router
+- **[React 19](https://react.dev/)** - UI library
+- **[TypeScript 5.9](https://www.typescriptlang.org/)** - Type-safe JavaScript (strict mode)
 
 ### Styling
-- **[Tailwind CSS 3](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Tailwind CSS 3.4](https://tailwindcss.com/)** - Utility-first CSS framework
 - **[tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate)** - Animation utilities
 - **[tailwind-merge](https://github.com/dcastil/tailwind-merge)** - Utility for merging Tailwind classes
 
@@ -113,13 +120,14 @@ This is a professional portfolio website built with Next.js 14 (App Router) and 
 ### Features & Utilities
 - **[next-themes](https://github.com/pacocoursey/next-themes)** - Dark mode implementation
 - **[react-hook-form](https://react-hook-form.com/)** - Form handling
-- **[Zod](https://zod.dev/)** - Schema validation
+- **[Zod 4](https://zod.dev/)** - Schema validation
 - **[@hookform/resolvers](https://github.com/react-hook-form/resolvers)** - Form validation resolvers
 - **[Resend](https://resend.com/)** - Email API for contact form
+- **[React Email](https://react.email/)** - Email templates as React components
 - **[clsx](https://github.com/lukeed/clsx)** - Conditional classNames utility
 
 ### Development Tools
-- **[ESLint](https://eslint.org/)** - Code linting
+- **[ESLint 9](https://eslint.org/)** - Code linting with JSDoc enforcement (`eslint-plugin-jsdoc`)
 - **[PostCSS](https://postcss.org/)** - CSS processing
 - **[Autoprefixer](https://github.com/postcss/autoprefixer)** - CSS vendor prefixes
 
@@ -152,7 +160,7 @@ website/
 │   │   │   └── page.tsx         # Experience detail pages
 │   │   ├── components/
 │   │   │   ├── ExperienceCard/
-│   │   │   └── ExperiencesTab.tsx
+│   │   │   └── ExperiencesTab/
 │   │   ├── layout.tsx           # Experience layout for metadata
 │   │   └── page.tsx             # Experience list with tabs
 │   ├── projects/
@@ -160,18 +168,22 @@ website/
 │   │   │   └── page.tsx         # Project detail pages
 │   │   ├── components/
 │   │   │   ├── ProjectCard/
-│   │   │   └── ProjectTabs.tsx
+│   │   │   └── ProjectTabs/
 │   │   ├── layout.tsx           # Projects layout for metadata
 │   │   └── page.tsx             # Projects list with tabs
 │   ├── talks/
 │   │   ├── [slug]/
 │   │   │   └── page.tsx         # Talk detail pages
 │   │   ├── components/
-│   │   │   ├── PDFViewer.tsx
-│   │   │   ├── TalkCard.tsx
-│   │   │   └── YouTubeEmbed.tsx
+│   │   │   ├── PDFViewer/
+│   │   │   ├── TalkCard/
+│   │   │   └── YouTubeEmbed/
 │   │   └── page.tsx             # Talks list page
-│   ├── favicon.ico
+│   ├── llms.txt/
+│   │   └── route.ts             # /llms.txt LLM-friendly endpoint
+│   ├── llms-full.txt/
+│   │   └── route.ts             # /llms-full.txt extended LLM endpoint
+│   ├── icon.png                 # App icon
 │   ├── globals.css              # Global styles
 │   ├── layout.tsx               # Root layout
 │   ├── page.tsx                 # Home page
@@ -182,6 +194,19 @@ website/
 │   ├── emails-templates/        # Email templates for Resend
 │   ├── Footer/
 │   ├── Header/                  # Navigation header
+│   │   ├── MobileNavigation/
+│   │   └── NavigationLink/
+│   ├── icons/                   # Icon components
+│   │   ├── Logo/
+│   │   ├── Github/
+│   │   └── MailIcon.tsx
+│   ├── social/                  # Social link components
+│   │   ├── SocialLink.tsx       # Base social link component
+│   │   ├── GitHubLink.tsx
+│   │   ├── LinkedInLink.tsx
+│   │   ├── TwitterLink.tsx
+│   │   ├── EmailLink.tsx
+│   │   └── WebsiteLink.tsx
 │   ├── ModeToggle/              # Dark/light theme toggle
 │   ├── SchemaOrgScripts/        # SEO structured data
 │   ├── ui/                      # shadcn/ui components
@@ -197,13 +222,14 @@ website/
 │   └── Talk.ts                  # Talk interface
 │
 ├── lib/                         # Library utilities
-│   └── utils.ts                 # Tailwind utility (cn function)
+│   └── utils.ts                 # Tailwind utility (cn function + blurDataURL)
 │
 ├── public/                      # Static assets
 │   ├── assets/                  # Images, banners, etc.
 │   └── resume.pdf               # Downloadable resume
 │
 ├── services/                    # Data services (static data)
+│   ├── contacts/                # Contact service
 │   ├── education.ts             # Education data
 │   ├── experience.ts            # Jobs, startups, skills data
 │   ├── projects.ts              # Projects data (freelance, hobby, opensource)
@@ -211,9 +237,14 @@ website/
 │
 ├── utils/                       # Utility functions
 │   ├── getEnv.ts               # Environment variable helper
-│   └── iconUtils.ts            # Icon utilities
+│   ├── iconUtils.ts            # Icon utilities
+│   └── llms.ts                 # LLM text generation for /llms.txt routes
 │
 ├── .claude/                     # Claude Code configuration
+│   ├── agents/                  # Reusable agent definitions
+│   │   ├── release-validator.md # Validates release readiness
+│   │   ├── qa-executor.md       # Executes QA test plans
+│   │   └── pr-reviewer.md       # Expert code review
 │   ├── commands/                # Custom slash commands
 │   │   ├── start.md            # /start - Create feature branch
 │   │   ├── commit.md           # /commit - Stage and commit
@@ -222,13 +253,21 @@ website/
 │   │   ├── release.md          # /release - Create release
 │   │   ├── dev.md              # /dev - Start dev server
 │   │   ├── finish.md           # /finish - Create PR
-│   │   └── release-notes.md    # /release-notes - Enhance release
+│   │   ├── release-notes.md    # /release-notes - Enhance release
+│   │   ├── review.md           # /review - Code review
+│   │   ├── setup.md            # /setup - MCP server setup
+│   │   ├── rfc.md              # /rfc - Create RFC document
+│   │   ├── tdd.md              # /tdd - Test-driven development
+│   │   ├── plan-qa.md          # /plan-qa - Generate QA test plan
+│   │   ├── start-qa.md         # /start-qa - Execute QA tests
+│   │   └── update.md           # /update - Update commands from source
 │   └── CLAUDE.md               # AI assistant guidance
 │
 ├── .env.template                # Environment variables template
-├── .nvmrc                       # Node version specification
+├── .nvmrc                       # Node version (v22.12.0)
 ├── components.json              # shadcn/ui configuration
-├── next.config.js               # Next.js configuration
+├── eslint.config.mjs            # ESLint configuration with JSDoc enforcement
+├── next.config.mjs              # Next.js configuration
 ├── package.json                 # Dependencies and scripts
 ├── postcss.config.js            # PostCSS configuration
 ├── tailwind.config.ts           # Tailwind configuration
@@ -319,7 +358,7 @@ export const startups: Experience[] = [
 
 ### Prerequisites
 
-- **Node.js**: Version specified in `.nvmrc` (use `nvm use` if you have nvm installed)
+- **Node.js 22+**: Version specified in `.nvmrc` (use `nvm use` if you have nvm installed)
 - **npm**: Comes with Node.js
 - **Resend Account**: For contact form email functionality (sign up at [resend.com](https://resend.com))
 
@@ -357,6 +396,9 @@ export const startups: Experience[] = [
 
    # Optional: Override site URL for different environments
    NEXT_PUBLIC_SITE_URL=https://navarrolajous.com
+
+   # Optional: Substack publication URL for newsletter CTA on homepage
+   NEXT_PUBLIC_SUBSTACK_PUBLICATION_URL=https://yourname.substack.com
    ```
 
 5. **Start the development server:**
@@ -420,6 +462,36 @@ This project uses custom slash commands (in `.claude/commands/`) for streamlined
 - **`/release-notes`** - Enhance GitHub release with detailed notes
   - Generates categorized changelog
   - Updates GitHub release
+
+- **`/review`** - Comprehensive code review
+  - Analyzes across 8 dimensions (correctness, security, performance, etc.)
+  - Reports issues by severity
+
+- **`/setup`** - Interactive MCP server setup
+  - Configures Linear, Jira, or GitHub Issues integration
+
+- **`/rfc`** - Create RFC documents
+  - Auto-numbering and template instantiation
+
+- **`/tdd`** - Test-driven development workflow
+  - RED-GREEN-REFACTOR cycle with test execution
+
+- **`/plan-qa`** - Generate QA test plan
+  - Creates YAML test plan from ticket descriptions or requirements
+
+- **`/start-qa`** - Execute QA tests
+  - Runs tests from a generated QA plan file and reports results
+
+- **`/update`** - Update commands and agents from source repo
+  - Supports `--dry-run`, `--prune`, `--force` options
+
+### Reusable Agents
+
+The project includes reusable agent definitions (in `.claude/agents/`):
+
+- **`release-validator`** - Validates release readiness (tests, build, dependencies, changelog)
+- **`qa-executor`** - Executes QA test plans with detailed reporting
+- **`pr-reviewer`** - Expert code review for quality, security, and best practices
 
 ### Git Workflow
 
@@ -677,6 +749,7 @@ This site is optimized for Vercel deployment with automatic CI/CD:
    RESEND_API_KEY=your_resend_api_key
    RECIPIENT_EMAIL=your.email@example.com
    NEXT_PUBLIC_SITE_URL=https://yourdomain.com
+   NEXT_PUBLIC_SUBSTACK_PUBLICATION_URL=https://yourname.substack.com  # Optional
    ```
 
 4. **Configure Domains:**
@@ -752,7 +825,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 - 🌐 Website: [navarrolajous.com](https://navarrolajous.com)
 - 💼 LinkedIn: [linkedin.com/in/rodrigo-lajous](https://www.linkedin.com/in/rodrigo-lajous)
 - 🐙 GitHub: [@rlajous](https://github.com/rlajous)
-- 🐦 Twitter: [@arlequin_eth](https://twitter.com/arlequin_eth)
+- 🐦 Twitter: [@ro_lajous](https://twitter.com/ro_lajous)
 
 ---
 
