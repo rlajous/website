@@ -64,7 +64,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${project.name} - ${project.company}`,
       description: project.detailedDescription || project.description,
-      creator: "@arlequin_eth",
+      creator: "@ro_lajous",
     },
   };
 }
