@@ -63,6 +63,8 @@ fi
 # Pull latest
 git pull origin ${PROD_BRANCH}
 ```
+  Run: git checkout {PROD_BRANCH} && git pull
+  ```
 
 ## Step 3: Get Current Version
 
