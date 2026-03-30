@@ -35,7 +35,7 @@ Find the project root by locating the `.claude/` directory:
 DIR="$(pwd)"
 while [ "$DIR" != "/" ]; do
   if [ -d "$DIR/.claude" ]; then
-    echo "PROJECT_ROOT=$DIR"
+    PROJECT_ROOT="$DIR"
     break
   fi
   DIR="$(dirname "$DIR")"

@@ -15,7 +15,8 @@ Read and parse the test plan YAML:
 
 ```bash
 # Find test files (use configured directory)
-TEST_DIR=$(config.qa.testPlansDir || "tests/qa")
+# Set via environment variable or default
+TEST_DIR="${QA_TEST_PLANS_DIR:-tests/qa}"
 ls -la ${TEST_DIR}/*.yaml 2>/dev/null
 
 # Read specific test file
@@ -45,6 +46,7 @@ curl -s -w "\n%{http_code}" \
   -X GET \
   -H "Authorization: Bearer ${API_TOKEN}" \
   -H "Content-Type: application/json" \
+  --connect-timeout 5 --max-time 30 --retry 2 --retry-delay 3 \
   "${API_BASE_URL}/api/v1/endpoint"
 
 # Example POST request
@@ -52,6 +54,7 @@ curl -s -w "\n%{http_code}" \
   -X POST \
   -H "Authorization: Bearer ${API_TOKEN}" \
   -H "Content-Type: application/json" \
+  --connect-timeout 5 --max-time 30 --retry 2 --retry-delay 3 \
   -d '{"key": "value"}' \
   "${API_BASE_URL}/api/v1/endpoint"
 ```

@@ -23,7 +23,7 @@ export default function TalksPage() {
       <div className="text-center animate-fade-in-up">
         <h1 className="text-3xl font-bold">Talks & Speaking</h1>
         <div className="mx-auto mt-3 h-0.5 w-12 rounded-full bg-primary" />
-        <p className="text-md mt-3 text-muted-foreground">
+        <p className="text-base mt-3 text-muted-foreground">
           Conference talks and presentations sharing knowledge with the
           community
         </p>

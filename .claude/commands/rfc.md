@@ -59,6 +59,9 @@ kebab_title=$(echo "$title" \
   | sed 's/[^a-z0-9 -]//g' \
   | tr ' ' '-' \
   | sed 's/-\{2,\}/-/g; s/^-//; s/-$//')
+
+# Guard against empty title
+[ -z "$kebab_title" ] && kebab_title="untitled-rfc"
 ```
 
 **Result:** `rfc-${rfc_num}-${kebab_title}.md`

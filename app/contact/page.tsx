@@ -28,7 +28,7 @@ export default function ContactPage() {
           Contact Me
         </h1>
         <div className="mx-auto h-0.5 w-12 rounded-full bg-primary" />
-        <p className="text-md text-center text-muted-foreground">
+        <p className="text-base text-center text-muted-foreground">
           Have a project you&apos;d like to discuss? Feel free to reach out.
         </p>
 

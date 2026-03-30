@@ -51,7 +51,7 @@ function ExperienceContent() {
       <div className="text-center animate-fade-in-up">
         <h1 className="text-3xl font-bold">Experience</h1>
         <div className="mx-auto mt-3 h-0.5 w-12 rounded-full bg-primary" />
-        <p className="text-md mt-3 text-muted-foreground">A timeline of my professional journey</p>
+        <p className="text-base mt-3 text-muted-foreground">A timeline of my professional journey</p>
       </div>
       <Tabs
         className="max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl flex flex-col"

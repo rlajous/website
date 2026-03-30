@@ -52,8 +52,8 @@ Check that you're on the development branch and up-to-date:
 
 ```bash
 # Get configured branches
-DEV_BRANCH=$(config.workflow.developmentBranch || "staging")
-PROD_BRANCH=$(config.workflow.productionBranch || "main")
+DEV_BRANCH="${DEV_BRANCH:-staging}"
+PROD_BRANCH="${PROD_BRANCH:-main}"
 
 # Check current branch
 CURRENT=$(git branch --show-current)
@@ -334,16 +334,17 @@ git commit -m "${NEW_VERSION}"
 ### Python (pyproject.toml)
 
 ```bash
-# Using poetry
-poetry version ${BUMP_TYPE}
+# Detect available tool and use only one
+if command -v poetry &>/dev/null && [ -f "poetry.lock" ]; then
+  poetry version ${BUMP_TYPE}
+elif command -v hatch &>/dev/null; then
+  hatch version ${BUMP_TYPE}
+else
+  # Manual fallback
+  sed -i 's/version = "[^"]*"/version = "'${NEW_VERSION}'"/' pyproject.toml
+fi
 git add pyproject.toml
 git commit -m "${NEW_VERSION}"
-
-# Or using hatch
-hatch version ${BUMP_TYPE}
-
-# Or manual sed
-sed -i 's/version = "[^"]*"/version = "'${NEW_VERSION}'"/' pyproject.toml
 ```
 
 ### Rust (Cargo.toml)

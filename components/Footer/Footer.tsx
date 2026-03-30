@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Navigation */}
-          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <nav aria-label="Footer navigation" className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
             {NAV_LINKS.map(({ href, label }) => (
               <Link
                 key={href}

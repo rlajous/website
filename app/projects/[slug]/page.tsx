@@ -189,7 +189,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               href={project.website}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-link text-link-foreground rounded-lg hover:bg-link/90 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-link text-link-foreground rounded-lg hover:bg-link/90 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               data-umami-event="Project Website Click"
               data-umami-event-project={project.name}
             >

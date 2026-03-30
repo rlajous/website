@@ -21,7 +21,7 @@ interface ProjectsTabProps {
 const ProjectsTab: React.FC<ProjectsTabProps> = ({ projects }) => {
   return (
     <div className="flex flex-col items-center gap-6">
-      {projects
+      {[...projects]
         .sort(
           (a, b) =>
             parseInt(b.period.split("-")[0]) - parseInt(a.period.split("-")[0])
