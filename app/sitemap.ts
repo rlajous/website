@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
-import { jobs, startups } from "@/services/experience";
+import { jobs, startups, freelance } from "@/services/experience";
 import { education } from "@/services/education";
-import { freelance, hobby, opensource } from "@/services/projects";
+import { hobby, opensource } from "@/services/projects";
 import { talks } from "@/services/talks";
 import { SITE_URL } from "@/constants/routes";
 
@@ -63,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Generate experience detail pages
-  const experiencePages: MetadataRoute.Sitemap = [...jobs, ...startups].map(
+  const experiencePages: MetadataRoute.Sitemap = [...jobs, ...startups, ...freelance].map(
     (exp) => ({
       url: `${baseUrl}/experience/${exp.slug}`,
       lastModified: new Date(),
@@ -82,7 +82,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Generate project detail pages
   const projectPages: MetadataRoute.Sitemap = [
-    ...freelance,
     ...hobby,
     ...opensource,
   ].map((project) => ({

@@ -1,7 +1,7 @@
 import { SITE_URL } from "@/constants/routes";
-import { jobs, startups, skills } from "@/services/experience";
+import { jobs, startups, freelance, skills } from "@/services/experience";
 import { education } from "@/services/education";
-import { freelance, hobby, opensource } from "@/services/projects";
+import { hobby, opensource } from "@/services/projects";
 import { talks } from "@/services/talks";
 
 /**
@@ -40,7 +40,7 @@ export function generateLlmsTxt(): string {
 
   // Experience
   lines.push("## Experience");
-  for (const job of [...jobs, ...startups]) {
+  for (const job of [...jobs, ...startups, ...freelance]) {
     const url = job.companyUrl || `${SITE_URL}/experience/${job.slug}`;
     const summary = job.responsibilities[0];
     lines.push(
@@ -78,7 +78,7 @@ export function generateLlmsTxt(): string {
 
   // Projects
   lines.push("## Projects");
-  for (const project of [...freelance, ...hobby, ...opensource]) {
+  for (const project of [...hobby, ...opensource]) {
     const url =
       project.website || project.github || `${SITE_URL}/projects/${project.slug}`;
     lines.push(`- [${project.name} — ${project.company}](${url}): ${project.description}`);
@@ -167,6 +167,25 @@ export function generateLlmsFullTxt(): string {
     lines.push("");
   }
 
+  // Experience — Freelance
+  lines.push("### Freelance");
+  lines.push("");
+  for (const gig of freelance) {
+    lines.push(`#### ${gig.position} at ${gig.company}`);
+    lines.push("");
+    lines.push(`- **Period**: ${gig.period}`);
+    if (gig.location) lines.push(`- **Location**: ${gig.location}`);
+    lines.push(`- **Detail page**: [${SITE_URL}/experience/${gig.slug}](${SITE_URL}/experience/${gig.slug})`);
+    lines.push("");
+    lines.push("**Responsibilities:**");
+    for (const r of gig.responsibilities) {
+      lines.push(`- ${r}`);
+    }
+    lines.push("");
+    lines.push(`**Technologies:** ${gig.technologies.join(", ")}`);
+    lines.push("");
+  }
+
   // Education
   lines.push("## Education");
   lines.push("");
@@ -214,8 +233,7 @@ export function generateLlmsFullTxt(): string {
   lines.push("## Projects");
   lines.push("");
 
-  const projectSections: { label: string; projects: typeof freelance }[] = [
-    { label: "Freelance", projects: freelance },
+  const projectSections: { label: string; projects: typeof hobby }[] = [
     { label: "Hobby", projects: hobby },
     { label: "Open Source", projects: opensource },
   ];
