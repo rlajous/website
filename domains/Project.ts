@@ -14,11 +14,15 @@ export interface Project {
   /** Company or organization the project was built for. */
   company: string;
   /** Categorization that determines which tab displays this project on the list page. */
-  type: 'freelance' | 'hobby' | 'opensource';
+  type: 'hobby' | 'opensource';
   /** GitHub repository URL. Empty string if not publicly available. */
   github: string;
   /** Live website URL. Empty string if not deployed or applicable. */
   website: string;
+  /** Optional npm registry URL for published packages. */
+  npm?: string;
+  /** Optional documentation site URL. */
+  docs?: string;
   /** Human-readable date range (e.g. "Jan 2023 - Mar 2023"). */
   period: string;
   /** Short summary shown on the project card in the list view. */
