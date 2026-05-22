@@ -3,6 +3,7 @@ import { jobs, startups, freelance, skills } from "@/services/experience";
 import { education } from "@/services/education";
 import { hobby, opensource } from "@/services/projects";
 import { talks } from "@/services/talks";
+import type { Project } from "@/domains/Project";
 
 /**
  * Generates a concise Markdown summary of the portfolio following the llms.txt convention.
@@ -233,7 +234,7 @@ export function generateLlmsFullTxt(): string {
   lines.push("## Projects");
   lines.push("");
 
-  const projectSections: { label: string; projects: typeof hobby }[] = [
+  const projectSections: { label: string; projects: Project[] }[] = [
     { label: "Hobby", projects: hobby },
     { label: "Open Source", projects: opensource },
   ];

@@ -1,8 +1,8 @@
 /**
- * Represents a portfolio project (freelance engagement, hobby project, or open-source contribution).
+ * Represents a portfolio project (hobby project or open-source contribution).
  *
  * Used by the projects service data arrays and rendered on `/projects` (list) and `/projects/[slug]` (detail).
- * The {@link type} field determines which tab displays the project on the list page.
+ * The {@link type} field (`'hobby' | 'opensource'`) determines which tab displays the project on the list page.
  */
 export interface Project {
   /** Unique numeric identifier used for ordering. */
