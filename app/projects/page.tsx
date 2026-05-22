@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useCallback, Suspense } from "react";
-import { freelance, hobby, opensource } from "@/services/projects";
+import { hobby, opensource } from "@/services/projects";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Project } from "@/domains/Project";
 import ProjectsTab from "./components/ProjectTabs";
@@ -18,13 +18,12 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
-  { key: "freelance", title: "Freelance", projects: freelance },
   { key: "hobby", title: "Hobby", projects: hobby },
   { key: "opensource", title: "Open Source", projects: opensource },
 ];
 
 const VALID_TAB_KEYS = TABS.map((tab) => tab.key);
-const DEFAULT_TAB = "freelance";
+const DEFAULT_TAB = "opensource";
 
 /**
  * Client component managing tab state via URL search params for shareable/bookmarkable tab selection.

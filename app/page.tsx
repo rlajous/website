@@ -36,12 +36,14 @@ export default function Home() {
         </h1>
         <p className="mt-4 text-5xl lg:text-6xl font-black leading-tight animate-fade-in-up [animation-delay:100ms]">
           <span className="sr-only">I am a </span>
-          Software Engineer &<br className="md:hidden" />
-          <span className="md:ml-2">Digital Nomad</span>
+          Product Engineer &<br className="md:hidden" />
+          <span className="md:ml-2">Builder</span>
         </p>
         <p className="mt-6 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed text-muted-foreground animate-fade-in-up [animation-delay:200ms]">
-          Passionate about technology and innovation. I love to build things
-          that make a difference.
+          I build developer platforms, SDKs, APIs, and multi-chain
+          infrastructure — across Engineering, Product, and Customers. I like
+          owning ambiguous problems end-to-end and turning complex technical
+          systems into products people can actually use.
         </p>
 
         <div

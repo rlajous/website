@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useCallback, Suspense } from "react";
-import { jobs, startups } from "@/services/experience";
+import { jobs, startups, freelance } from "@/services/experience";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Experience } from "@/domains/Experience";
 import ExperiencesTab from "./components/ExperiencesTab";
@@ -20,6 +20,7 @@ interface Tab {
 const TABS: Tab[] = [
   { key: "jobs", title: "Jobs", experiences: jobs },
   { key: "startups", title: "Startups", experiences: startups },
+  { key: "freelance", title: "Freelance", experiences: freelance },
 ];
 
 const VALID_TAB_KEYS = TABS.map((tab) => tab.key);

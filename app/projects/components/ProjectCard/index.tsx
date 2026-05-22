@@ -6,8 +6,10 @@ import Link from "next/link";
 import { Project } from "@/domains/Project";
 import { GitHubLink } from "@/components/social/GitHubLink";
 import { WebsiteLink } from "@/components/social/WebsiteLink";
+import { SocialLink } from "@/components/social/SocialLink";
 import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
+import { Package, BookOpen } from "lucide-react";
 
 /**
  * Card displaying a project summary with banner image, description, tech badges,
@@ -25,6 +27,8 @@ const ProjectCard: React.FC<Project> = ({
   company,
   website,
   github,
+  npm,
+  docs,
   period,
   description,
   technologies,
@@ -64,10 +68,11 @@ const ProjectCard: React.FC<Project> = ({
         />
       </div>
       <div className="md:w-3/4 pt-4 md:pt-0 md:pl-4 h-full">
-        <h3 className="text-lg font-semibold">
-          {name} {company && <>· {company}</>}
-        </h3>
-        <p className="text-muted-foreground">{period}</p>
+        <h3 className="text-lg font-semibold leading-tight">{name}</h3>
+        {company && name !== company && (
+          <p className="text-sm text-muted-foreground">{company}</p>
+        )}
+        <p className="text-xs text-muted-foreground mt-0.5">{period}</p>
         <p className="mt-2 text-sm line-clamp-2">{description}</p>
         <div className="flex flex-wrap gap-2 mt-3">
           {technologies.slice(0, 5).map((tech, techIndex) => (
@@ -89,6 +94,28 @@ const ProjectCard: React.FC<Project> = ({
                 repository={githubRepository}
                 showText={false}
                 iconSize="sm"
+              />
+            </span>
+          )}
+          {npm && (
+            <span onClick={(e) => e.stopPropagation()}>
+              <SocialLink
+                href={npm}
+                icon={<Package className="h-5 w-5" />}
+                label={`npm package: ${name}`}
+                showText={false}
+                data-umami-event="Project NPM Click"
+              />
+            </span>
+          )}
+          {docs && (
+            <span onClick={(e) => e.stopPropagation()}>
+              <SocialLink
+                href={docs}
+                icon={<BookOpen className="h-5 w-5" />}
+                label={`Docs: ${name}`}
+                showText={false}
+                data-umami-event="Project Docs Click"
               />
             </span>
           )}

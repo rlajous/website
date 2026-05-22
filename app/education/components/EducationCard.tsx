@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Education } from "@/domains/Education";
 import { School, Calendar } from "lucide-react";
@@ -18,6 +19,7 @@ const EducationCard: React.FC<Education> = ({
   slug,
   degree,
   institution,
+  institutionLogo,
   period,
   specialization,
   technologies,
@@ -29,14 +31,29 @@ const EducationCard: React.FC<Education> = ({
           <h2 className="text-xl font-semibold">{period}</h2>
         </div>
         <div className="md:w-3/4 md:pl-4">
-          <h3 className="text-lg font-semibold">{degree}</h3>
-          <div className="flex items-center gap-2 text-muted-foreground">
-            <School className="h-4 w-4" />
-            <span>{institution}</span>
-          </div>
-          <div className="flex items-center gap-2 text-muted-foreground md:hidden">
-            <Calendar className="h-4 w-4" />
-            <span>{period}</span>
+          <div className="flex items-start gap-3">
+            {institutionLogo && (
+              <div className="shrink-0 mt-0.5">
+                <Image
+                  src={institutionLogo}
+                  alt={`${institution} logo`}
+                  width={44}
+                  height={44}
+                  className="w-11 h-11 rounded-md object-contain bg-background border border-border/60 p-1"
+                />
+              </div>
+            )}
+            <div className="min-w-0 flex-1">
+              <h3 className="text-lg font-semibold leading-tight">{degree}</h3>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <School className="h-4 w-4" />
+                <span className="text-sm">{institution}</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground md:hidden">
+                <Calendar className="h-4 w-4" />
+                <span className="text-sm">{period}</span>
+              </div>
+            </div>
           </div>
           {specialization && (
             <p className="mt-2 text-sm text-muted-foreground">

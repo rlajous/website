@@ -4,7 +4,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Projects | Rodrigo Manuel Navarro Lajous",
   description:
-    "Portfolio of projects by Rodrigo Manuel Navarro Lajous, including freelance, hobby, and open source work.",
+    "Portfolio of hobby and open source projects by Rodrigo Manuel Navarro Lajous.",
   alternates: {
     canonical: "/projects",
   },

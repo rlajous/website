@@ -2,9 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import Script from "next/script";
-import { jobs, startups } from "@/services/experience";
+import { jobs, startups, freelance } from "@/services/experience";
 import { education } from "@/services/education";
-import { freelance, hobby, opensource } from "@/services/projects";
+import { hobby, opensource } from "@/services/projects";
 import { talks } from "@/services/talks";
 import { SITE_URL } from "@/constants/routes";
 
@@ -107,13 +107,13 @@ const SchemaOrgScripts = () => {
             "@type": "Person",
             "name": "Rodrigo Manuel Navarro Lajous",
             "url": "${SITE_URL}",
-            "jobTitle": "Software Engineer",
+            "jobTitle": "Product Engineer",
             "sameAs": [
               "https://github.com/rlajous",
               "https://www.linkedin.com/in/rodrigo-lajous",
               "https://twitter.com/ro_lajous"
             ],
-            "description": "Software Engineer and Digital Nomad, passionate about technology and innovation."
+            "description": "Product Engineer building developer platforms, SDKs, and multi-chain infrastructure."
           }
         `}
       </Script>
@@ -169,7 +169,7 @@ const SchemaOrgScripts = () => {
             "@type": "Person",
             "name": "Rodrigo Manuel Navarro Lajous",
             "url": "${SITE_URL}",
-            "jobTitle": "Staff Software Engineer",
+            "jobTitle": "Product Engineer",
             "worksFor": {
               "@type": "Organization",
               "name": "Webacy"
@@ -186,7 +186,7 @@ const SchemaOrgScripts = () => {
                 "sameAs": "https://www.technikum-wien.at/"
               }
             ],
-            "knowsAbout": ["Software Engineering", "Blockchain", "Web Development", "Smart Contracts"],
+            "knowsAbout": ["Software Engineering", "Product Management", "Developer Platforms", "SDK Design", "Blockchain", "Multi-chain Infrastructure"],
             "sameAs": [
               "https://github.com/rlajous",
               "https://www.linkedin.com/in/rodrigo-lajous",
@@ -201,7 +201,7 @@ const SchemaOrgScripts = () => {
   // Experience detail page schema
   if (pathname?.startsWith("/experience/")) {
     const slug = pathname.split("/experience/")[1];
-    const allExperiences = [...jobs, ...startups];
+    const allExperiences = [...jobs, ...startups, ...freelance];
     const experience = allExperiences.find((exp) => exp.slug === slug);
 
     if (experience) {
@@ -222,7 +222,7 @@ const SchemaOrgScripts = () => {
                 "name": "${escapeJsonString(experience.company)}"${experience.companyUrl ? `,\n                "url": "${escapeJsonString(experience.companyUrl)}"` : ""}
               },
               "datePosted": "${escapeJsonString(experience.period.split("—")[0].trim())}",
-              "employmentType": "${experience.type === "job" ? "FULL_TIME" : "SELF_EMPLOYED"}",
+              "employmentType": "${experience.type === "job" ? "FULL_TIME" : experience.type === "freelance" ? "CONTRACTOR" : "SELF_EMPLOYED"}",
               "jobLocation": {
                 "@type": "Place",
                 "address": {
@@ -273,7 +273,7 @@ const SchemaOrgScripts = () => {
   // Project detail page schema
   if (pathname?.startsWith("/projects/")) {
     const slug = pathname.split("/projects/")[1];
-    const allProjects = [...freelance, ...hobby, ...opensource];
+    const allProjects = [...hobby, ...opensource];
     const project = allProjects.find((p) => p.slug === slug);
 
     if (project) {
@@ -350,7 +350,7 @@ const SchemaOrgScripts = () => {
             performer: {
               "@type": "Person",
               name: "Rodrigo Manuel Navarro Lajous",
-              jobTitle: "Staff Software Engineer",
+              jobTitle: "Product Engineer",
               worksFor: {
                 "@type": "Organization",
                 name: "Webacy",
@@ -418,7 +418,7 @@ const SchemaOrgScripts = () => {
           "@type": "WebSite",
           "name": "Rodrigo Manuel Navarro Lajous",
           "url": "${SITE_URL}",
-          "description": "Personal website and portfolio of Rodrigo Manuel Navarro Lajous, Software Engineer and Digital Nomad",
+          "description": "Personal website and portfolio of Rodrigo Manuel Navarro Lajous, Product Engineer",
           "author": {
             "@type": "Person",
             "name": "Rodrigo Manuel Navarro Lajous",
