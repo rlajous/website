@@ -48,6 +48,14 @@ export const metadata: Metadata = {
     siteName: "Rodrigo Manuel Navarro Lajous",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/icon.png",
+        width: 256,
+        height: 256,
+        alt: "Rodrigo Manuel Navarro Lajous",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -56,6 +64,7 @@ export const metadata: Metadata = {
       "Product Engineer building developer platforms, SDKs, and multi-chain infrastructure across Engineering, Product, and Customers.",
     creator: "@ro_lajous",
     site: "@ro_lajous",
+    images: ["/icon.png"],
   },
 };
 

@@ -21,7 +21,7 @@ export function generateLlmsTxt(): string {
   lines.push("# Rodrigo Manuel Navarro Lajous");
   lines.push("");
   lines.push(
-    "> Software Engineer and Digital Nomad. Specializing in blockchain security, Web3, and full-stack development."
+    "> Product Engineer building developer platforms, SDKs, and multi-chain infrastructure. I work across Engineering, Product, and Customers — from roadmap and RFCs to delivery, partner programs, docs, and DevRel."
   );
   lines.push("");
 
@@ -111,7 +111,7 @@ export function generateLlmsFullTxt(): string {
   lines.push("# Rodrigo Manuel Navarro Lajous");
   lines.push("");
   lines.push(
-    "> Software Engineer and Digital Nomad. Specializing in blockchain security, Web3, and full-stack development."
+    "> Product Engineer building developer platforms, SDKs, and multi-chain infrastructure. I work across Engineering, Product, and Customers — from roadmap and RFCs to delivery, partner programs, docs, and DevRel."
   );
   lines.push("");
 
