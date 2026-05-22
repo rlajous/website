@@ -1,8 +1,8 @@
 /**
- * Represents a portfolio project (freelance engagement, hobby project, or open-source contribution).
+ * Represents a portfolio project (hobby project or open-source contribution).
  *
  * Used by the projects service data arrays and rendered on `/projects` (list) and `/projects/[slug]` (detail).
- * The {@link type} field determines which tab displays the project on the list page.
+ * The {@link type} field (`'hobby' | 'opensource'`) determines which tab displays the project on the list page.
  */
 export interface Project {
   /** Unique numeric identifier used for ordering. */
@@ -14,11 +14,15 @@ export interface Project {
   /** Company or organization the project was built for. */
   company: string;
   /** Categorization that determines which tab displays this project on the list page. */
-  type: 'freelance' | 'hobby' | 'opensource';
+  type: 'hobby' | 'opensource';
   /** GitHub repository URL. Empty string if not publicly available. */
   github: string;
   /** Live website URL. Empty string if not deployed or applicable. */
   website: string;
+  /** Optional npm registry URL for published packages. */
+  npm?: string;
+  /** Optional documentation site URL. */
+  docs?: string;
   /** Human-readable date range (e.g. "Jan 2023 - Mar 2023"). */
   period: string;
   /** Short summary shown on the project card in the list view. */

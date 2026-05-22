@@ -14,19 +14,20 @@ const inter = Inter({ subsets: ["latin"] });
  * Site-wide default metadata including OpenGraph, Twitter cards, SEO keywords, and canonical base URL.
  */
 export const metadata: Metadata = {
-  title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
+  title: "Rodrigo Manuel Navarro Lajous | Product Engineer",
   description:
-    "Rodrigo Manuel Navarro Lajous is a Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
+    "Rodrigo Manuel Navarro Lajous is a Product Engineer building developer platforms, SDKs, and multi-chain infrastructure across Engineering, Product, and Customers.",
   keywords: [
     "Rodrigo Manuel Navarro Lajous",
     "Rodrigo Lajous",
     "Rodrigo Navarro",
-    "Software Engineer",
-    "Digital Nomad",
-    "Web Developer",
-    "Full Stack Developer",
-    "JavaScript",
-    "React",
+    "Product Engineer",
+    "Staff Engineer",
+    "Developer Platform",
+    "SDK",
+    "DevRel",
+    "Web3",
+    "TypeScript",
     "Next.js",
   ],
   authors: [
@@ -40,21 +41,23 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(SITE_URL),
   openGraph: {
-    title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
+    title: "Rodrigo Manuel Navarro Lajous | Product Engineer",
     description:
-      "Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
+      "Product Engineer building developer platforms, SDKs, and multi-chain infrastructure across Engineering, Product, and Customers.",
     url: SITE_URL,
     siteName: "Rodrigo Manuel Navarro Lajous",
     locale: "en_US",
     type: "website",
+    // images intentionally omitted — populated automatically by app/opengraph-image.tsx (1200×630).
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rodrigo Manuel Navarro Lajous | Software Engineer & Digital Nomad",
+    title: "Rodrigo Manuel Navarro Lajous | Product Engineer",
     description:
-      "Software Engineer and Digital Nomad, passionate about technology and innovation, building things that make a difference.",
+      "Product Engineer building developer platforms, SDKs, and multi-chain infrastructure across Engineering, Product, and Customers.",
     creator: "@ro_lajous",
     site: "@ro_lajous",
+    // images intentionally omitted — populated automatically by app/twitter-image.tsx (re-exports opengraph-image).
   },
 };
 

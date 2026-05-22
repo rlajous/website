@@ -6,75 +6,6 @@
 import { Project } from "@/domains/Project";
 
 /**
- * Client freelance projects displayed on the Freelance tab of `/projects`.
- */
-export const freelance: Project[] = [
-  {
-    id: 1,
-    slug: "lukto-landing",
-    name: "Landing Page",
-    company: "Lukto",
-    type: "freelance",
-    github: "",
-    website: "https://lukto.navarrolajous.com",
-    period: "2021",
-    description: "Animated landing page for a game called Lukto.",
-    technologies: [
-      "Vue.js",
-      "S3",
-      "Cloudfront",
-      "Route 53",
-      "SCSS",
-      "Github Actions",
-    ],
-    banner: "/Lukto.png",
-  },
-  {
-    id: 2,
-    slug: "bepanthene-landing",
-    name: "Landing Page",
-    company: "Bepanthene",
-    type: "freelance",
-    github: "",
-    website: "https://bepanthene.navarrolajous.com",
-    period: "2020",
-    description:
-      "Added /desafio page to the existing Bepanthene website. The page wasn't even on a repo, I had to standarize it and make it responsive.",
-    technologies: [
-      "Vue.js",
-      "S3",
-      "Cloudfront",
-      "Route 53",
-      "SCSS",
-      "Github Actions",
-    ],
-    banner: "/bepanthene.png",
-  },
-  {
-    id: 3,
-    slug: "seeds-landing",
-    name: "Landing Page",
-    company: "Seeds",
-    type: "freelance",
-    github: "",
-    website: "https://weareseeders.navarrolajous.com",
-    period: "2020",
-    description:
-      "Created a landing page for Seeds, a company that helps other companies to grow. Created the contact form that sended them an email via smtp server.",
-    technologies: [
-      "Nuxt",
-      "Vue.js",
-      "S3",
-      "Cloudfront",
-      "Route 53",
-      "SCSS",
-      "CircleCI",
-    ],
-    banner: "/seeds.png",
-  },
-];
-
-/**
  * Personal hobby and side projects displayed on the Hobby tab of `/projects`.
  */
 export const hobby: Project[] = [
@@ -135,22 +66,48 @@ export const hobby: Project[] = [
 export const opensource: Project[] = [
   {
     id: 1,
+    slug: "webacy-sdk",
+    name: "@webacy-xyz/sdk",
+    company: "Webacy",
+    type: "opensource",
+    github: "https://github.com/Webacy-Prod/sdk",
+    website: "",
+    npm: "https://www.npmjs.com/package/@webacy-xyz/sdk",
+    docs: "https://docs.webacy.com/sdk/introduction",
+    period: "2025-2026",
+    description:
+      "TypeScript SDK monorepo for the Webacy Risk Score API. Split into sdk-core, sdk-threat (address risk, sanctions, contracts, URL safety), and sdk-trading (holder analysis, sniper detection, bundler detection) for granular bundle size and clean per-domain APIs.",
+    technologies: [
+      "TypeScript",
+      "pnpm",
+      "Turborepo",
+      "Vitest",
+      "NPM",
+      "OpenAPI 3.0",
+    ],
+    banner: "/webacy-sdk.png",
+  },
+  {
+    id: 2,
     slug: "poap-js",
-    name: "POAP.js",
+    name: "@poap-xyz/poap-sdk",
     company: "POAP",
     type: "opensource",
     github: "https://github.com/poap-xyz/poap.js",
-    website: "https://sdk.poap.tech/",
+    website: "",
+    npm: "https://www.npmjs.com/package/@poap-xyz/poap-sdk",
+    docs: "https://sdk.poap.tech/",
     period: "2023-2024",
     description:
-      "The POAP.js is a collection of SDKs and utilities for interacting with the POAP ecosystem. The library provides a set of classes and methods to simplify working with them.",
+      "Public TypeScript SDK monorepo for the POAP ecosystem. Wraps POAP smart contracts, the GraphQL API, and drop / claim / mint flows behind a unified set of classes — cutting partner integration time by 50% and serving as the canonical entry point for third-party POAP developers.",
     technologies: [
-      "NPM",
-      "Typescrypt",
+      "TypeScript",
       "Rollup",
       "Yarn",
       "Jest",
-      "Github Actions",
+      "GitHub Actions",
+      "NPM",
+      "GraphQL",
     ],
     banner: "/sdk.png",
   },

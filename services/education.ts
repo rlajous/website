@@ -18,6 +18,7 @@ export const education: Education[] = [
     period: "February 2022 — July 2023",
     location: "Vienna, Austria",
     institutionUrl: "https://www.technikum-wien.at",
+    institutionLogo: "/assets/companies/technikum-wien.png",
     specialization: "Software Engineering",
     thesis: {
       title: "Zero-Knowledge Proof of owning a Non-Fungible Token (NFT) on the blockchain",
@@ -40,6 +41,7 @@ export const education: Education[] = [
     period: "July 2015 — July 2023",
     location: "Buenos Aires, Argentina",
     institutionUrl: "https://www.itba.edu.ar",
+    institutionLogo: "/assets/companies/itba.png",
     technologies: [
       "Software Engineering",
       "Computer Science",

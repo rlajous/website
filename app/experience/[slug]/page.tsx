@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { jobs, startups } from "@/services/experience";
+import { jobs, startups, freelance } from "@/services/experience";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, ArrowLeft, Briefcase, ExternalLink } from "lucide-react";
 import Link from "next/link";
@@ -15,7 +15,7 @@ interface ExperiencePageProps {
   }>;
 }
 
-const allExperiences = [...jobs, ...startups];
+const allExperiences = [...jobs, ...startups, ...freelance];
 
 /**
  * Pre-renders all experience detail pages at build time from the combined jobs and startups data.
@@ -53,7 +53,11 @@ export async function generateMetadata({
       ...experience.technologies,
       experience.company,
       experience.position,
-      experience.type === "job" ? "employment" : "startup",
+      experience.type === "job"
+        ? "employment"
+        : experience.type === "freelance"
+        ? "freelance"
+        : "startup",
     ],
     alternates: {
       canonical: `/experience/${slug}`,
@@ -89,7 +93,12 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
   }
 
   // Determine the correct tab based on type
-  const tabParam = experience.type === "job" ? "jobs" : "startups";
+  const tabParam =
+    experience.type === "job"
+      ? "jobs"
+      : experience.type === "freelance"
+      ? "freelance"
+      : "startups";
 
   return (
     <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4 animate-fade-in-up">
@@ -125,33 +134,74 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
 
       {/* Experience Header */}
       <div className="w-full max-w-4xl">
-        <div className="flex flex-col gap-2 mb-4">
-          <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-3xl md:text-4xl font-bold">{experience.position}</h1>
-            <Badge
-              variant={experience.type === "job" ? "default" : "secondary"}
-              className="text-sm"
-            >
-              {experience.type === "job" ? "Job" : "Startup"}
-            </Badge>
-          </div>
-
-          {experience.companyUrl ? (
-            <a
-              href={experience.companyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xl md:text-2xl text-link hover:underline inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-            >
-              {experience.company}
-              <ExternalLink className="w-5 h-5" />
-            </a>
-          ) : (
-            <h2 className="text-xl md:text-2xl text-link">
-              {experience.company}
-            </h2>
+        <div className="flex items-start gap-4 mb-4">
+          {experience.companyLogo && (
+            <div className="shrink-0">
+              <Image
+                src={experience.companyLogo}
+                alt={`${experience.company} logo`}
+                width={64}
+                height={64}
+                className="w-16 h-16 rounded-lg object-contain bg-background border border-border/60 p-1.5"
+              />
+            </div>
           )}
+          <div className="flex flex-col gap-1 flex-1 min-w-0">
+            <div className="flex items-center gap-3 flex-wrap">
+              <h1 className="text-3xl md:text-4xl font-bold">
+                {experience.company}
+              </h1>
+              <Badge
+                variant={
+                  experience.type === "job"
+                    ? "default"
+                    : experience.type === "freelance"
+                    ? "outline"
+                    : "secondary"
+                }
+                className="text-sm"
+              >
+                {experience.type === "job"
+                  ? "Job"
+                  : experience.type === "freelance"
+                  ? "Freelance"
+                  : "Startup"}
+              </Badge>
+            </div>
+
+            <p className="text-xl md:text-2xl text-muted-foreground">
+              {experience.position}
+            </p>
+
+            {experience.companyUrl && (
+              <a
+                href={experience.companyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-link hover:underline inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm w-fit"
+              >
+                {experience.companyUrl.replace(/^https?:\/\//, "")}
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
         </div>
+
+        {experience.roles && experience.roles.length > 1 && (
+          <ol className="mt-2 mb-6 ml-1 border-l-2 border-border space-y-5 pl-6">
+            {experience.roles.map((r, i) => (
+              <li key={i} className="relative">
+                <span className="absolute -left-[10px] top-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-background" />
+                <h2 className="text-xl md:text-2xl font-semibold leading-tight">
+                  {r.position}
+                </h2>
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  {r.period}
+                </p>
+              </li>
+            ))}
+          </ol>
+        )}
 
         <div className="flex flex-col md:flex-row gap-4 mb-6 text-muted-foreground">
           <div className="inline-flex items-center gap-2">

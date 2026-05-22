@@ -1,9 +1,9 @@
 import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { freelance, hobby, opensource } from "@/services/projects";
+import { hobby, opensource } from "@/services/projects";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { Calendar, ArrowLeft, ExternalLink, Github, Package, BookOpen } from "lucide-react";
 import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
 import Link from "next/link";
@@ -16,7 +16,7 @@ interface ProjectPageProps {
   }>;
 }
 
-const allProjects = [...freelance, ...hobby, ...opensource];
+const allProjects = [...hobby, ...opensource];
 
 /**
  * Pre-renders all project detail pages at build time from the combined freelance, hobby, and opensource data.
@@ -88,8 +88,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   /** Maps a project type key to its human-readable display label. */
   const getTypeLabel = (type: string) => {
     switch (type) {
-      case "freelance":
-        return "Freelance";
       case "hobby":
         return "Hobby";
       case "opensource":
@@ -104,8 +102,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     type: string
   ): "default" | "secondary" | "outline" | "destructive" => {
     switch (type) {
-      case "freelance":
-        return "default";
       case "hobby":
         return "secondary";
       case "opensource":
@@ -170,7 +166,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         {/* Links */}
-        <div className="flex flex-wrap gap-4 mb-6">
+        <div className="flex flex-wrap gap-3 mb-6">
           {project.github && (
             <a
               href={project.github}
@@ -182,6 +178,32 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             >
               <Github className="w-5 h-5" />
               <span>View on GitHub</span>
+            </a>
+          )}
+          {project.npm && (
+            <a
+              href={project.npm}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-input bg-background text-foreground rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              data-umami-event="Project NPM Click"
+              data-umami-event-project={project.name}
+            >
+              <Package className="w-5 h-5" />
+              <span>View on npm</span>
+            </a>
+          )}
+          {project.docs && (
+            <a
+              href={project.docs}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-input bg-background text-foreground rounded-lg hover:bg-accent hover:text-accent-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              data-umami-event="Project Docs Click"
+              data-umami-event-project={project.name}
+            >
+              <BookOpen className="w-5 h-5" />
+              <span>Read Docs</span>
             </a>
           )}
           {project.website && (

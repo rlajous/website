@@ -38,4 +38,6 @@ export interface Education {
   technologies: string[];
   /** Path to the banner image relative to the `/public` directory. */
   banner?: string;
+  /** Path to the institution logo relative to the `/public` directory (e.g. "/assets/companies/itba.png"). */
+  institutionLogo?: string;
 }

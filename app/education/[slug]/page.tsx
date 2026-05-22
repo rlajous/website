@@ -134,27 +134,40 @@ export default async function EducationPage({ params }: EducationPageProps) {
 
       {/* Education Header */}
       <div className="w-full max-w-4xl">
-        <div className="flex flex-col gap-2 mb-4">
-          <div className="flex items-center gap-3">
-            <GraduationCap className="w-8 h-8 text-link" />
-            <h1 className="text-3xl md:text-4xl font-bold">{edu.degree}</h1>
-          </div>
-
-          {edu.institutionUrl ? (
-            <a
-              href={edu.institutionUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xl md:text-2xl text-link hover:underline inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
-            >
-              {edu.institution}
-              <ExternalLink className="w-5 h-5" />
-            </a>
-          ) : (
-            <h2 className="text-xl md:text-2xl text-link">
-              {edu.institution}
-            </h2>
+        <div className="flex items-start gap-4 mb-4">
+          {edu.institutionLogo && (
+            <div className="shrink-0">
+              <Image
+                src={edu.institutionLogo}
+                alt={`${edu.institution} logo`}
+                width={64}
+                height={64}
+                className="w-16 h-16 rounded-lg object-contain bg-background border border-border/60 p-1.5"
+              />
+            </div>
           )}
+          <div className="flex flex-col gap-2 flex-1 min-w-0">
+            <div className="flex items-center gap-3">
+              <GraduationCap className="w-8 h-8 text-link shrink-0" />
+              <h1 className="text-3xl md:text-4xl font-bold">{edu.degree}</h1>
+            </div>
+
+            {edu.institutionUrl ? (
+              <a
+                href={edu.institutionUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xl md:text-2xl text-link hover:underline inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm w-fit"
+              >
+                {edu.institution}
+                <ExternalLink className="w-5 h-5" />
+              </a>
+            ) : (
+              <h2 className="text-xl md:text-2xl text-link">
+                {edu.institution}
+              </h2>
+            )}
+          </div>
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 mb-6 text-muted-foreground">
