@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useCallback, Suspense } from "react";
-import { hobby, opensource } from "@/services/projects";
+import { hobby, opensource, earlyWork } from "@/services/projects";
 import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
 import { Project } from "@/domains/Project";
 import ProjectsTab from "./components/ProjectTabs";
@@ -18,8 +18,9 @@ interface Tab {
 }
 
 const TABS: Tab[] = [
-  { key: "hobby", title: "Hobby", projects: hobby },
   { key: "opensource", title: "Open Source", projects: opensource },
+  { key: "hobby", title: "Side Projects", projects: hobby },
+  { key: "early-work", title: "Early Work", projects: earlyWork },
 ];
 
 const VALID_TAB_KEYS = TABS.map((tab) => tab.key);
@@ -51,7 +52,7 @@ function ProjectsContent() {
       <div className="text-center animate-fade-in-up">
         <h1 className="text-3xl font-bold">Projects</h1>
         <div className="mx-auto mt-3 h-0.5 w-12 rounded-full bg-primary" />
-        <p className="text-base mt-3 text-muted-foreground">A list of all my projects</p>
+        <p className="text-base mt-3 text-muted-foreground">Open source work, side projects, and early experiments.</p>
       </div>
       <Tabs
         className="w-full max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl flex flex-col"

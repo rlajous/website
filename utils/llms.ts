@@ -1,7 +1,7 @@
 import { SITE_URL } from "@/constants/routes";
 import { jobs, startups, freelance, skills } from "@/services/experience";
 import { education } from "@/services/education";
-import { hobby, opensource } from "@/services/projects";
+import { hobby, opensource, earlyWork } from "@/services/projects";
 import { talks } from "@/services/talks";
 import type { Project } from "@/domains/Project";
 
@@ -79,7 +79,7 @@ export function generateLlmsTxt(): string {
 
   // Projects
   lines.push("## Projects");
-  for (const project of [...hobby, ...opensource]) {
+  for (const project of [...hobby, ...opensource, ...earlyWork]) {
     const url =
       project.website || project.github || `${SITE_URL}/projects/${project.slug}`;
     lines.push(`- [${project.name} — ${project.company}](${url}): ${project.description}`);
@@ -237,6 +237,7 @@ export function generateLlmsFullTxt(): string {
   const projectSections: { label: string; projects: Project[] }[] = [
     { label: "Hobby", projects: hobby },
     { label: "Open Source", projects: opensource },
+    { label: "Early Work", projects: earlyWork },
   ];
 
   for (const section of projectSections) {

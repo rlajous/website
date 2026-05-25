@@ -2,7 +2,7 @@
  * Represents a portfolio project (hobby project or open-source contribution).
  *
  * Used by the projects service data arrays and rendered on `/projects` (list) and `/projects/[slug]` (detail).
- * The {@link type} field (`'hobby' | 'opensource'`) determines which tab displays the project on the list page.
+ * The {@link type} field (`'hobby' | 'opensource' | 'early-work'`) determines which tab displays the project on the list page.
  */
 export interface Project {
   /** Unique numeric identifier used for ordering. */
@@ -14,7 +14,7 @@ export interface Project {
   /** Company or organization the project was built for. */
   company: string;
   /** Categorization that determines which tab displays this project on the list page. */
-  type: 'hobby' | 'opensource';
+  type: 'hobby' | 'opensource' | 'early-work';
   /** GitHub repository URL. Empty string if not publicly available. */
   github: string;
   /** Live website URL. Empty string if not deployed or applicable. */

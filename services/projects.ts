@@ -6,7 +6,7 @@
 import { Project } from "@/domains/Project";
 
 /**
- * Personal hobby and side projects displayed on the Hobby tab of `/projects`.
+ * Personal hobby and side projects displayed on the Side Projects tab of `/projects`.
  */
 export const hobby: Project[] = [
   {
@@ -57,6 +57,20 @@ export const hobby: Project[] = [
     description: "A web version of Windows 98 with a Web 3 twist.",
     technologies: ["Next.js", "React", "Wagmi", "Vercel"],
     banner: "/windows98.gif",
+  },
+  {
+    id: 4,
+    slug: "cv",
+    name: "LaTeX CV Template",
+    company: "Personal Project",
+    type: "hobby",
+    github: "https://github.com/rlajous/cv",
+    website: "",
+    period: "2024",
+    description:
+      "My personal CV written in LaTeX. Published as a reusable template for others to fork.",
+    technologies: ["LaTeX"],
+    banner: "",
   },
 ];
 
@@ -110,5 +124,141 @@ export const opensource: Project[] = [
       "GraphQL",
     ],
     banner: "/sdk.png",
+  },
+  {
+    id: 3,
+    slug: "claude-code-commands",
+    name: "claude-code-commands",
+    company: "Open Source",
+    type: "opensource",
+    github: "https://github.com/rlajous/claude-code-commands",
+    website: "",
+    period: "2026",
+    description:
+      "Production-ready slash commands, subagents, and hooks for Claude Code. Automates Git workflows, PR creation, releases, and QA testing. Zero-config and framework-agnostic.",
+    technologies: ["Claude Code", "Shell", "Markdown", "Git"],
+    banner: "",
+  },
+  {
+    id: 4,
+    slug: "ai-agent-tooling",
+    name: "ai-agent-tooling",
+    company: "Open Source",
+    type: "opensource",
+    github: "https://github.com/rlajous/ai-agent-tooling",
+    website: "",
+    period: "2026",
+    description:
+      "Earlier iteration of my Claude Code slash-command toolkit, superseded by claude-code-commands (https://github.com/rlajous/claude-code-commands). Kept public for posterity.",
+    technologies: ["Claude Code", "Shell", "Markdown"],
+    banner: "",
+  },
+];
+
+/**
+ * Academic coursework and early interview/professional projects displayed on the Early Work tab of `/projects`.
+ * These entries chronicle the student-to-professional arc: OS kernels and compilers at ITBA →
+ * a token market built as a take-home interview → containerisation experiments → Master's thesis.
+ */
+export const earlyWork: Project[] = [
+  {
+    id: 1,
+    slug: "ymca-compiler",
+    name: "YMCA Compiler",
+    company: "ITBA",
+    type: "early-work",
+    github: "https://github.com/rlajous/YMCA",
+    website: "",
+    period: "2018",
+    description:
+      "Yet Another Matrix Compiler — a domain-specific language compiler for matrix operations built with Lex and Yacc.",
+    technologies: ["C", "Lex", "Yacc"],
+    banner: "",
+  },
+  {
+    id: 2,
+    slug: "complex-os",
+    name: "Complex-OS",
+    company: "ITBA",
+    type: "early-work",
+    github: "https://github.com/rlajous/Complex-OS",
+    website: "",
+    period: "2019",
+    description:
+      "University Operating Systems coursework: a small OS written in C and Assembly with custom kernel and bootloader.",
+    technologies: ["C", "Assembly", "Makefile"],
+    banner: "",
+  },
+  {
+    id: 3,
+    slug: "simple-so",
+    name: "Simple-SO",
+    company: "ITBA",
+    type: "early-work",
+    github: "https://github.com/rlajous/Simple-SO",
+    website: "",
+    period: "2019",
+    description:
+      "Companion Operating Systems coursework project — a simpler kernel exploration written in C and Assembly. BSD-3 licensed.",
+    technologies: ["C", "Assembly"],
+    banner: "",
+  },
+  {
+    id: 4,
+    slug: "pop3-server",
+    name: "POP-3 Server",
+    company: "ITBA",
+    type: "early-work",
+    github: "https://github.com/rlajous/POP-3",
+    website: "",
+    period: "2019",
+    description:
+      "A POP3 mail server implementation written in C for a university networking course.",
+    technologies: ["C", "Makefile"],
+    banner: "",
+  },
+  {
+    id: 5,
+    slug: "quipu-token-market",
+    name: "Quipu — Token Market",
+    company: "Interview Project",
+    type: "early-work",
+    github: "https://github.com/rlajous/QuipuFront",
+    website: "https://quipu.navarrolajous.com",
+    period: "2019-2020",
+    description:
+      "Token market built end-to-end as a take-home interview project — a Vue/JS frontend, a Node backend, and an Angular spike rebuilding the UI to evaluate the framework.",
+    detailedDescription:
+      "Built end-to-end for a job interview. Three repos make up the project: the frontend at https://github.com/rlajous/QuipuFront (deployed at quipu.navarrolajous.com), the Node backend at https://github.com/rlajous/Quipu-back, and an Angular rewrite spike at https://github.com/rlajous/Quipu-Angular-Rapid-Test (deployed at quipu-test.navarrolajous.com) used to compare frameworks.",
+    technologies: ["JavaScript", "Vue", "Node.js", "Angular", "TypeScript"],
+    banner: "",
+  },
+  {
+    id: 6,
+    slug: "kubernetes",
+    name: "Kubernetes Lab",
+    company: "Personal Project",
+    type: "early-work",
+    github: "https://github.com/rlajous/kubernetes",
+    website: "",
+    period: "2021",
+    description:
+      "Hands-on lab exploring container orchestration with Kubernetes and Docker.",
+    technologies: ["Kubernetes", "Docker", "JavaScript"],
+    banner: "",
+  },
+  {
+    id: 7,
+    slug: "master-thesis",
+    name: "Master's Thesis",
+    company: "ITBA",
+    type: "early-work",
+    github: "https://github.com/rlajous/MasterThesis",
+    website: "",
+    period: "2023",
+    description:
+      "My ITBA master's thesis manuscript, written in LaTeX.",
+    technologies: ["LaTeX"],
+    banner: "",
   },
 ];
