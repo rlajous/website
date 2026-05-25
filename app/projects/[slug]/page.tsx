@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { hobby, opensource } from "@/services/projects";
+import { hobby, opensource, earlyWork } from "@/services/projects";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink, Github, Package, BookOpen } from "lucide-react";
 import Image from "next/image";
@@ -16,10 +16,10 @@ interface ProjectPageProps {
   }>;
 }
 
-const allProjects = [...hobby, ...opensource];
+const allProjects = [...hobby, ...opensource, ...earlyWork];
 
 /**
- * Pre-renders all project detail pages at build time from the combined freelance, hobby, and opensource data.
+ * Pre-renders all project detail pages at build time from the combined hobby, opensource, and earlyWork data.
  *
  * @returns Array of slug params for static generation.
  */
@@ -92,6 +92,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         return "Hobby";
       case "opensource":
         return "Open Source";
+      case "early-work":
+        return "Early Work";
       default:
         return type;
     }
@@ -106,6 +108,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         return "secondary";
       case "opensource":
         return "outline";
+      case "early-work":
+        return "default";
       default:
         return "default";
     }
@@ -125,23 +129,21 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </div>
 
       {/* Banner */}
-      {project.banner && (
-        <div className="w-full max-w-4xl">
-          <Image
-            width={1200}
-            height={600}
-            alt={`${project.name} banner`}
-            className="object-cover w-full rounded-lg"
-            src={`/assets${project.banner}`}
-            priority
-            placeholder="blur"
-            blurDataURL={blurDataURL}
-            style={{
-              aspectRatio: "2 / 1",
-            }}
-          />
-        </div>
-      )}
+      <div className="w-full max-w-4xl">
+        <Image
+          width={1200}
+          height={600}
+          alt={`${project.name} banner`}
+          className="object-cover w-full rounded-lg"
+          src={project.banner ? `/assets${project.banner}` : `/api/project-banner/${project.slug}`}
+          priority
+          placeholder="blur"
+          blurDataURL={blurDataURL}
+          style={{
+            aspectRatio: "2 / 1",
+          }}
+        />
+      </div>
 
       {/* Project Header */}
       <div className="w-full max-w-4xl">
