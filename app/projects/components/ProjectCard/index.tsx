@@ -138,7 +138,7 @@ const ProjectCard: React.FC<Project> = ({
   }
 
   return (
-    <div className="w-full bg-card text-card-foreground p-4 md:p-6 rounded-lg shadow-lg flex flex-row relative group hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 border-l-2 border-l-transparent hover:border-l-primary">
+    <div className="w-full bg-card text-card-foreground p-4 md:p-6 rounded-lg shadow-lg flex flex-col md:flex-row relative group hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 border-l-2 border-l-transparent hover:border-l-primary">
       <Link
         href={`/projects/${slug}`}
         className="absolute inset-0 z-10"
@@ -147,12 +147,12 @@ const ProjectCard: React.FC<Project> = ({
         <span className="sr-only">View project {name}</span>
       </Link>
 
-      <div className="md:pr-4 md:border-r shrink-0">
-        <div className="relative w-24 sm:w-32 md:w-[22rem] aspect-[2/1] rounded-md md:rounded-none overflow-hidden">
+      <div className="mb-3 md:mb-0 md:pr-4 md:border-r md:shrink-0">
+        <div className="relative w-full md:w-[22rem] aspect-[2/1] rounded-md md:rounded-none overflow-hidden">
           <Image
             fill
             alt={name}
-            sizes="(min-width: 768px) 352px, (min-width: 640px) 128px, 96px"
+            sizes="(min-width: 768px) 352px, 100vw"
             className="object-cover"
             src={banner ? `/assets${banner}` : `/api/project-banner/${slug}`}
             placeholder="blur"
@@ -160,7 +160,7 @@ const ProjectCard: React.FC<Project> = ({
           />
         </div>
       </div>
-      <div className="flex-1 min-w-0 pl-3 md:pl-4">
+      <div className="flex-1 min-w-0 md:pl-4">
         <h3 className="text-base sm:text-lg font-semibold leading-tight">{name}</h3>
         {company && name !== company && (
           <p className="text-xs sm:text-sm text-muted-foreground">{company}</p>
