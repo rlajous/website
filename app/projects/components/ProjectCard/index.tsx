@@ -147,19 +147,18 @@ const ProjectCard: React.FC<Project> = ({
         <span className="sr-only">View project {name}</span>
       </Link>
 
-      <div className="md:pr-4 md:border-r md:block">
-        <Image
-          width={300}
-          height={150}
-          alt={name}
-          className="object-cover w-full md:w-auto md:h-44"
-          src={banner ? `/assets${banner}` : `/api/project-banner/${slug}`}
-          placeholder="blur"
-          blurDataURL={blurDataURL}
-          style={{
-            aspectRatio: "2 / 1",
-          }}
-        />
+      <div className="md:pr-4 md:border-r md:shrink-0">
+        <div className="relative w-full md:w-[22rem] aspect-[2/1]">
+          <Image
+            fill
+            alt={name}
+            sizes="(min-width: 768px) 352px, 100vw"
+            className="object-cover"
+            src={banner ? `/assets${banner}` : `/api/project-banner/${slug}`}
+            placeholder="blur"
+            blurDataURL={blurDataURL}
+          />
+        </div>
       </div>
       <div className="md:w-3/4 pt-4 md:pt-0 md:pl-4 h-full">
         <h3 className="text-lg font-semibold leading-tight">{name}</h3>
