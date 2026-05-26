@@ -175,7 +175,7 @@ export default function ProjectsView({ sections }: ProjectsViewProps) {
         </div>
         <nav
           aria-label="Project sections"
-          className="mt-2 flex items-center gap-1 overflow-x-auto whitespace-nowrap text-sm"
+          className="mt-2 flex flex-wrap items-center gap-x-1 gap-y-1 text-sm md:mt-2 md:flex-nowrap md:overflow-x-auto md:whitespace-nowrap"
         >
           {filtered.map((s, i) => {
             const hidden = s.projects.length === 0;
@@ -188,7 +188,7 @@ export default function ProjectsView({ sections }: ProjectsViewProps) {
                   onClick={() => handleJumpTo(s.id)}
                   disabled={hidden}
                   className={cn(
-                    "py-1 transition-colors",
+                    "py-2 px-2 md:py-1 md:px-0 transition-colors",
                     hidden && "text-muted-foreground/40 cursor-not-allowed",
                     !hidden && !isActive && "text-muted-foreground hover:text-foreground",
                     isActive && "text-foreground border-b-2 border-primary",
