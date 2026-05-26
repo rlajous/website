@@ -1,6 +1,6 @@
 import { opensource, hobby, interview, academic } from "@/services/projects";
 import { Project } from "@/domains/Project";
-import ProjectsTab from "./components/ProjectTabs";
+import ProjectsView from "./components/ProjectsView";
 
 /** Configuration for a project section on the scrollable projects page. */
 interface Section {
@@ -58,17 +58,7 @@ export default function Page() {
           Open source work, side projects, and early experiments.
         </p>
       </div>
-      <div className="w-full max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl flex flex-col gap-16">
-        {SECTIONS.map((section) => (
-          <section key={section.id} id={section.id} className="scroll-mt-24 flex flex-col gap-6">
-            <header className="flex flex-col gap-1 border-b border-border pb-3">
-              <h2 className="text-2xl font-bold">{section.title}</h2>
-              <p className="text-sm text-muted-foreground">{section.subtitle}</p>
-            </header>
-            <ProjectsTab projects={section.projects} />
-          </section>
-        ))}
-      </div>
+      <ProjectsView sections={SECTIONS} />
     </div>
   );
 }
