@@ -1,102 +1,74 @@
-"use client";
-
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
-import { useCallback, Suspense } from "react";
-import { hobby, opensource, earlyWork } from "@/services/projects";
-import { TabsTrigger, TabsList, TabsContent, Tabs } from "@/components/ui/tabs";
+import { opensource, hobby, interview, academic } from "@/services/projects";
 import { Project } from "@/domains/Project";
 import ProjectsTab from "./components/ProjectTabs";
 
-/** Configuration for a project category tab. */
-interface Tab {
-  /** URL query parameter value for this tab. */
-  key: string;
-  /** Display label shown on the tab trigger. */
+/** Configuration for a project section on the scrollable projects page. */
+interface Section {
+  /** Anchor id used for scroll-to and URL hash navigation. */
+  id: string;
+  /** Section heading text. */
   title: string;
-  /** Project entries displayed when this tab is active. */
+  /** One-line description shown below the heading. */
+  subtitle: string;
+  /** Projects rendered in this section. */
   projects: Project[];
 }
 
-const TABS: Tab[] = [
-  { key: "opensource", title: "Open Source", projects: opensource },
-  { key: "hobby", title: "Side Projects", projects: hobby },
-  { key: "early-work", title: "Early Work", projects: earlyWork },
+const SECTIONS: Section[] = [
+  {
+    id: "open-source",
+    title: "Open Source",
+    subtitle: "Libraries and tooling I've published.",
+    projects: opensource,
+  },
+  {
+    id: "side-projects",
+    title: "Side Projects",
+    subtitle: "Personal experiments and creative builds.",
+    projects: hobby,
+  },
+  {
+    id: "interview",
+    title: "Interview Project",
+    subtitle: "The take-home that turned into my first engineering role.",
+    projects: interview,
+  },
+  {
+    id: "academic",
+    title: "Academic",
+    subtitle:
+      "University projects from ITBA — C kernels, a Yacc compiler, a POP3 server, a Kubernetes lab, plus my joint master's thesis with Technikum Wien.",
+    projects: academic,
+  },
 ];
 
-const VALID_TAB_KEYS = TABS.map((tab) => tab.key);
-const DEFAULT_TAB = "opensource";
-
 /**
- * Client component managing tab state via URL search params for shareable/bookmarkable tab selection.
- * Renders Freelance, Hobby, and Open Source tabs using the project data from the service layer.
- */
-function ProjectsContent() {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const tabParam = searchParams.get("tab");
-  const currentTab = tabParam && VALID_TAB_KEYS.includes(tabParam) ? tabParam : DEFAULT_TAB;
-
-  const handleTabChange = useCallback(
-    (value: string) => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("tab", value);
-      router.push(`${pathname}?${params.toString()}`, { scroll: false });
-    },
-    [searchParams, pathname, router]
-  );
-
-  return (
-    <div className="flex flex-col items-center gap-6 py-8 md:py-12">
-      <div className="text-center animate-fade-in-up">
-        <h1 className="text-3xl font-bold">Projects</h1>
-        <div className="mx-auto mt-3 h-0.5 w-12 rounded-full bg-primary" />
-        <p className="text-base mt-3 text-muted-foreground">Open source work, side projects, and early experiments.</p>
-      </div>
-      <Tabs
-        className="w-full max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl flex flex-col"
-        value={currentTab}
-        onValueChange={handleTabChange}
-      >
-        <TabsList className="flex p-1 space-x-1 rounded-2xl m-auto mb-6">
-          {TABS.map(({ key, title }) => (
-            <TabsTrigger key={key} className="flex-1 rounded-xl" value={key}>
-              {title}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        {TABS.map(({ key, projects }) => (
-          <TabsContent key={key} value={key}>
-            <ProjectsTab projects={projects} />
-          </TabsContent>
-        ))}
-      </Tabs>
-    </div>
-  );
-}
-
-/**
- * Projects list page wrapping {@link ProjectsContent} in Suspense
- * for `useSearchParams` compatibility.
+ * Projects list page — a single scrollable page with one section per project category.
+ * Replaces the former tab-based layout to improve content visibility and SEO.
+ *
+ * Server component — no client-side state required at the page level.
  */
 export default function Page() {
   return (
-    <Suspense fallback={
-        <div className="flex flex-col items-center gap-6 py-8 md:py-12">
-          <div className="animate-pulse space-y-4 w-full max-w-3xl px-4">
-            <div className="h-8 bg-muted rounded w-1/3 mx-auto" />
-            <div className="h-4 bg-muted rounded w-1/2 mx-auto" />
-            <div className="h-10 bg-muted rounded w-2/3 mx-auto mt-4" />
-            <div className="space-y-4 mt-6">
-              <div className="h-36 bg-muted rounded" />
-              <div className="h-36 bg-muted rounded" />
-              <div className="h-36 bg-muted rounded" />
-            </div>
-          </div>
-        </div>
-      }>
-      <ProjectsContent />
-    </Suspense>
+    <div className="flex flex-col items-center gap-12 py-8 md:py-12">
+      <div className="text-center animate-fade-in-up">
+        <h1 className="text-3xl font-bold">Projects</h1>
+        <div className="mx-auto mt-3 h-0.5 w-12 rounded-full bg-primary" />
+        <p className="text-base mt-3 text-muted-foreground">
+          Open source work, side projects, and early experiments.
+        </p>
+      </div>
+      <div className="w-full max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl flex flex-col gap-16">
+        {SECTIONS.map((section) => (
+          <section key={section.id} id={section.id} className="scroll-mt-24 flex flex-col gap-6">
+            <header className="flex flex-col gap-1 border-b border-border pb-3">
+              <h2 className="text-2xl font-bold">{section.title}</h2>
+              <p className="text-sm text-muted-foreground">{section.subtitle}</p>
+            </header>
+            <ProjectsTab projects={section.projects} />
+          </section>
+        ))}
+      </div>
+    </div>
   );
 }

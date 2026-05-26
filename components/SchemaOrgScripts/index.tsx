@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { jobs, startups, freelance } from "@/services/experience";
 import { education } from "@/services/education";
-import { hobby, opensource, earlyWork } from "@/services/projects";
+import { hobby, opensource, academic, interview } from "@/services/projects";
 import { talks } from "@/services/talks";
 import { SITE_URL } from "@/constants/routes";
 
@@ -273,7 +273,7 @@ const SchemaOrgScripts = () => {
   // Project detail page schema
   if (pathname?.startsWith("/projects/")) {
     const slug = pathname.split("/projects/")[1];
-    const allProjects = [...hobby, ...opensource, ...earlyWork];
+    const allProjects = [...hobby, ...opensource, ...academic, ...interview];
     const project = allProjects.find((p) => p.slug === slug);
 
     if (project) {

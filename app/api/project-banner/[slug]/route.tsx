@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { hobby, opensource, earlyWork } from "@/services/projects";
+import { hobby, opensource, academic, interview } from "@/services/projects";
 import type { Project } from "@/domains/Project";
 
 /**
@@ -15,12 +15,13 @@ import type { Project } from "@/domains/Project";
 /** Use Node.js runtime so `next/og` can access the file system for font loading. */
 export const runtime = "nodejs";
 
-const ALL_PROJECTS: Project[] = [...hobby, ...opensource, ...earlyWork];
+const ALL_PROJECTS: Project[] = [...hobby, ...opensource, ...academic, ...interview];
 
 const TYPE_LABEL: Record<Project["type"], string> = {
   opensource: "Open Source",
   hobby: "Side Projects",
-  "early-work": "Early Work",
+  academic: "Academic",
+  interview: "Interview Project",
 };
 
 /**

@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { hobby, opensource, earlyWork } from "@/services/projects";
+import { hobby, opensource, academic, interview } from "@/services/projects";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink, Github, Package, BookOpen } from "lucide-react";
 import Image from "next/image";
@@ -16,10 +16,10 @@ interface ProjectPageProps {
   }>;
 }
 
-const allProjects = [...hobby, ...opensource, ...earlyWork];
+const allProjects = [...hobby, ...opensource, ...academic, ...interview];
 
 /**
- * Pre-renders all project detail pages at build time from the combined hobby, opensource, and earlyWork data.
+ * Pre-renders all project detail pages at build time from the combined hobby, opensource, academic, and interview data.
  *
  * @returns Array of slug params for static generation.
  */
@@ -92,8 +92,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         return "Hobby";
       case "opensource":
         return "Open Source";
-      case "early-work":
-        return "Early Work";
+      case "academic":
+        return "Academic";
+      case "interview":
+        return "Interview Project";
       default:
         return type;
     }
@@ -108,8 +110,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         return "secondary";
       case "opensource":
         return "outline";
-      case "early-work":
+      case "academic":
         return "default";
+      case "interview":
+        return "secondary";
       default:
         return "default";
     }
@@ -120,7 +124,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       {/* Back Button */}
       <div className="w-full max-w-4xl">
         <Link
-          href={`/projects?tab=${project.type}`}
+          href={`/projects`}
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
         >
           <ArrowLeft className="w-4 h-4" />

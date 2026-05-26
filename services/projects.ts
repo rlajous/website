@@ -6,7 +6,7 @@
 import { Project } from "@/domains/Project";
 
 /**
- * Personal hobby and side projects displayed on the Side Projects tab of `/projects`.
+ * Personal hobby and side projects displayed in the Side Projects section of `/projects`.
  */
 export const hobby: Project[] = [
   {
@@ -75,7 +75,7 @@ export const hobby: Project[] = [
 ];
 
 /**
- * Open-source contributions displayed on the Open Source tab of `/projects`.
+ * Open-source contributions displayed in the Open Source section of `/projects`.
  */
 export const opensource: Project[] = [
   {
@@ -156,17 +156,41 @@ export const opensource: Project[] = [
 ];
 
 /**
- * Academic coursework and early interview/professional projects displayed on the Early Work tab of `/projects`.
- * These entries chronicle the student-to-professional arc: OS kernels and compilers at ITBA →
- * a token market built as a take-home interview → containerisation experiments → Master's thesis.
+ * Take-home interview project displayed in the Interview Project section of `/projects`.
+ * This single project represents the take-home assignment that landed the first engineering role.
  */
-export const earlyWork: Project[] = [
+export const interview: Project[] = [
+  {
+    id: 1,
+    slug: "quipu-token-market",
+    name: "Quipu — Token Market",
+    company: "Interview Project",
+    type: "interview",
+    github: "https://github.com/rlajous/QuipuFront",
+    website: "https://quipu.navarrolajous.com",
+    period: "2019-2020",
+    description:
+      "Token market built end-to-end as a take-home interview project — a Vue/JS frontend, a Node backend, and an Angular spike rebuilding the UI to evaluate the framework.",
+    detailedDescription:
+      "Built end-to-end for a job interview. Three repos make up the project: the frontend at https://github.com/rlajous/QuipuFront (deployed at quipu.navarrolajous.com), the Node backend at https://github.com/rlajous/Quipu-back, and an Angular rewrite spike at https://github.com/rlajous/Quipu-Angular-Rapid-Test (deployed at quipu-test.navarrolajous.com) used to compare frameworks.",
+    technologies: ["JavaScript", "Vue", "Node.js", "Angular", "TypeScript"],
+    banner: "",
+    featured: true,
+  },
+];
+
+/**
+ * University coursework and master's thesis projects displayed in the Academic section of `/projects`.
+ * Chronicles the student arc at ITBA — OS kernels, a Yacc compiler, a POP3 server, a Kubernetes lab,
+ * and a joint master's thesis with Technikum Wien.
+ */
+export const academic: Project[] = [
   {
     id: 1,
     slug: "ymca-compiler",
     name: "YMCA Compiler",
     company: "ITBA",
-    type: "early-work",
+    type: "academic",
     github: "https://github.com/rlajous/YMCA",
     website: "",
     period: "2018",
@@ -180,7 +204,7 @@ export const earlyWork: Project[] = [
     slug: "complex-os",
     name: "Complex-OS",
     company: "ITBA",
-    type: "early-work",
+    type: "academic",
     github: "https://github.com/rlajous/Complex-OS",
     website: "",
     period: "2019",
@@ -194,7 +218,7 @@ export const earlyWork: Project[] = [
     slug: "simple-so",
     name: "Simple-SO",
     company: "ITBA",
-    type: "early-work",
+    type: "academic",
     github: "https://github.com/rlajous/Simple-SO",
     website: "",
     period: "2019",
@@ -208,7 +232,7 @@ export const earlyWork: Project[] = [
     slug: "pop3-server",
     name: "POP-3 Server",
     company: "ITBA",
-    type: "early-work",
+    type: "academic",
     github: "https://github.com/rlajous/POP-3",
     website: "",
     period: "2019",
@@ -219,26 +243,10 @@ export const earlyWork: Project[] = [
   },
   {
     id: 5,
-    slug: "quipu-token-market",
-    name: "Quipu — Token Market",
-    company: "Interview Project",
-    type: "early-work",
-    github: "https://github.com/rlajous/QuipuFront",
-    website: "https://quipu.navarrolajous.com",
-    period: "2019-2020",
-    description:
-      "Token market built end-to-end as a take-home interview project — a Vue/JS frontend, a Node backend, and an Angular spike rebuilding the UI to evaluate the framework.",
-    detailedDescription:
-      "Built end-to-end for a job interview. Three repos make up the project: the frontend at https://github.com/rlajous/QuipuFront (deployed at quipu.navarrolajous.com), the Node backend at https://github.com/rlajous/Quipu-back, and an Angular rewrite spike at https://github.com/rlajous/Quipu-Angular-Rapid-Test (deployed at quipu-test.navarrolajous.com) used to compare frameworks.",
-    technologies: ["JavaScript", "Vue", "Node.js", "Angular", "TypeScript"],
-    banner: "",
-  },
-  {
-    id: 6,
     slug: "kubernetes",
     name: "Kubernetes Lab",
-    company: "Personal Project",
-    type: "early-work",
+    company: "ITBA",
+    type: "academic",
     github: "https://github.com/rlajous/kubernetes",
     website: "",
     period: "2021",
@@ -248,11 +256,11 @@ export const earlyWork: Project[] = [
     banner: "",
   },
   {
-    id: 7,
+    id: 6,
     slug: "master-thesis",
     name: "Master's Thesis",
-    company: "ITBA",
-    type: "early-work",
+    company: "ITBA · Technikum Wien",
+    type: "academic",
     github: "https://github.com/rlajous/MasterThesis",
     website: "",
     period: "2023",
@@ -260,5 +268,6 @@ export const earlyWork: Project[] = [
       "My ITBA master's thesis manuscript, written in LaTeX.",
     technologies: ["LaTeX"],
     banner: "",
+    featured: true,
   },
 ];

@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { jobs, startups, freelance } from "@/services/experience";
 import { education } from "@/services/education";
-import { hobby, opensource, earlyWork } from "@/services/projects";
+import { hobby, opensource, academic, interview } from "@/services/projects";
 import { talks } from "@/services/talks";
 import { SITE_URL } from "@/constants/routes";
 
@@ -84,7 +84,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const projectPages: MetadataRoute.Sitemap = [
     ...hobby,
     ...opensource,
-    ...earlyWork,
+    ...academic,
+    ...interview,
   ].map((project) => ({
     url: `${baseUrl}/projects/${project.slug}`,
     lastModified: new Date(),

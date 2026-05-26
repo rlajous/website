@@ -1,8 +1,9 @@
 /**
- * Represents a portfolio project (hobby project or open-source contribution).
+ * Represents a portfolio project (hobby project, open-source contribution, academic coursework, or interview project).
  *
  * Used by the projects service data arrays and rendered on `/projects` (list) and `/projects/[slug]` (detail).
- * The {@link type} field (`'hobby' | 'opensource' | 'early-work'`) determines which tab displays the project on the list page.
+ * The {@link type} field (`'hobby' | 'opensource' | 'academic' | 'interview'`) determines which section
+ * displays the project on the list page.
  */
 export interface Project {
   /** Unique numeric identifier used for ordering. */
@@ -13,8 +14,8 @@ export interface Project {
   name: string;
   /** Company or organization the project was built for. */
   company: string;
-  /** Categorization that determines which tab displays this project on the list page. */
-  type: 'hobby' | 'opensource' | 'early-work';
+  /** Categorization that determines which section displays this project on the list page. */
+  type: 'hobby' | 'opensource' | 'academic' | 'interview';
   /** GitHub repository URL. Empty string if not publicly available. */
   github: string;
   /** Live website URL. Empty string if not deployed or applicable. */
@@ -41,4 +42,6 @@ export interface Project {
   challenges?: string[];
   /** Business or user impact statement shown on the detail page. */
   impact?: string;
+  /** When true, the card is rendered in a wider featured layout instead of the standard grid. */
+  featured?: boolean;
 }
