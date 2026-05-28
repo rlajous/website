@@ -168,17 +168,6 @@ export async function GET(_req: Request, { params }: RouteContext) {
         >
           {project.name}
         </div>
-        <div
-          style={{
-            display: "flex",
-            fontSize: 32,
-            color: "rgba(255, 255, 255, 0.7)",
-            marginTop: 24,
-            fontWeight: 500,
-          }}
-        >
-          {project.company} · {project.period}
-        </div>
       </div>
     ),
     {

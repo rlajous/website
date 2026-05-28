@@ -48,7 +48,7 @@ const ProjectCard: React.FC<Project> = ({
     <div className="w-full bg-card text-card-foreground p-6 rounded-lg shadow-lg flex flex-col md:flex-row relative group hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 border-l-2 border-l-transparent hover:border-l-primary">
       <Link
         href={`/projects/${slug}`}
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
         aria-label={`View project ${name}`}
       >
         <span className="sr-only">View project {name}</span>
@@ -79,13 +79,13 @@ const ProjectCard: React.FC<Project> = ({
                   alt=""
                   width={44}
                   height={44}
-                  className="w-11 h-11 rounded-md object-contain bg-background border border-border/60 p-1"
+                  className="w-11 h-11 rounded-md object-contain bg-white dark:bg-white/95 border border-border/60 p-1"
                 />
               ))}
             </div>
           )}
           <div className="min-w-0 flex-1">
-            <h3 className="text-lg font-semibold leading-tight">{name}</h3>
+            <h2 className="text-lg font-semibold leading-tight">{name}</h2>
             {company && name !== company && (
               <p className="text-sm text-muted-foreground">{company}</p>
             )}
@@ -100,7 +100,7 @@ const ProjectCard: React.FC<Project> = ({
             </Badge>
           ))}
           {technologies.length > 5 && (
-            <span className="text-xs text-link self-center">
+            <span className="text-xs text-muted-foreground self-center">
               +{technologies.length - 5} more
             </span>
           )}
