@@ -244,15 +244,16 @@ export const earlyWork: Project[] = [
     id: 6,
     slug: "kubernetes",
     name: "Kubernetes Lab",
-    company: "Personal Project",
+    company: "ITBA",
     type: "early-work",
     github: "https://github.com/rlajous/kubernetes",
     website: "",
     period: "2021",
     description:
-      "Hands-on lab exploring container orchestration with Kubernetes and Docker.",
+      "University project exploring container orchestration with Kubernetes and Docker.",
     technologies: ["Kubernetes", "Docker", "JavaScript"],
     banner: "",
+    logos: ["/assets/companies/itba.png"],
   },
   {
     id: 7,
