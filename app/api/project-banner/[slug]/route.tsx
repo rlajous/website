@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { hobby, opensource, earlyWork } from "@/services/projects";
 import type { Project } from "@/domains/Project";
+import { SITE_URL } from "@/constants/routes";
 
 /**
  * Dynamic project banner generator.
@@ -60,6 +61,11 @@ export async function GET(_req: Request, { params }: RouteContext) {
 
   const hue = hueFromSlug(slug);
   const typeLabel = TYPE_LABEL[project.type];
+  const origin = new URL(SITE_URL).origin;
+  const logos =
+    project.logos
+      ?.filter((path) => path.startsWith("/"))
+      .map((path) => new URL(path, origin).toString()) ?? [];
 
   return new ImageResponse(
     (
@@ -70,70 +76,98 @@ export async function GET(_req: Request, { params }: RouteContext) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "flex-start",
+          alignItems: "center",
           padding: "80px",
-          background: `linear-gradient(135deg, #1a1a1a 0%, hsl(${hue} 35% 18%) 50%, #1f1410 100%)`,
+          background: `radial-gradient(ellipse at center, hsl(${hue} 40% 22%) 0%, #1a1410 70%, #100a08 100%)`,
           color: "#ffffff",
           fontFamily: "sans-serif",
           position: "relative",
+          textAlign: "center",
         }}
       >
         <div
           style={{
-            position: "absolute",
-            top: 80,
-            left: 80,
-            fontSize: 24,
+            display: "flex",
+            fontSize: 28,
             color: "#f5a60f",
-            letterSpacing: 4,
+            letterSpacing: 6,
             textTransform: "uppercase",
+            fontWeight: 600,
           }}
         >
           {typeLabel}
         </div>
         <div
           style={{
-            fontSize: 88,
+            display: "flex",
+            width: 80,
+            height: 4,
+            background: "#f5a60f",
+            marginTop: 28,
+            marginBottom: 28,
+            borderRadius: 2,
+          }}
+        />
+        {logos.length > 0 && (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 48,
+              marginBottom: 32,
+            }}
+          >
+            {logos.map((src, i) => (
+              <div
+                key={src}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 48,
+                }}
+              >
+                {i > 0 && (
+                  <div
+                    style={{
+                      display: "flex",
+                      fontSize: 48,
+                      color: "rgba(255, 255, 255, 0.35)",
+                      fontWeight: 300,
+                    }}
+                  >
+                    ×
+                  </div>
+                )}
+                <img
+                  src={src}
+                  alt=""
+                  width={120}
+                  height={120}
+                  style={{
+                    objectFit: "contain",
+                    background: "rgba(255, 255, 255, 0.95)",
+                    borderRadius: 16,
+                    padding: 16,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        <div
+          style={{
+            display: "flex",
+            fontSize: 92,
             fontWeight: 900,
             lineHeight: 1.05,
-            letterSpacing: -2,
-            maxWidth: 1040,
-            marginTop: 32,
+            letterSpacing: -3,
+            maxWidth: 1000,
+            textAlign: "center",
+            justifyContent: "center",
           }}
         >
           {project.name}
         </div>
-        <div
-          style={{
-            fontSize: 28,
-            color: "rgba(255, 255, 255, 0.75)",
-            marginTop: 16,
-          }}
-        >
-          {project.company}
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            bottom: 80,
-            right: 80,
-            fontSize: 24,
-            color: "rgba(255, 255, 255, 0.5)",
-            letterSpacing: 2,
-          }}
-        >
-          {project.period}
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            bottom: 80,
-            left: 80,
-            width: 64,
-            height: 4,
-            background: "#f5a60f",
-          }}
-        />
       </div>
     ),
     {

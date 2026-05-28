@@ -33,6 +33,7 @@ const ProjectCard: React.FC<Project> = ({
   description,
   technologies,
   banner,
+  logos,
 }) => {
   let githubUsername = "";
   let githubRepository = "";
@@ -47,18 +48,18 @@ const ProjectCard: React.FC<Project> = ({
     <div className="w-full bg-card text-card-foreground p-6 rounded-lg shadow-lg flex flex-col md:flex-row relative group hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 border-l-2 border-l-transparent hover:border-l-primary">
       <Link
         href={`/projects/${slug}`}
-        className="absolute inset-0 z-10"
+        className="absolute inset-0 z-10 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
         aria-label={`View project ${name}`}
       >
         <span className="sr-only">View project {name}</span>
       </Link>
 
-      <div className="md:pr-4 md:border-r md:block">
+      <div className="md:pr-4 md:border-r md:block md:flex-shrink-0">
         <Image
-          width={300}
-          height={150}
+          width={400}
+          height={200}
           alt={name}
-          className="object-cover w-full md:w-auto md:h-44"
+          className="object-cover w-full md:w-[280px] md:h-[140px] rounded-md"
           src={banner ? `/assets${banner}` : `/api/project-banner/${slug}`}
           placeholder="blur"
           blurDataURL={blurDataURL}
@@ -68,11 +69,29 @@ const ProjectCard: React.FC<Project> = ({
         />
       </div>
       <div className="md:w-3/4 pt-4 md:pt-0 md:pl-4 h-full">
-        <h3 className="text-lg font-semibold leading-tight">{name}</h3>
-        {company && name !== company && (
-          <p className="text-sm text-muted-foreground">{company}</p>
-        )}
-        <p className="text-xs text-muted-foreground mt-0.5">{period}</p>
+        <div className="flex items-start gap-3">
+          {logos && logos.length > 0 && (
+            <div className="shrink-0 mt-0.5 flex items-center gap-2">
+              {logos.map((src) => (
+                <Image
+                  key={src}
+                  src={src}
+                  alt=""
+                  width={44}
+                  height={44}
+                  className="w-11 h-11 rounded-md object-contain bg-white dark:bg-white/95 border border-border/60 p-1"
+                />
+              ))}
+            </div>
+          )}
+          <div className="min-w-0 flex-1">
+            <h2 className="text-lg font-semibold leading-tight">{name}</h2>
+            {company && name !== company && (
+              <p className="text-sm text-muted-foreground">{company}</p>
+            )}
+            <p className="text-xs text-muted-foreground mt-0.5">{period}</p>
+          </div>
+        </div>
         <p className="mt-2 text-sm line-clamp-2">{description}</p>
         <div className="flex flex-wrap gap-2 mt-3">
           {technologies.slice(0, 5).map((tech, techIndex) => (
@@ -81,7 +100,7 @@ const ProjectCard: React.FC<Project> = ({
             </Badge>
           ))}
           {technologies.length > 5 && (
-            <span className="text-xs text-link self-center">
+            <span className="text-xs text-muted-foreground self-center">
               +{technologies.length - 5} more
             </span>
           )}

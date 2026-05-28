@@ -71,7 +71,7 @@ const ExperienceCard: React.FC<Experience> = ({
   const extraTech = technologies.length - MAX_TECH_BADGES;
 
   return (
-    <Link href={`/experience/${slug}`} className="block group">
+    <Link href={`/experience/${slug}`} className="block group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
       <div className="bg-card text-card-foreground p-6 rounded-lg shadow-lg flex flex-col md:flex-row hover:shadow-xl hover:-translate-y-0.5 transition-[transform,box-shadow,border-color] duration-200 cursor-pointer border-l-2 border-l-transparent hover:border-l-primary">
         {/* Period column with timeline dot */}
         <div className="md:w-1/4 pr-4 border-r hidden md:block relative">
@@ -95,7 +95,7 @@ const ExperienceCard: React.FC<Experience> = ({
                   alt={`${company} logo`}
                   width={44}
                   height={44}
-                  className="w-11 h-11 rounded-md object-contain bg-background border border-border/60 p-1"
+                  className="w-11 h-11 rounded-md object-contain bg-white dark:bg-white/95 border border-border/60 p-1"
                 />
               </div>
             )}

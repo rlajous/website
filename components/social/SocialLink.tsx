@@ -47,7 +47,11 @@ export function SocialLink({
 }: SocialLinkProps) {
   return (
     <Link
-      className={cn("flex items-center space-x-2 text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200", className)}
+      className={cn(
+        "flex items-center text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200",
+        showText ? "space-x-2" : "min-h-11 min-w-11 justify-center",
+        className
+      )}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
