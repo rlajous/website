@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { hobby, opensource, earlyWork } from "@/services/projects";
 import type { Project } from "@/domains/Project";
+import { SITE_URL } from "@/constants/routes";
 
 /**
  * Dynamic project banner generator.
@@ -50,7 +51,7 @@ interface RouteContext {
  * @param context - Route context containing the dynamic `slug` param
  * @returns A 1200×600 PNG `ImageResponse`, or a 404 plain-text response for unknown slugs
  */
-export async function GET(req: Request, { params }: RouteContext) {
+export async function GET(_req: Request, { params }: RouteContext) {
   const { slug } = await params;
   const project = ALL_PROJECTS.find((p) => p.slug === slug);
 
@@ -60,8 +61,11 @@ export async function GET(req: Request, { params }: RouteContext) {
 
   const hue = hueFromSlug(slug);
   const typeLabel = TYPE_LABEL[project.type];
-  const origin = new URL(req.url).origin;
-  const logos = project.logos?.map((path) => `${origin}${path}`) ?? [];
+  const origin = new URL(SITE_URL).origin;
+  const logos =
+    project.logos
+      ?.filter((path) => path.startsWith("/"))
+      .map((path) => new URL(path, origin).toString()) ?? [];
 
   return new ImageResponse(
     (
