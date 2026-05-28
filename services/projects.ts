@@ -100,6 +100,7 @@ export const opensource: Project[] = [
       "OpenAPI 3.0",
     ],
     banner: "/webacy-sdk.png",
+    logos: ["/assets/companies/webacy.png"],
   },
   {
     id: 2,
@@ -124,6 +125,7 @@ export const opensource: Project[] = [
       "GraphQL",
     ],
     banner: "/sdk.png",
+    logos: ["/assets/companies/poap.png"],
   },
   {
     id: 3,
@@ -174,6 +176,7 @@ export const earlyWork: Project[] = [
       "Yet Another Matrix Compiler — a domain-specific language compiler for matrix operations built with Lex and Yacc.",
     technologies: ["C", "Lex", "Yacc"],
     banner: "",
+    logos: ["/assets/companies/itba.png"],
   },
   {
     id: 2,
@@ -188,6 +191,7 @@ export const earlyWork: Project[] = [
       "University Operating Systems coursework: a small OS written in C and Assembly with custom kernel and bootloader.",
     technologies: ["C", "Assembly", "Makefile"],
     banner: "",
+    logos: ["/assets/companies/itba.png"],
   },
   {
     id: 3,
@@ -202,6 +206,7 @@ export const earlyWork: Project[] = [
       "Companion Operating Systems coursework project — a simpler kernel exploration written in C and Assembly. BSD-3 licensed.",
     technologies: ["C", "Assembly"],
     banner: "",
+    logos: ["/assets/companies/itba.png"],
   },
   {
     id: 4,
@@ -216,6 +221,7 @@ export const earlyWork: Project[] = [
       "A POP3 mail server implementation written in C for a university networking course.",
     technologies: ["C", "Makefile"],
     banner: "",
+    logos: ["/assets/companies/itba.png"],
   },
   {
     id: 5,
@@ -232,6 +238,7 @@ export const earlyWork: Project[] = [
       "Built end-to-end for a job interview. Three repos make up the project: the frontend at https://github.com/rlajous/QuipuFront (deployed at quipu.navarrolajous.com), the Node backend at https://github.com/rlajous/Quipu-back, and an Angular rewrite spike at https://github.com/rlajous/Quipu-Angular-Rapid-Test (deployed at quipu-test.navarrolajous.com) used to compare frameworks.",
     technologies: ["JavaScript", "Vue", "Node.js", "Angular", "TypeScript"],
     banner: "",
+    logos: ["/assets/companies/quipu.png"],
   },
   {
     id: 6,

@@ -33,6 +33,7 @@ const ProjectCard: React.FC<Project> = ({
   description,
   technologies,
   banner,
+  logos,
 }) => {
   let githubUsername = "";
   let githubRepository = "";
@@ -68,11 +69,29 @@ const ProjectCard: React.FC<Project> = ({
         />
       </div>
       <div className="md:w-3/4 pt-4 md:pt-0 md:pl-4 h-full">
-        <h3 className="text-lg font-semibold leading-tight">{name}</h3>
-        {company && name !== company && (
-          <p className="text-sm text-muted-foreground">{company}</p>
-        )}
-        <p className="text-xs text-muted-foreground mt-0.5">{period}</p>
+        <div className="flex items-start gap-3">
+          {logos && logos.length > 0 && (
+            <div className="shrink-0 mt-0.5 flex items-center gap-2">
+              {logos.map((src) => (
+                <Image
+                  key={src}
+                  src={src}
+                  alt=""
+                  width={44}
+                  height={44}
+                  className="w-11 h-11 rounded-md object-contain bg-background border border-border/60 p-1"
+                />
+              ))}
+            </div>
+          )}
+          <div className="min-w-0 flex-1">
+            <h3 className="text-lg font-semibold leading-tight">{name}</h3>
+            {company && name !== company && (
+              <p className="text-sm text-muted-foreground">{company}</p>
+            )}
+            <p className="text-xs text-muted-foreground mt-0.5">{period}</p>
+          </div>
+        </div>
         <p className="mt-2 text-sm line-clamp-2">{description}</p>
         <div className="flex flex-wrap gap-2 mt-3">
           {technologies.slice(0, 5).map((tech, techIndex) => (
