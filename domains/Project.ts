@@ -33,6 +33,8 @@ export interface Project {
   technologies: string[];
   /** Path to the banner image relative to the `/public` directory. */
   banner: string;
+  /** Optional logos rendered inside the dynamically generated banner (when {@link banner} is empty). */
+  logos?: string[];
   /** Paths to screenshot images shown in the detail page gallery. */
   screenshots?: string[];
   /** Key features highlighted on the detail page. */

@@ -53,12 +53,12 @@ const ProjectCard: React.FC<Project> = ({
         <span className="sr-only">View project {name}</span>
       </Link>
 
-      <div className="md:pr-4 md:border-r md:block">
+      <div className="md:pr-4 md:border-r md:block md:flex-shrink-0">
         <Image
-          width={300}
-          height={150}
+          width={400}
+          height={200}
           alt={name}
-          className="object-cover w-full md:w-auto md:h-44"
+          className="object-cover w-full md:w-[280px] md:h-[140px] rounded-md"
           src={banner ? `/assets${banner}` : `/api/project-banner/${slug}`}
           placeholder="blur"
           blurDataURL={blurDataURL}

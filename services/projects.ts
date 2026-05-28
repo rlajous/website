@@ -251,14 +251,18 @@ export const earlyWork: Project[] = [
     id: 7,
     slug: "master-thesis",
     name: "Master's Thesis",
-    company: "ITBA",
+    company: "ITBA × Technikum Wien",
     type: "early-work",
     github: "https://github.com/rlajous/MasterThesis",
     website: "",
     period: "2023",
     description:
-      "My ITBA master's thesis manuscript, written in LaTeX.",
+      "Joint master's thesis between ITBA (Buenos Aires) and Fachhochschule Technikum Wien (Vienna), written in LaTeX.",
     technologies: ["LaTeX"],
     banner: "",
+    logos: [
+      "/assets/companies/itba.png",
+      "/assets/companies/technikum-wien.png",
+    ],
   },
 ];
