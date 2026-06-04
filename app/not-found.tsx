@@ -35,7 +35,7 @@ export default function NotFound() {
 
       <Button asChild className="mt-8">
         <Link href={ROUTES.HOME} aria-label="Go to the home page">
-          <Home className="mr-2 h-4 w-4" />
+          <Home className="mr-2 h-4 w-4" aria-hidden="true" focusable="false" />
           Back home
         </Link>
       </Button>
