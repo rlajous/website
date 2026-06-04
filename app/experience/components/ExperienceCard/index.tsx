@@ -95,6 +95,7 @@ const ExperienceCard: React.FC<Experience> = ({
                   alt={`${company} logo`}
                   width={44}
                   height={44}
+                  sizes="44px"
                   className="w-11 h-11 rounded-md object-contain bg-white dark:bg-white/95 border border-border/60 p-1"
                 />
               </div>

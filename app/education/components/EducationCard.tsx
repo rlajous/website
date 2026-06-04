@@ -39,6 +39,7 @@ const EducationCard: React.FC<Education> = ({
                   alt={`${institution} logo`}
                   width={44}
                   height={44}
+                  sizes="44px"
                   className="w-11 h-11 rounded-md object-contain bg-white dark:bg-white/95 border border-border/60 p-1"
                 />
               </div>
