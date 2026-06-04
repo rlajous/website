@@ -61,6 +61,7 @@ const ProjectCard: React.FC<Project> = ({
           alt={name}
           className="object-cover w-full md:w-[280px] md:h-[140px] rounded-md"
           src={banner ? `/assets${banner}` : `/api/project-banner/${slug}`}
+          sizes="(max-width: 768px) 100vw, 280px"
           placeholder="blur"
           blurDataURL={blurDataURL}
           style={{
@@ -76,9 +77,10 @@ const ProjectCard: React.FC<Project> = ({
                 <Image
                   key={src}
                   src={src}
-                  alt=""
+                  alt={company ? `${company} logo` : ""}
                   width={44}
                   height={44}
+                  sizes="44px"
                   className="w-11 h-11 rounded-md object-contain bg-white dark:bg-white/95 border border-border/60 p-1"
                 />
               ))}

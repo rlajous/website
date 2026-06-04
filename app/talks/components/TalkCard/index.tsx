@@ -38,6 +38,7 @@ const TalkCard: React.FC<Talk> = ({
               alt={title}
               className="object-cover w-full rounded-lg"
               src={`/assets${banner}`}
+              sizes="(max-width: 768px) 100vw, 800px"
               placeholder="blur"
               blurDataURL={blurDataURL}
               style={{
