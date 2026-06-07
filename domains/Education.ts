@@ -2,7 +2,7 @@
  * Represents an academic credential or degree.
  *
  * Used by the education service and rendered on `/education` (list) and `/education/[slug]` (detail).
- * Also consumed by {@link SchemaOrgScripts} to generate EducationalOccupationalCredential structured data.
+ * Also consumed by the schema builders in `lib/schema.ts` to generate EducationalOccupationalCredential structured data.
  */
 export interface Education {
   /** Unique numeric identifier used for ordering. */

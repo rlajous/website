@@ -174,6 +174,21 @@ export const earlyWork: Project[] = [
     period: "2018",
     description:
       "Yet Another Matrix Compiler — a domain-specific language compiler for matrix operations built with Lex and Yacc.",
+    detailedDescription:
+      "A domain-specific language and compiler for matrix mathematics, built for ITBA's compiler-design course. Lexical analysis with Lex/Flex and grammar parsing with Yacc/Bison feed an abstract syntax tree that is translated into compilable C, letting users express matrix operations in a concise high-level syntax instead of hand-writing the equivalent C.",
+    features: [
+      "A custom grammar for declaring matrices and expressing matrix arithmetic (addition, multiplication, transposition, and scalar operations).",
+      "A lexer built with Lex/Flex and a parser built with Yacc/Bison that produce an abstract syntax tree.",
+      "A code-generation stage that emits compilable C from the source language.",
+      "Compile-time semantic checks for matrix dimension compatibility.",
+    ],
+    challenges: [
+      "Designing an unambiguous grammar that Yacc could parse cleanly without shift/reduce conflicts.",
+      "Validating matrix dimension compatibility at compile time rather than letting it fail at runtime.",
+      "Managing memory for intermediate matrix results in the generated C code.",
+    ],
+    impact:
+      "Exercised the full compiler pipeline end to end — lexing, parsing, AST construction, semantic analysis, and code generation — in a single project.",
     technologies: ["C", "Lex", "Yacc"],
     banner: "",
     logos: ["/assets/companies/itba.png"],
@@ -189,6 +204,21 @@ export const earlyWork: Project[] = [
     period: "2019",
     description:
       "University Operating Systems coursework: a small OS written in C and Assembly with custom kernel and bootloader.",
+    detailedDescription:
+      "An x86 operating system written from scratch in C and Assembly for ITBA's Operating Systems course. It covers the full path from power-on to a running kernel: a custom bootloader hands control to a kernel that sets up the low-level plumbing the rest of the system depends on.",
+    features: [
+      "A custom bootloader that prepares the CPU and loads the kernel into memory.",
+      "A kernel entry point bridging the Assembly boot stage and the C runtime.",
+      "Low-level interrupt and device handling to reach an interactive state.",
+      "A Makefile-driven build that produces a bootable disk image.",
+    ],
+    challenges: [
+      "Transitioning the CPU from 16-bit real mode into 32-bit protected mode during boot.",
+      "Coordinating the handoff between Assembly and C across the boot boundary.",
+      "Debugging at the hardware level with no operating system underneath to lean on.",
+    ],
+    impact:
+      "Built first-hand intuition for the hardware/software boundary — from the bootloader up to a running kernel.",
     technologies: ["C", "Assembly", "Makefile"],
     banner: "",
     logos: ["/assets/companies/itba.png"],
@@ -204,6 +234,19 @@ export const earlyWork: Project[] = [
     period: "2019",
     description:
       "Companion Operating Systems coursework project — a simpler kernel exploration written in C and Assembly. BSD-3 licensed.",
+    detailedDescription:
+      "A companion project to Complex-OS for ITBA's Operating Systems track. It pares an operating system down to its essential boot-to-kernel path in C and Assembly, kept deliberately small and readable as a learning reference. Released openly under the BSD-3-Clause license.",
+    features: [
+      "A minimal bootloader and kernel entry point written in Assembly and C.",
+      "A focused, readable codebase intended as a reference for OS fundamentals.",
+      "A Makefile build that produces a bootable image.",
+    ],
+    challenges: [
+      "Reducing an operating system to its essential boot and kernel-entry steps without breaking correctness.",
+      "Coordinating Assembly and C across the boot handoff in as little code as possible.",
+    ],
+    impact:
+      "Distilled OS coursework into a minimal, reusable reference and shared it openly under BSD-3.",
     technologies: ["C", "Assembly"],
     banner: "",
     logos: ["/assets/companies/itba.png"],
@@ -219,6 +262,20 @@ export const earlyWork: Project[] = [
     period: "2019",
     description:
       "A POP3 mail server implementation written in C for a university networking course.",
+    detailedDescription:
+      "A POP3 mail-retrieval server implemented in C for ITBA's networking course. It follows the POP3 protocol's command/response state machine over TCP sockets, serving mail clients exactly as the specification prescribes.",
+    features: [
+      "Implements core POP3 commands (USER, PASS, STAT, LIST, RETR, DELE, QUIT) across the AUTHORIZATION, TRANSACTION, and UPDATE states.",
+      "Handles multiple simultaneous client connections over TCP sockets.",
+      "Follows the POP3 RFC so standard mail clients can connect unmodified.",
+    ],
+    challenges: [
+      "Implementing the POP3 state machine so commands are only accepted in valid states.",
+      "Multiplexing many concurrent client connections without blocking.",
+      "Parsing and answering the line-based protocol exactly as clients expect.",
+    ],
+    impact:
+      "Deepened a practical understanding of application-layer protocols and socket programming in C.",
     technologies: ["C", "Makefile"],
     banner: "",
     logos: ["/assets/companies/itba.png"],
@@ -251,6 +308,19 @@ export const earlyWork: Project[] = [
     period: "2021",
     description:
       "University project exploring container orchestration with Kubernetes and Docker.",
+    detailedDescription:
+      "A hands-on lab exploring container orchestration: containerizing a small application with Docker and deploying it to a Kubernetes cluster to study how scheduling, scaling, and service networking work in practice.",
+    features: [
+      "Dockerized application images paired with Kubernetes manifests (deployments and services).",
+      "Experiments with horizontal scaling and replica/self-healing behavior.",
+      "Service discovery and networking between pods inside the cluster.",
+    ],
+    challenges: [
+      "Understanding the Kubernetes object model — pods, deployments, services — and how the pieces compose.",
+      "Configuring container networking and exposing services correctly.",
+    ],
+    impact:
+      "Built practical grounding in the container-orchestration concepts that underpin modern cloud deployments.",
     technologies: ["Kubernetes", "Docker", "JavaScript"],
     banner: "",
     logos: ["/assets/companies/itba.png"],
@@ -266,6 +336,19 @@ export const earlyWork: Project[] = [
     period: "2023",
     description:
       "Joint master's thesis between ITBA (Buenos Aires) and Fachhochschule Technikum Wien (Vienna), written in LaTeX.",
+    detailedDescription:
+      "A joint master's thesis completed across two institutions — Instituto Tecnológico de Buenos Aires and Fachhochschule Technikum Wien — as part of a dual-degree program spanning Argentina and Austria. Written and typeset entirely in LaTeX and version-controlled on GitHub.",
+    features: [
+      "Dual-institution master's research bridging programs in Buenos Aires and Vienna.",
+      "Fully typeset in LaTeX with a reproducible document build.",
+      "Version-controlled on GitHub for a transparent revision history.",
+    ],
+    challenges: [
+      "Meeting the academic requirements and formatting standards of two universities at once.",
+      "Maintaining a large, structured LaTeX document with consistent citations and cross-references.",
+    ],
+    impact:
+      "Capstone of a dual master's program spanning Argentina and Austria.",
     technologies: ["LaTeX"],
     banner: "",
     logos: [

@@ -208,7 +208,7 @@ website/
 │   │   ├── EmailLink.tsx
 │   │   └── WebsiteLink.tsx
 │   ├── ModeToggle/              # Dark/light theme toggle
-│   ├── SchemaOrgScripts/        # SEO structured data
+│   ├── JsonLd.tsx               # Server-rendered Schema.org JSON-LD renderer
 │   ├── ui/                      # shadcn/ui components
 │   └── theme-provider.tsx       # Theme provider wrapper
 │
@@ -222,7 +222,8 @@ website/
 │   └── Talk.ts                  # Talk interface
 │
 ├── lib/                         # Library utilities
-│   └── utils.ts                 # Tailwind utility (cn function + blurDataURL)
+│   ├── utils.ts                 # Tailwind utility (cn function + blurDataURL)
+│   └── schema.ts                # Schema.org JSON-LD builders
 │
 ├── public/                      # Static assets
 │   ├── assets/                  # Images, banners, etc.

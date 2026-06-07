@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/Footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
-import SchemaOrgScripts from "@/components/SchemaOrgScripts";
+import JsonLd from "@/components/JsonLd";
+import { getWebsiteSchema } from "@/lib/schema";
 import { SITE_URL } from "@/constants/routes";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -89,7 +90,7 @@ export default function RootLayout({
         ></script>
       </head>
       <body className={inter.className}>
-        <SchemaOrgScripts />
+        <JsonLd data={getWebsiteSchema()} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

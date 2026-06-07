@@ -7,6 +7,8 @@ import { MapPin, Calendar, ArrowLeft, Briefcase, ExternalLink } from "lucide-rea
 import Link from "next/link";
 import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
+import JsonLd from "@/components/JsonLd";
+import { getExperienceSchema } from "@/lib/schema";
 
 /** Props for the experience detail page, receiving the slug from the dynamic route. */
 interface ExperiencePageProps {
@@ -102,6 +104,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
 
   return (
     <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4 animate-fade-in-up">
+      <JsonLd data={getExperienceSchema(experience)} />
       {/* Back Button */}
       <div className="w-full max-w-4xl">
         <Link
