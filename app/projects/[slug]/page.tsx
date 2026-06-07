@@ -8,6 +8,8 @@ import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
 import Link from "next/link";
 import { SITE_URL } from "@/constants/routes";
+import JsonLd from "@/components/JsonLd";
+import { getProjectSchema } from "@/lib/schema";
 
 /** Props for the project detail page, receiving the slug from the dynamic route. */
 interface ProjectPageProps {
@@ -117,6 +119,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4 animate-fade-in-up">
+      <JsonLd data={getProjectSchema(project)} />
       {/* Back Button */}
       <div className="w-full max-w-4xl">
         <Link

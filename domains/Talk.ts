@@ -2,7 +2,7 @@
  * Represents a conference talk or speaking engagement.
  *
  * Used by the talks service and rendered on `/talks` (list) and `/talks/[slug]` (detail).
- * Also consumed by {@link SchemaOrgScripts} to generate Event and VideoObject structured data.
+ * Also consumed by the schema builders in `lib/schema.ts` to generate Event and VideoObject structured data.
  */
 export interface Talk {
   /** Unique numeric identifier used for ordering. */

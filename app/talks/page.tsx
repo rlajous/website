@@ -2,6 +2,8 @@ import React from "react";
 import { Metadata } from "next";
 import { talks } from "@/services/talks";
 import TalkCard from "./components/TalkCard";
+import JsonLd from "@/components/JsonLd";
+import { getTalkSchemas } from "@/lib/schema";
 
 /** Metadata for the talks page (title, description, canonical URL). */
 export const metadata: Metadata = {
@@ -20,6 +22,7 @@ export const metadata: Metadata = {
 export default function TalksPage() {
   return (
     <div className="flex flex-col items-center gap-6 py-8 md:py-12">
+      <JsonLd data={getTalkSchemas(talks)} />
       <div className="text-center animate-fade-in-up">
         <h1 className="text-3xl font-bold">Talks & Speaking</h1>
         <div className="mx-auto mt-3 h-0.5 w-12 rounded-full bg-primary" />

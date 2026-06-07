@@ -14,6 +14,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
+import JsonLd from "@/components/JsonLd";
+import { getEducationSchema } from "@/lib/schema";
 
 /** Props for the education detail page, receiving the slug from the dynamic route. */
 interface EducationPageProps {
@@ -102,6 +104,7 @@ export default async function EducationPage({ params }: EducationPageProps) {
 
   return (
     <div className="flex flex-col items-center gap-8 py-8 md:py-12 px-4 animate-fade-in-up">
+      <JsonLd data={getEducationSchema(edu)} />
       {/* Back Button */}
       <div className="w-full max-w-4xl">
         <Link

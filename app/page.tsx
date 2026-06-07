@@ -4,6 +4,8 @@ import { LinkedInLink } from "@/components/social/LinkedInLink";
 import { TwitterLink } from "@/components/social/TwitterLink";
 import { Button } from "@/components/ui/button";
 import { Download, Newspaper } from "lucide-react";
+import JsonLd from "@/components/JsonLd";
+import { getPersonSchema } from "@/lib/schema";
 
 /** Canonical URL metadata for the home page. */
 export const metadata: Metadata = {
@@ -24,6 +26,8 @@ export default function Home() {
   const substackUrl = process.env.NEXT_PUBLIC_SUBSTACK_PUBLICATION_URL;
 
   return (
+    <>
+      <JsonLd data={getPersonSchema()} />
     <section
       className="flex-1 flex flex-col items-center justify-center px-4 pt-10 md:pt-20 pb-8 md:pb-12 text-center md:px-8 lg:px-16 xl:px-32"
       aria-label="Introduction"
@@ -85,5 +89,6 @@ export default function Home() {
         </div>
       </div>
     </section>
+    </>
   );
 }

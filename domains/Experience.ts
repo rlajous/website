@@ -14,7 +14,7 @@ export interface ExperienceRole {
  *
  * Used by the experience service and rendered on `/experience` (list) and `/experience/[slug]` (detail).
  * The {@link type} field determines which tab displays the entry on the list page.
- * Also consumed by {@link SchemaOrgScripts} to generate JobPosting structured data.
+ * Also consumed by the schema builders in `lib/schema.ts` to generate JobPosting structured data.
  */
 export interface Experience {
   /** Unique numeric identifier used for ordering. */
