@@ -84,6 +84,49 @@ export function getEducationProfileSchema() {
   };
 }
 
+/** Maps lowercase English month names to their 1-based number. */
+const MONTHS: Record<string, number> = {
+  january: 1,
+  february: 2,
+  march: 3,
+  april: 4,
+  may: 5,
+  june: 6,
+  july: 7,
+  august: 8,
+  september: 9,
+  october: 10,
+  november: 11,
+  december: 12,
+};
+
+/**
+ * Converts the start of a human-readable period string into an ISO 8601 date
+ * (YYYY-MM-DD), as required by Schema.org date fields such as `datePosted`.
+ *
+ * Takes the first segment before any dash separator (em-dash, en-dash, or
+ * hyphen), then parses a "Month YYYY" or "YYYY" token. The day (and month, when
+ * absent) default to the start of the period — e.g. "April 2025 — Present" →
+ * "2025-04-01", "2019-2020" → "2019-01-01".
+ *
+ * @param period - Human-readable date range (e.g. "April 2025 — Present", "2021").
+ * @returns An ISO 8601 date string, or undefined if no year can be parsed.
+ */
+function periodToISODate(period: string): string | undefined {
+  const start = period.split(/[—–-]/)[0].trim();
+  const yearMatch = start.match(/\d{4}/);
+  if (!yearMatch) {
+    return undefined;
+  }
+  const year = yearMatch[0];
+  const monthToken = start.toLowerCase().match(/[a-z]+/)?.[0];
+  const month = monthToken
+    ? Object.entries(MONTHS).find(([name]) => name.startsWith(monthToken))?.[1]
+    : undefined;
+  const mm = String(month ?? 1).padStart(2, "0");
+  return `${year}-${mm}-01`;
+}
+
 /**
  * Builds a JobPosting schema for an experience detail page.
  *
@@ -97,6 +140,8 @@ export function getExperienceSchema(experience: Experience) {
       ? "CONTRACTOR"
       : "SELF_EMPLOYED";
 
+  const datePosted = periodToISODate(experience.period);
+
   return {
     "@context": "https://schema.org",
     "@type": "JobPosting",
@@ -107,7 +152,7 @@ export function getExperienceSchema(experience: Experience) {
       name: experience.company,
       ...(experience.companyUrl && { url: experience.companyUrl }),
     },
-    datePosted: experience.period.split("—")[0].trim(),
+    ...(datePosted && { datePosted }),
     employmentType,
     jobLocation: {
       "@type": "Place",
