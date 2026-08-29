@@ -134,11 +134,23 @@ export const opensource: Project[] = [
     company: "Open Source",
     type: "opensource",
     github: "https://github.com/rlajous/claude-code-commands",
-    website: "",
+    website: "https://agents.navarrolajous.com",
     period: "2026",
     description:
-      "Production-ready slash commands, subagents, and hooks for Claude Code. Automates Git workflows, PR creation, releases, and QA testing. Zero-config and framework-agnostic.",
-    technologies: ["Claude Code", "Shell", "Markdown", "Git"],
+      "Git Workflow — a host-neutral framework of slash commands, subagents, and hooks that lets AI agents ship software through a structured, inspectable delivery loop while keeping decisions human. Zero-config and framework-agnostic.",
+    detailedDescription:
+      "Git Workflow (v2.7.0) is a host-neutral framework for shipping software with AI agents while keeping decisions human — \"Ship software with agents. Keep decisions human.\" It gives agents one operating model that turns an issue into a release through a five-step delivery loop: start (issue → branch), commit (a verifiable history of diffs), finish (branch → pull request with context and validation), review (evidence weighed into an actionable decision), and release (validate, document what shipped, and sync branches). Every step leaves inspectable proof instead of hiding work inside an agent session, and review surfaces decision briefs — business rules, diagrams, and evidence a human can act on — rather than ceremony. The same 21 shared skills run across Claude Code and Codex, distributed via plugin marketplaces.",
+    features: [
+      "Five-step delivery loop — start → commit → finish → review → release — that turns issues into releases.",
+      "Visible delivery loop: every step leaves inspectable proof (branches, commits, PRs, review decisions, releases) instead of hidden agent sessions.",
+      "Evidence, not ceremony: decision briefs with business rules, diagrams, and proof, plus local notifications a human can act on.",
+      "21 shared skills across four categories — shape the change, prove the change, deliver the change, and stay in the loop.",
+      "Host-neutral: one operating model spanning Claude Code (terminal) and Codex, distributed via plugin marketplaces.",
+      "Zero-config, framework-agnostic, and MIT licensed.",
+    ],
+    impact:
+      "Released as v2.7.0 and published to plugin marketplaces, with ~30 GitHub stars and a public landing page at agents.navarrolajous.com.",
+    technologies: ["Claude Code", "Codex", "Shell", "Markdown", "Git", "GitHub Actions"],
     banner: "",
   },
   {
