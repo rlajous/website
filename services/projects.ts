@@ -151,21 +151,7 @@ export const opensource: Project[] = [
     impact:
       "Released as v2.7.0 and published to plugin marketplaces, with ~30 GitHub stars and a public landing page at agents.navarrolajous.com.",
     technologies: ["Claude Code", "Codex", "Shell", "Markdown", "Git", "GitHub Actions"],
-    banner: "",
-  },
-  {
-    id: 4,
-    slug: "ai-agent-tooling",
-    name: "ai-agent-tooling",
-    company: "Open Source",
-    type: "opensource",
-    github: "https://github.com/rlajous/ai-agent-tooling",
-    website: "",
-    period: "2026",
-    description:
-      "Earlier iteration of my Claude Code slash-command toolkit, superseded by claude-code-commands (https://github.com/rlajous/claude-code-commands). Kept public for posterity.",
-    technologies: ["Claude Code", "Shell", "Markdown"],
-    banner: "",
+    banner: "/agents.navarrolajous.com.png",
   },
 ];
 
@@ -306,7 +292,7 @@ export const earlyWork: Project[] = [
     detailedDescription:
       "Built end-to-end for a job interview. Three repos make up the project: the frontend at https://github.com/rlajous/QuipuFront (deployed at quipu.navarrolajous.com), the Node backend at https://github.com/rlajous/Quipu-back, and an Angular rewrite spike at https://github.com/rlajous/Quipu-Angular-Rapid-Test (deployed at quipu-test.navarrolajous.com) used to compare frameworks.",
     technologies: ["JavaScript", "Vue", "Node.js", "Angular", "TypeScript"],
-    banner: "",
+    banner: "/quipu.navarrolajous.com.png",
     logos: ["/assets/companies/quipu.png"],
   },
   {
