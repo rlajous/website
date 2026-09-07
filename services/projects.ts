@@ -72,6 +72,37 @@ export const hobby: Project[] = [
     technologies: ["LaTeX"],
     banner: "",
   },
+  {
+    id: 5,
+    slug: "potrero",
+    name: "Potrero",
+    company: "Personal Project",
+    type: "hobby",
+    github: "",
+    website: "https://playpotrero.com",
+    period: "2026",
+    description:
+      "1v1 arcade soccer-tennis you play in the browser. Move, jump and kick the ball over the net on a neighborhood 'potrero' court — the modern, 3D reimagining of Funnis, now with online multiplayer.",
+    detailedDescription:
+      "Potrero is a browser-based 3D soccer-tennis game set in a barrio 'potrero' court. Rendered in real time with Three.js and React Three Fiber, it runs entirely in the browser with no install — playable on desktop with keyboard controls and on mobile with on-screen touch controls. Online 1v1 multiplayer is powered by Supabase. It's the spiritual successor to Funnis, an earlier Unity take on soccer-tennis.",
+    features: [
+      "Real-time 3D court rendered in the browser with Three.js and React Three Fiber.",
+      "1v1 arcade soccer-tennis: move, jump and volley the ball over the net.",
+      "Online multiplayer backed by Supabase.",
+      "Cross-device play — keyboard on desktop, touch controls on mobile.",
+      "Zero install: runs directly at playpotrero.com.",
+    ],
+    technologies: [
+      "React",
+      "TypeScript",
+      "Three.js",
+      "React Three Fiber",
+      "Vite",
+      "Tailwind CSS",
+      "Supabase",
+    ],
+    banner: "/playpotrero.com.png",
+  },
 ];
 
 /**
