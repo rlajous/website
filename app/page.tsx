@@ -30,21 +30,21 @@ export default function Home() {
     <>
       <JsonLd data={getPersonSchema()} />
     <section
-      className="flex-1 flex flex-col items-center justify-center px-4 pt-10 md:pt-20 pb-8 md:pb-12 text-center md:px-8 lg:px-16 xl:px-32"
+      className="flex-1 flex flex-col items-center justify-start md:justify-center px-4 pt-6 md:pt-20 pb-8 md:pb-12 text-center md:px-8 lg:px-16 xl:px-32"
       aria-label="Introduction"
     >
-      <div className="max-w-3xl w-full py-4 md:py-12 lg:py-16">
+      <div className="max-w-3xl w-full py-2 md:py-12 lg:py-16">
         <h1 className="text-xl md:text-2xl lg:text-3xl font-bold animate-fade-in-up">
           Hi, I&apos;m{" "}
           <span className="block md:inline">Rodrigo Manuel Navarro Lajous</span>{" "}
           👋
         </h1>
-        <p className="mt-4 text-5xl lg:text-6xl font-black leading-tight animate-fade-in-up [animation-delay:100ms]">
+        <p className="mt-3 md:mt-4 text-4xl md:text-5xl lg:text-6xl font-black leading-tight animate-fade-in-up [animation-delay:100ms]">
           <span className="sr-only">I am a </span>
           Product Engineer &<br className="md:hidden" />
           <span className="md:ml-2">Builder</span>
         </p>
-        <p className="mt-6 text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed text-muted-foreground animate-fade-in-up [animation-delay:200ms]">
+        <p className="mt-4 md:mt-6 text-base md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed text-muted-foreground animate-fade-in-up [animation-delay:200ms]">
           I build developer platforms, SDKs, APIs, and multi-chain
           infrastructure — across Engineering, Product, and Customers. I like
           owning ambiguous problems end-to-end and turning complex technical
@@ -52,7 +52,7 @@ export default function Home() {
         </p>
 
         <div
-          className="flex items-center justify-center space-x-8 md:space-x-12 mt-10 md:mt-8 animate-fade-in-up [animation-delay:300ms]"
+          className="flex items-center justify-center space-x-8 md:space-x-12 mt-6 md:mt-8 animate-fade-in-up [animation-delay:300ms]"
           aria-label="Social media links"
         >
           <GitHubLink
@@ -72,7 +72,9 @@ export default function Home() {
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8 animate-fade-in-up [animation-delay:400ms]">
+        <AskLlms />
+
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 md:mt-8 animate-fade-in-up [animation-delay:500ms]">
           <Button asChild size="lg" className="w-full sm:w-auto" variant="default">
             <a href="/resume.pdf" download data-umami-event="Download Resume" data-umami-event-type="PDF" aria-label="Download my resume in PDF format">
               <Download className="mr-2 h-4 w-4" />
@@ -88,8 +90,6 @@ export default function Home() {
             </Button>
           )}
         </div>
-
-        <AskLlms />
       </div>
     </section>
     </>

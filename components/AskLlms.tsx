@@ -16,7 +16,7 @@ const AskLlms: React.FC = () => {
 
   return (
     <section
-      className="mt-10 animate-fade-in-up [animation-delay:500ms]"
+      className="mt-6 md:mt-8 animate-fade-in-up [animation-delay:400ms]"
       aria-labelledby="ask-llms-heading"
     >
       <h2
@@ -27,9 +27,9 @@ const AskLlms: React.FC = () => {
         Ask AI about Rodrigo
       </h2>
 
-      <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
+      <div className="flex flex-wrap items-center justify-center gap-2 mt-3">
         {links.map(({ id, name, url }) => (
-          <Button key={id} asChild size="sm" variant="outline">
+          <Button key={id} asChild size="sm" variant="outline" className="px-2.5 sm:px-3">
             <a
               href={url}
               target="_blank"
@@ -38,14 +38,14 @@ const AskLlms: React.FC = () => {
               data-umami-event-provider={name}
               aria-label={`Ask ${name} about Rodrigo Manuel Navarro Lajous`}
             >
-              <LlmBrandIcon id={id} className="mr-2 h-4 w-4" />
-              {name}
+              <LlmBrandIcon id={id} className="h-4 w-4 sm:mr-2" />
+              <span className="sr-only sm:not-sr-only">{name}</span>
             </a>
           </Button>
         ))}
       </div>
 
-      <p className="mt-3 text-xs text-muted-foreground">
+      <p className="mt-2 hidden sm:block text-xs text-muted-foreground">
         Opens your own chat with a prompt that reads my{" "}
         <a
           href="/llms-full.txt"
