@@ -5,6 +5,7 @@ import { TwitterLink } from "@/components/social/TwitterLink";
 import { Button } from "@/components/ui/button";
 import { Download, Newspaper } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
+import AskLlms from "@/components/AskLlms";
 import { getPersonSchema } from "@/lib/schema";
 
 /** Canonical URL metadata for the home page. */
@@ -87,6 +88,8 @@ export default function Home() {
             </Button>
           )}
         </div>
+
+        <AskLlms />
       </div>
     </section>
     </>
