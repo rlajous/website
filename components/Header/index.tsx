@@ -56,34 +56,49 @@ const Header: React.FC = () => {
 
       <header
         className={cn(
-          "sticky top-0 z-10 flex h-20 w-full shrink-0 items-center px-4 md:px-6 transition-all duration-200",
+          "sticky top-0 z-10 relative flex h-20 w-full shrink-0 items-center px-4 md:px-6 transition-all duration-200",
           scrolled && "bg-background/80 backdrop-blur-md shadow-sm"
         )}
       >
-        <MobileNavigation />
-        <Link
-          className="mr-6 flex"
-          href={ROUTES.HOME}
-          data-umami-event="Logo Click"
-        >
-          <Logo className="h-9 lg:h-11" />
-        </Link>
-        <div className="flex ml-auto items-center gap-4">
-          <NavigationMenu className="hidden lg:flex">
-            <NavigationMenuList className="flex space-x-4">
-              {HEADER_ROUTES.map(({ path, name, isExternal }) => (
-                <NavigationMenuLink key={path} asChild>
-                  <NavigationLink
-                    key={name}
-                    href={path}
-                    name={name}
-                    isExternal={isExternal}
-                  />
-                </NavigationMenuLink>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-          <ModeToggle />
+        <div className="flex w-full items-center lg:hidden">
+          <MobileNavigation />
+          <Link
+            className="absolute left-1/2 flex -translate-x-1/2"
+            href={ROUTES.HOME}
+            data-umami-event="Logo Click"
+          >
+            <Logo className="h-9" />
+          </Link>
+          <div className="ml-auto">
+            <ModeToggle />
+          </div>
+        </div>
+
+        <div className="hidden w-full items-center lg:flex">
+          <Link
+            className="mr-6 flex"
+            href={ROUTES.HOME}
+            data-umami-event="Logo Click"
+          >
+            <Logo className="h-11" />
+          </Link>
+          <div className="ml-auto flex items-center gap-4">
+            <NavigationMenu>
+              <NavigationMenuList className="flex space-x-4">
+                {HEADER_ROUTES.map(({ path, name, isExternal }) => (
+                  <NavigationMenuLink key={path} asChild>
+                    <NavigationLink
+                      key={name}
+                      href={path}
+                      name={name}
+                      isExternal={isExternal}
+                    />
+                  </NavigationMenuLink>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+            <ModeToggle />
+          </div>
         </div>
       </header>
     </>
