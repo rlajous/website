@@ -1,6 +1,7 @@
 import React from "react";
 import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LlmBrandIcon } from "@/components/icons/LlmBrands";
 import { buildAskLlmLinks } from "@/lib/askLlms";
 
 /**
@@ -37,6 +38,7 @@ const AskLlms: React.FC = () => {
               data-umami-event-provider={name}
               aria-label={`Ask ${name} about Rodrigo Manuel Navarro Lajous`}
             >
+              <LlmBrandIcon id={id} className="mr-2 h-4 w-4" />
               {name}
             </a>
           </Button>
