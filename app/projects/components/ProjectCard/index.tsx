@@ -21,7 +21,10 @@ import { Package, BookOpen } from "lucide-react";
  *
  * Client component — uses interactive link behavior.
  */
-const ProjectCard: React.FC<Project> = ({
+const ProjectCard: React.FC<Project & {
+  /** Loads the banner eagerly with high fetch priority; set only on the first visible card (the LCP image). */
+  priority?: boolean;
+}> = ({
   slug,
   name,
   company,
@@ -34,6 +37,7 @@ const ProjectCard: React.FC<Project> = ({
   technologies,
   banner,
   logos,
+  priority = false,
 }) => {
   let githubUsername = "";
   let githubRepository = "";
@@ -62,6 +66,8 @@ const ProjectCard: React.FC<Project> = ({
           className="object-cover w-full md:w-[280px] md:h-[140px] rounded-md"
           src={banner ? `/assets${banner}` : `/api/project-banner/${slug}`}
           sizes="(max-width: 768px) 100vw, 280px"
+          loading={priority ? "eager" : "lazy"}
+          fetchPriority={priority ? "high" : "auto"}
           placeholder="blur"
           blurDataURL={blurDataURL}
           style={{
