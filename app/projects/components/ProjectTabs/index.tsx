@@ -9,6 +9,8 @@ import ProjectCard from "../ProjectCard";
 interface ProjectsTabProps {
   /** Array of projects to display; sorted by year (newest first) internally. */
   projects: Project[];
+  /** Whether this tab is visible on first render, so its first banner loads eagerly as the LCP image. */
+  priority?: boolean;
 }
 
 /**
@@ -18,7 +20,7 @@ interface ProjectsTabProps {
  *
  * Client component — rendered inside a tab panel.
  */
-const ProjectsTab: React.FC<ProjectsTabProps> = ({ projects }) => {
+const ProjectsTab: React.FC<ProjectsTabProps> = ({ projects, priority = false }) => {
   return (
     <div className="flex flex-col items-center gap-6">
       {[...projects]
@@ -32,7 +34,7 @@ const ProjectsTab: React.FC<ProjectsTabProps> = ({ projects }) => {
             className="w-full animate-fade-in-up"
             style={{ animationDelay: `${index * 80}ms` }}
           >
-            <ProjectCard {...project} />
+            <ProjectCard {...project} priority={priority && index === 0} />
           </div>
         ))}
     </div>
