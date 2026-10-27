@@ -13,6 +13,7 @@ import {
   FULL_NAME,
   GITHUB_URL,
   HEADLINE,
+  JOB_TITLE,
   HEADLINE_SUMMARY,
   LINKEDIN_URL,
   X_URL,
@@ -72,7 +73,7 @@ export function getPersonSchema() {
     alternateName: [DISPLAY_NAME, "Lajous", "Rodrigo Navarro Lajous", "Rodrigo Navarro", "ro_lajous"],
     url: SITE_URL,
     image: `${SITE_URL}/opengraph-image`,
-    jobTitle: HEADLINE,
+    jobTitle: JOB_TITLE,
     worksFor: { "@type": "Organization", name: "Webacy", url: "https://webacy.com" },
     alumniOf: [
       {
@@ -95,7 +96,7 @@ export function getPersonSchema() {
       "Technical program management",
     ],
     sameAs: SAME_AS,
-    description: `${HEADLINE} ${HEADLINE_SUMMARY}`,
+    description: `${HEADLINE}, ${HEADLINE_SUMMARY}`,
   };
 }
 

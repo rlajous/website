@@ -18,6 +18,9 @@ export const DISPLAY_NAME = "Rodrigo Lajous";
  */
 export const HEADLINE = "Product Engineer at Webacy";
 
+/** Bare job title for Schema.org `jobTitle`; the employer lives in `worksFor`. */
+export const JOB_TITLE = "Product Engineer";
+
 /**
  * One-line summary of what the headline role covers, appended to the headline in
  * descriptions and summaries.
