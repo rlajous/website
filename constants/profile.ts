@@ -7,8 +7,9 @@ export const FULL_NAME = "Rodrigo Manuel Navarro Lajous";
  * Public headline shared by the site title, OpenGraph image, Person schema and llms.txt.
  * Kept in one place so the positioning doesn't drift between surfaces (and off-site
  * profiles on X, LinkedIn and GitHub, which are updated by hand to match).
+ * Matches the official Webacy title (Product Engineer since April 2026).
  */
-export const HEADLINE = "Staff Engineer & TPM at Webacy";
+export const HEADLINE = "Product Engineer at Webacy";
 
 /**
  * One-line summary of what the headline role covers, appended to the headline in
