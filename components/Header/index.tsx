@@ -65,6 +65,7 @@ const Header: React.FC = () => {
           <Link
             className="absolute left-1/2 flex -translate-x-1/2"
             href={ROUTES.HOME}
+            aria-label="Home"
             data-umami-event="Logo Click"
           >
             <Logo className="h-9" />
@@ -78,6 +79,7 @@ const Header: React.FC = () => {
           <Link
             className="mr-6 flex"
             href={ROUTES.HOME}
+            aria-label="Home"
             data-umami-event="Logo Click"
           >
             <Logo className="h-11" />
