@@ -9,6 +9,7 @@ import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
 import JsonLd from "@/components/JsonLd";
 import { getExperienceSchema } from "@/lib/schema";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Props for the experience detail page, receiving the slug from the dynamic route. */
 interface ExperiencePageProps {
@@ -49,7 +50,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${experience.position} at ${experience.company} | Rodrigo Manuel Navarro Lajous`,
+    title: `${experience.position} at ${experience.company} | ${DISPLAY_NAME}`,
     description: experience.responsibilities.join(" "),
     keywords: [
       ...experience.technologies,

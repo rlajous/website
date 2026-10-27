@@ -4,12 +4,13 @@ import { education } from "@/services/education";
 import EducationCard from "./components/EducationCard";
 import JsonLd from "@/components/JsonLd";
 import { getEducationProfileSchema } from "@/lib/schema";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Metadata for the education page (title, description, canonical URL). */
 export const metadata: Metadata = {
-  title: "Education | Rodrigo Manuel Navarro Lajous",
+  title: `Education | ${DISPLAY_NAME}`,
   description:
-    "Academic background of Rodrigo Manuel Navarro Lajous, including his master's in software engineering and bachelor's degree.",
+    `Academic background of ${DISPLAY_NAME}, including his master's in software engineering and bachelor's degree.`,
   alternates: {
     canonical: "/education",
   },

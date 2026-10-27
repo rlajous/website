@@ -1,10 +1,11 @@
 import { Metadata } from "next";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Metadata for the projects section (title, description, canonical URL). */
 export const metadata: Metadata = {
-  title: "Projects | Rodrigo Manuel Navarro Lajous",
+  title: `Projects | ${DISPLAY_NAME}`,
   description:
-    "Portfolio of hobby and open source projects by Rodrigo Manuel Navarro Lajous.",
+    `Portfolio of hobby and open source projects by ${DISPLAY_NAME}.`,
   alternates: {
     canonical: "/projects",
   },

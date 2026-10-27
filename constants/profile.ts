@@ -4,6 +4,13 @@
 export const FULL_NAME = "Rodrigo Manuel Navarro Lajous";
 
 /**
+ * Name shown in titles, headings and previews. "Lajous" is the identifier Rodrigo
+ * wants to be known by ("Rodrigo Navarro" is a very common name and hard to rank
+ * for); the full name stays in Schema.org `name` and formal contexts.
+ */
+export const DISPLAY_NAME = "Rodrigo Lajous";
+
+/**
  * Public headline shared by the site title, OpenGraph image, Person schema and llms.txt.
  * Kept in one place so the positioning doesn't drift between surfaces (and off-site
  * profiles on X, LinkedIn and GitHub, which are updated by hand to match).

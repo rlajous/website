@@ -8,15 +8,15 @@ import { Toaster } from "@/components/ui/toaster";
 import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema } from "@/lib/schema";
 import { SITE_URL } from "@/constants/routes";
-import { FULL_NAME, HEADLINE, HEADLINE_SUMMARY } from "@/constants/profile";
+import { DISPLAY_NAME, FULL_NAME, HEADLINE, HEADLINE_SUMMARY } from "@/constants/profile";
 
 const inter = Inter({ subsets: ["latin"] });
 
-/** Default page title: full name plus the shared headline. */
-const DEFAULT_TITLE = `${FULL_NAME} | ${HEADLINE}`;
+/** Default page title: display name plus the shared headline. */
+const DEFAULT_TITLE = `${DISPLAY_NAME} | ${HEADLINE}`;
 
 /** Default description used for the page, OpenGraph and Twitter cards. */
-const DEFAULT_DESCRIPTION = `${FULL_NAME}, ${HEADLINE}, ${HEADLINE_SUMMARY}`;
+const DEFAULT_DESCRIPTION = `${DISPLAY_NAME} (${FULL_NAME}), ${HEADLINE}, ${HEADLINE_SUMMARY}`;
 
 /**
  * Site-wide default metadata including OpenGraph, Twitter cards, SEO keywords, and canonical base URL.
@@ -25,8 +25,9 @@ export const metadata: Metadata = {
   title: DEFAULT_TITLE,
   description: DEFAULT_DESCRIPTION,
   keywords: [
-    "Rodrigo Manuel Navarro Lajous",
     "Rodrigo Lajous",
+    "Lajous",
+    "Rodrigo Manuel Navarro Lajous",
     "Rodrigo Navarro",
     "Product Engineer",
     "Product Management",
@@ -40,10 +41,10 @@ export const metadata: Metadata = {
     "Next.js",
   ],
   authors: [
-    { name: "Rodrigo Manuel Navarro Lajous", url: SITE_URL },
+    { name: DISPLAY_NAME, url: SITE_URL },
   ],
-  creator: "Rodrigo Manuel Navarro Lajous",
-  publisher: "Rodrigo Manuel Navarro Lajous",
+  creator: DISPLAY_NAME,
+  publisher: DISPLAY_NAME,
   robots: {
     index: true,
     follow: true,
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
     url: SITE_URL,
-    siteName: "Rodrigo Manuel Navarro Lajous",
+    siteName: DISPLAY_NAME,
     locale: "en_US",
     type: "website",
     // images intentionally omitted — populated automatically by app/opengraph-image.tsx (1200×630).

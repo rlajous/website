@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { FULL_NAME, HEADLINE } from "@/constants/profile";
+import { DISPLAY_NAME, HEADLINE } from "@/constants/profile";
 
 /**
  * Site-wide OpenGraph image — rendered at build time by Next.js at `/opengraph-image`.
@@ -10,7 +10,7 @@ import { FULL_NAME, HEADLINE } from "@/constants/profile";
  * @see https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image
  */
 /** Alt text for the generated image. */
-export const alt = `${FULL_NAME} — ${HEADLINE}`;
+export const alt = `${DISPLAY_NAME} — ${HEADLINE}`;
 /** Image dimensions recommended for OpenGraph and Twitter cards. */
 export const size = { width: 1200, height: 630 };
 /** MIME type of the generated image. */
@@ -46,7 +46,7 @@ export default async function OpenGraphImage() {
             marginBottom: 24,
           }}
         >
-          Rodrigo Manuel Navarro Lajous
+          {DISPLAY_NAME}
         </div>
         <div
           style={{

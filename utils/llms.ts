@@ -1,5 +1,5 @@
 import { SITE_URL } from "@/constants/routes";
-import { HEADLINE } from "@/constants/profile";
+import { DISPLAY_NAME, FULL_NAME, HEADLINE } from "@/constants/profile";
 import { jobs, startups, freelance, skills } from "@/services/experience";
 import { education } from "@/services/education";
 import { hobby, opensource, earlyWork } from "@/services/projects";
@@ -20,7 +20,7 @@ export function generateLlmsTxt(): string {
   const lines: string[] = [];
 
   // Header
-  lines.push("# Rodrigo Manuel Navarro Lajous");
+  lines.push(`# ${DISPLAY_NAME} (${FULL_NAME})`);
   lines.push("");
   lines.push(
     `> ${HEADLINE}, building developer platforms, SDKs, and multi-chain infrastructure. I work across Engineering, Product, and Customers — from roadmap and RFCs to delivery, partner programs, docs, and DevRel.`
@@ -110,7 +110,7 @@ export function generateLlmsFullTxt(): string {
   const lines: string[] = [];
 
   // Header
-  lines.push("# Rodrigo Manuel Navarro Lajous");
+  lines.push(`# ${DISPLAY_NAME} (${FULL_NAME})`);
   lines.push("");
   lines.push(
     `> ${HEADLINE}, building developer platforms, SDKs, and multi-chain infrastructure. I work across Engineering, Product, and Customers — from roadmap and RFCs to delivery, partner programs, docs, and DevRel.`

@@ -9,6 +9,7 @@
  */
 import { SITE_URL } from "@/constants/routes";
 import {
+  DISPLAY_NAME,
   FULL_NAME,
   GITHUB_URL,
   HEADLINE,
@@ -52,7 +53,7 @@ export function getWebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: PERSON_NAME,
+    name: DISPLAY_NAME,
     url: SITE_URL,
     description: `Personal website and portfolio of ${PERSON_NAME}, ${HEADLINE}`,
     author: PERSON_REF,
@@ -68,7 +69,7 @@ export function getPersonSchema() {
     "@type": "Person",
     "@id": PERSON_ID,
     name: PERSON_NAME,
-    alternateName: ["Rodrigo Navarro Lajous", "Rodrigo Lajous", "ro_lajous"],
+    alternateName: [DISPLAY_NAME, "Lajous", "Rodrigo Navarro Lajous", "Rodrigo Navarro", "ro_lajous"],
     url: SITE_URL,
     image: `${SITE_URL}/opengraph-image`,
     jobTitle: HEADLINE,

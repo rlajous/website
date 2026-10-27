@@ -4,12 +4,13 @@ import { talks } from "@/services/talks";
 import TalkCard from "./components/TalkCard";
 import JsonLd from "@/components/JsonLd";
 import { getTalkSchemas } from "@/lib/schema";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Metadata for the talks page (title, description, canonical URL). */
 export const metadata: Metadata = {
-  title: "Talks | Rodrigo Manuel Navarro Lajous",
+  title: `Talks | ${DISPLAY_NAME}`,
   description:
-    "Speaking engagements and conference talks by Rodrigo Manuel Navarro Lajous, including presentations at Devconnect and other blockchain conferences.",
+    `Speaking engagements and conference talks by ${DISPLAY_NAME}, including presentations at Devconnect and other blockchain conferences.`,
   alternates: {
     canonical: "/talks",
   },

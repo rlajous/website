@@ -7,6 +7,7 @@ import { Download, Newspaper } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
 import AskLlms from "@/components/AskLlms";
 import { getPersonSchema } from "@/lib/schema";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Canonical URL metadata for the home page. */
 export const metadata: Metadata = {
@@ -36,7 +37,7 @@ export default function Home() {
       <div className="max-w-3xl w-full py-2 md:py-12 lg:py-16">
         <h1 className="text-xl md:text-2xl lg:text-3xl font-bold animate-fade-in-up">
           Hi, I&apos;m{" "}
-          <span className="block md:inline">Rodrigo Manuel Navarro Lajous</span>{" "}
+          <span className="block md:inline">{DISPLAY_NAME}</span>{" "}
           👋
         </h1>
         <p className="mt-3 md:mt-4 text-4xl md:text-5xl lg:text-6xl font-black leading-tight animate-fade-in-up [animation-delay:100ms]">

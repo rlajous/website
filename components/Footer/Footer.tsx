@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ROUTES } from "@/constants/routes";
-import { GITHUB_URL, LINKEDIN_URL, X_URL } from "@/constants/profile";
+import { DISPLAY_NAME, GITHUB_URL, LINKEDIN_URL, X_URL } from "@/constants/profile";
 import { Github, Linkedin, Twitter } from "lucide-react";
 
 const NAV_LINKS = [
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
 
           {/* Copyright */}
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Rodrigo Manuel Navarro Lajous. All
+            &copy; {new Date().getFullYear()} {DISPLAY_NAME}. All
             rights reserved.
           </p>
         </div>

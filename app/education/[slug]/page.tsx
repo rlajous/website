@@ -16,6 +16,7 @@ import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
 import JsonLd from "@/components/JsonLd";
 import { getEducationSchema } from "@/lib/schema";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Props for the education detail page, receiving the slug from the dynamic route. */
 interface EducationPageProps {
@@ -54,7 +55,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${edu.degree} at ${edu.institution} | Rodrigo Manuel Navarro Lajous`,
+    title: `${edu.degree} at ${edu.institution} | ${DISPLAY_NAME}`,
     description: edu.specialization
       ? `${edu.degree} with specialization in ${edu.specialization}`
       : edu.degree,

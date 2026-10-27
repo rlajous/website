@@ -3,6 +3,7 @@ import { Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LlmBrandIcon } from "@/components/icons/LlmBrands";
 import { buildAskLlmLinks } from "@/lib/askLlms";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /**
  * Row of buttons that open the visitor's own LLM chat with a prompt prefilled
@@ -36,7 +37,7 @@ const AskLlms: React.FC = () => {
               rel="noopener noreferrer"
               data-umami-event="Ask LLM"
               data-umami-event-provider={name}
-              aria-label={`Ask ${name} about Rodrigo Manuel Navarro Lajous`}
+              aria-label={`Ask ${name} about ${DISPLAY_NAME}`}
             >
               <LlmBrandIcon id={id} className="h-4 w-4 sm:mr-2" />
               <span className="sr-only sm:not-sr-only">{name}</span>

@@ -10,6 +10,7 @@ import Link from "next/link";
 import YouTubeEmbed from "../components/YouTubeEmbed";
 import PDFViewer from "../components/PDFViewer";
 import { SITE_URL } from "@/constants/routes";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Props for the talk detail page, receiving the slug from the dynamic route. */
 interface TalkPageProps {
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }: TalkPageProps): Promise<Metad
   }
 
   return {
-    title: `${talk.title} | Rodrigo Manuel Navarro Lajous`,
+    title: `${talk.title} | ${DISPLAY_NAME}`,
     description: talk.description,
     keywords: [...talk.topics, talk.event, "conference talk", "presentation"],
     alternates: {
