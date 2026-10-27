@@ -10,7 +10,7 @@ const CONTENT_SECURITY_POLICY = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://cloud.umami.is https://api-gateway.umami.dev https://vercel.live wss://ws-us3.pusher.com",
+  "connect-src 'self' https://cloud.umami.is https://gateway.umami.is https://api-gateway.umami.dev https://vercel.live wss://ws-us3.pusher.com",
   "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://vercel.live",
   "frame-ancestors 'self'",
   "object-src 'none'",
