@@ -77,7 +77,7 @@ export default function Home() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 md:mt-8 animate-fade-in-up [animation-delay:500ms]">
           <Button asChild size="lg" className="w-full sm:w-auto" variant="default">
-            <a href="/resume.pdf" download data-umami-event="Download Resume" data-umami-event-type="PDF" aria-label="Download my resume in PDF format">
+            <a href="/resume.pdf" download data-umami-event="Download Resume" data-umami-event-type="PDF" aria-label="Download Resume (PDF)">
               <Download className="mr-2 h-4 w-4" />
               Download Resume
             </a>
