@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { ROUTES } from "@/constants/routes";
+import { GITHUB_URL, LINKEDIN_URL, X_URL } from "@/constants/profile";
 import { Github, Linkedin, Twitter } from "lucide-react";
 
 const NAV_LINKS = [
@@ -22,7 +23,7 @@ const Footer: React.FC = () => {
           {/* Social Links */}
           <div className="flex items-center gap-5">
             <a
-              href="https://github.com/rlajous"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200"
@@ -31,7 +32,7 @@ const Footer: React.FC = () => {
               <Github className="h-5 w-5" />
             </a>
             <a
-              href="https://linkedin.com/in/rodrigo-lajous"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200"
@@ -40,11 +41,11 @@ const Footer: React.FC = () => {
               <Linkedin className="h-5 w-5" />
             </a>
             <a
-              href="https://twitter.com/ro_lajous"
+              href={X_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200"
-              aria-label="Twitter"
+              aria-label="X (Twitter)"
             >
               <Twitter className="h-5 w-5" />
             </a>

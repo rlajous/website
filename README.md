@@ -8,7 +8,9 @@
 
 > A modern, SEO-optimized portfolio website showcasing professional experience, projects, speaking engagements, and education.
 
-**🌐 Live Site:** [navarrolajous.com](https://navarrolajous.com) | [www.navarrolajous.com](https://www.navarrolajous.com)
+**🌐 Live Site:** [navarrolajous.com](https://navarrolajous.com)
+
+The apex `https://navarrolajous.com` is the primary host: canonical URLs, `og:url`, the sitemap and JSON-LD all use it (via `SITE_URL`), and `www` should redirect to it in the Vercel domain settings.
 
 ---
 
@@ -826,7 +828,7 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 - 🌐 Website: [navarrolajous.com](https://navarrolajous.com)
 - 💼 LinkedIn: [linkedin.com/in/rodrigo-lajous](https://www.linkedin.com/in/rodrigo-lajous)
 - 🐙 GitHub: [@rlajous](https://github.com/rlajous)
-- 🐦 Twitter: [@ro_lajous](https://twitter.com/ro_lajous)
+- 🐦 X: [@ro_lajous](https://x.com/ro_lajous)
 
 ---
 

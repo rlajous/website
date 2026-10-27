@@ -11,6 +11,7 @@
  */
 
 import { SITE_URL } from "@/constants/routes";
+import { HEADLINE } from "@/constants/profile";
 
 /** Identifier for each supported LLM chat provider. */
 export type LlmProviderId =
@@ -62,7 +63,7 @@ export function buildAskLlmPrompt(): string {
   return [
     `Please fetch and read ${SITE_URL}/llms-full.txt (and ${SITE_URL}/llms.txt if you need the short index).`,
     "",
-    "They describe Rodrigo Manuel Navarro Lajous, a Product Engineer who builds developer platforms, SDKs, APIs, and multi-chain infrastructure.",
+    `They describe Rodrigo Manuel Navarro Lajous, ${HEADLINE}, who builds developer platforms, SDKs, APIs, and multi-chain infrastructure.`,
     "",
     "Using only what those files say, give me a short summary of his background, then answer my follow-up questions about his experience, projects, talks, education, and skills.",
     "",

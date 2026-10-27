@@ -8,22 +8,31 @@ import { Toaster } from "@/components/ui/toaster";
 import JsonLd from "@/components/JsonLd";
 import { getWebsiteSchema } from "@/lib/schema";
 import { SITE_URL } from "@/constants/routes";
+import { FULL_NAME, HEADLINE, HEADLINE_SUMMARY } from "@/constants/profile";
 
 const inter = Inter({ subsets: ["latin"] });
+
+/** Default page title: full name plus the shared headline. */
+const DEFAULT_TITLE = `${FULL_NAME} | ${HEADLINE}`;
+
+/** Default description used for the page, OpenGraph and Twitter cards. */
+const DEFAULT_DESCRIPTION = `${FULL_NAME}, ${HEADLINE}, ${HEADLINE_SUMMARY}`;
 
 /**
  * Site-wide default metadata including OpenGraph, Twitter cards, SEO keywords, and canonical base URL.
  */
 export const metadata: Metadata = {
-  title: "Rodrigo Manuel Navarro Lajous | Product Engineer",
-  description:
-    "Rodrigo Manuel Navarro Lajous is a Product Engineer building developer platforms, SDKs, and multi-chain infrastructure across Engineering, Product, and Customers.",
+  title: DEFAULT_TITLE,
+  description: DEFAULT_DESCRIPTION,
   keywords: [
     "Rodrigo Manuel Navarro Lajous",
     "Rodrigo Lajous",
     "Rodrigo Navarro",
-    "Product Engineer",
     "Staff Engineer",
+    "Technical Program Manager",
+    "TPM",
+    "Webacy",
+    "Product Engineer",
     "Developer Platform",
     "SDK",
     "DevRel",
@@ -42,9 +51,8 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(SITE_URL),
   openGraph: {
-    title: "Rodrigo Manuel Navarro Lajous | Product Engineer",
-    description:
-      "Product Engineer building developer platforms, SDKs, and multi-chain infrastructure across Engineering, Product, and Customers.",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     url: SITE_URL,
     siteName: "Rodrigo Manuel Navarro Lajous",
     locale: "en_US",
@@ -53,9 +61,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rodrigo Manuel Navarro Lajous | Product Engineer",
-    description:
-      "Product Engineer building developer platforms, SDKs, and multi-chain infrastructure across Engineering, Product, and Customers.",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     creator: "@ro_lajous",
     site: "@ro_lajous",
     // images intentionally omitted — populated automatically by app/twitter-image.tsx (re-exports opengraph-image).
