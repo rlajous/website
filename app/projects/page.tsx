@@ -41,6 +41,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
         <p className="text-base mt-3 text-muted-foreground">Open source work, side projects, and early experiments.</p>
       </div>
       <UrlTabs
+        key={currentTab}
         className="w-full max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
         listClassName="mb-6"
         defaultTab={currentTab}

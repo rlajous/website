@@ -41,6 +41,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
         <p className="text-base mt-3 text-muted-foreground">A timeline of my professional journey</p>
       </div>
       <UrlTabs
+        key={currentTab}
         className="max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
         defaultTab={currentTab}
         tabs={TABS.map(({ key, title, experiences }) => ({
