@@ -10,6 +10,7 @@ import Link from "next/link";
 import { SITE_URL } from "@/constants/routes";
 import JsonLd from "@/components/JsonLd";
 import { getProjectSchema } from "@/lib/schema";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Props for the project detail page, receiving the slug from the dynamic route. */
 interface ProjectPageProps {
@@ -50,7 +51,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${project.name} - ${project.company} | Rodrigo Manuel Navarro Lajous`,
+    title: `${project.name} - ${project.company} | ${DISPLAY_NAME}`,
     description: project.detailedDescription || project.description,
     keywords: [...project.technologies, project.name, project.company, project.type],
     alternates: {

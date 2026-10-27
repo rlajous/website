@@ -8,20 +8,44 @@
  * `JSON.stringify` in the renderer — no manual string escaping is needed here.
  */
 import { SITE_URL } from "@/constants/routes";
+import {
+  DISPLAY_NAME,
+  FULL_NAME,
+  GITHUB_URL,
+  HEADLINE,
+  JOB_TITLE,
+  HEADLINE_SUMMARY,
+  LINKEDIN_URL,
+  X_URL,
+} from "@/constants/profile";
 import { Experience } from "@/domains/Experience";
 import { Education } from "@/domains/Education";
 import { Project } from "@/domains/Project";
 import { Talk } from "@/domains/Talk";
 
 /** Full name used as the canonical author/person across all schemas. */
-const PERSON_NAME = "Rodrigo Manuel Navarro Lajous";
+const PERSON_NAME = FULL_NAME;
 
-/** Social profile URLs used for the Person `sameAs` field. */
+/**
+ * Stable node id of the Person entity. Other schemas reference it so crawlers
+ * merge every page's author/performer into one entity instead of many.
+ */
+const PERSON_ID = `${SITE_URL}/#person`;
+
+/** Profile URLs used for the Person `sameAs` field (Knowledge Panel and LLM grounding). */
 const SAME_AS = [
-  "https://github.com/rlajous",
-  "https://www.linkedin.com/in/rodrigo-lajous",
-  "https://twitter.com/ro_lajous",
+  X_URL,
+  LINKEDIN_URL,
+  GITHUB_URL,
+  "https://lajous.substack.com",
+  "https://agents.navarrolajous.com",
 ];
+
+/**
+ * Reference to the Person entity for author/performer fields. The name is kept
+ * next to the `@id` because pages other than home don't render the full Person node.
+ */
+const PERSON_REF = { "@type": "Person", "@id": PERSON_ID, name: PERSON_NAME };
 
 /**
  * Builds the sitewide WebSite schema rendered on every route via the root layout.
@@ -30,14 +54,10 @@ export function getWebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: PERSON_NAME,
+    name: DISPLAY_NAME,
     url: SITE_URL,
-    description: `Personal website and portfolio of ${PERSON_NAME}, Product Engineer`,
-    author: {
-      "@type": "Person",
-      name: PERSON_NAME,
-      url: SITE_URL,
-    },
+    description: `Personal website and portfolio of ${PERSON_NAME}, ${HEADLINE}`,
+    author: PERSON_REF,
   };
 }
 
@@ -48,12 +68,35 @@ export function getPersonSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": PERSON_ID,
     name: PERSON_NAME,
+    alternateName: [DISPLAY_NAME, "Lajous", "Rodrigo Navarro Lajous", "Rodrigo Navarro", "ro_lajous"],
     url: SITE_URL,
-    jobTitle: "Product Engineer",
+    image: `${SITE_URL}/opengraph-image`,
+    jobTitle: JOB_TITLE,
+    worksFor: { "@type": "Organization", name: "Webacy", url: "https://webacy.com" },
+    alumniOf: [
+      {
+        "@type": "CollegeOrUniversity",
+        name: "Fachhochschule Technikum Wien",
+        sameAs: "https://www.technikum-wien.at/",
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        name: "Instituto Tecnológico de Buenos Aires (ITBA)",
+        sameAs: "https://www.itba.edu.ar/",
+      },
+    ],
+    knowsAbout: [
+      "Web3 security",
+      "Developer platforms",
+      "SDKs",
+      "Next.js",
+      "TypeScript",
+      "Technical program management",
+    ],
     sameAs: SAME_AS,
-    description:
-      "Product Engineer building developer platforms, SDKs, and multi-chain infrastructure.",
+    description: `${HEADLINE}, ${HEADLINE_SUMMARY}`,
   };
 }
 
@@ -67,6 +110,7 @@ export function getEducationProfileSchema() {
     name: `Education of ${PERSON_NAME}`,
     mainEntity: {
       "@type": "Person",
+      "@id": PERSON_ID,
       name: PERSON_NAME,
       alumniOf: [
         {
@@ -198,10 +242,7 @@ export function getProjectSchema(project: Project) {
     "@type": "CreativeWork",
     name: project.name,
     description: project.detailedDescription || project.description,
-    author: {
-      "@type": "Person",
-      name: PERSON_NAME,
-    },
+    author: PERSON_REF,
     dateCreated: project.period,
     keywords: project.technologies.join(", "),
     ...(project.github && { codeRepository: project.github }),
@@ -299,15 +340,7 @@ export function getTalkSchemas(allTalks: Talk[]): Record<string, unknown>[] {
           name: talk.event,
           ...(talk.organizerUrl && { url: talk.organizerUrl }),
         },
-        performer: {
-          "@type": "Person",
-          name: PERSON_NAME,
-          jobTitle: "Product Engineer",
-          worksFor: {
-            "@type": "Organization",
-            name: "Webacy",
-          },
-        },
+        performer: PERSON_REF,
       };
 
       if (talk.banner) {

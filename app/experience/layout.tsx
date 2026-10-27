@@ -1,10 +1,11 @@
 import { Metadata } from "next";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Metadata for the experience section (title, description, canonical URL). */
 export const metadata: Metadata = {
-  title: "Experience | Rodrigo Manuel Navarro Lajous",
+  title: `Experience | ${DISPLAY_NAME}`,
   description:
-    "Professional journey of Rodrigo Manuel Navarro Lajous, showcasing his work experience and roles.",
+    `Professional journey of ${DISPLAY_NAME}, showcasing his work experience and roles.`,
   alternates: {
     canonical: "/experience",
   },

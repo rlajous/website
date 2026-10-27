@@ -2,12 +2,13 @@ import { Metadata } from "next";
 import { ContactForm } from "./components/ContactForm";
 import { LinkedInLink } from "@/components/social/LinkedInLink";
 import { GitHubLink } from "@/components/social/GitHubLink";
+import { DISPLAY_NAME } from "@/constants/profile";
 
 /** Metadata for the contact page (title, description, canonical URL). */
 export const metadata: Metadata = {
-  title: "Contact | Rodrigo Manuel Navarro Lajous",
+  title: `Contact | ${DISPLAY_NAME}`,
   description:
-    "Get in touch with Rodrigo Manuel Navarro Lajous for project inquiries and collaborations.",
+    `Get in touch with ${DISPLAY_NAME} for project inquiries and collaborations.`,
   alternates: {
     canonical: "/contact",
   },
