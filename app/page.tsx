@@ -46,10 +46,10 @@ export default function Home() {
           <span className="md:ml-2">at Webacy</span>
         </p>
         <p className="mt-4 md:mt-6 text-base md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed text-muted-foreground animate-fade-in-up [animation-delay:200ms]">
-          I build developer platforms, SDKs, APIs, and multi-chain
-          infrastructure — across Engineering, Product, and Customers. I like
-          owning ambiguous problems end-to-end and turning complex technical
-          systems into products people can actually use.
+          I turn complex technical systems into products people actually use.
+          At Webacy I own product across developer platforms, SDKs, and APIs,
+          from the first customer conversation to what ships. I like ambiguous
+          problems and taking them end to end.
         </p>
 
         <div
