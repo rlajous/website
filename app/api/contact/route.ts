@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { render } from "@react-email/render";
 import { z } from "zod";
 import ContactEmailTemplate from "@/components/emails-templates/ContactEmailTemplate";
 import getEnv from "@/utils/getEnv";
@@ -50,7 +51,10 @@ export async function POST(request: Request): Promise<NextResponse> {
       from: `${name} <onboarding@resend.dev>`,
       to: [recipientEmail],
       subject: `New Contact Form Submission by ${name}, ${email}`,
-      react: ContactEmailTemplate({ name, email, message }),
+      // Rendered here instead of passing `react`: Resend loads @react-email/render through a
+      // dynamic import that doesn't resolve inside the Next server bundle ("Failed to render
+      // React component").
+      html: await render(ContactEmailTemplate({ name, email, message })),
     });
 
     if (error) {
