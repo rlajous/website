@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ROUTES } from "@/constants/routes";
 import { DISPLAY_NAME, GITHUB_URL, LINKEDIN_URL, X_URL } from "@/constants/profile";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { GithubIcon, LinkedinIcon, XIcon } from "@/components/icons/SocialBrands";
 
 const NAV_LINKS = [
   { href: ROUTES.EXPERIENCE, label: "Experience" },
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
               className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200"
               aria-label="GitHub"
             >
-              <Github className="h-5 w-5" />
+              <GithubIcon className="h-5 w-5" />
             </a>
             <a
               href={LINKEDIN_URL}
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
               className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200"
               aria-label="LinkedIn"
             >
-              <Linkedin className="h-5 w-5" />
+              <LinkedinIcon className="h-5 w-5" />
             </a>
             <a
               href={X_URL}
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
               className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200"
               aria-label="X (Twitter)"
             >
-              <Twitter className="h-5 w-5" />
+              <XIcon className="h-5 w-5" />
             </a>
           </div>
 

@@ -3,7 +3,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hobby, opensource, earlyWork } from "@/services/projects";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ArrowLeft, ExternalLink, Github, Package, BookOpen } from "lucide-react";
+import { Calendar, ArrowLeft, ExternalLink, Package, BookOpen } from "lucide-react";
+import { GithubIcon } from "@/components/icons/SocialBrands";
 import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
 import Link from "next/link";
@@ -182,7 +183,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               data-umami-event="Project GitHub Click"
               data-umami-event-project={project.name}
             >
-              <Github className="w-5 h-5" />
+              <GithubIcon className="w-5 h-5" />
               <span>View on GitHub</span>
             </a>
           )}

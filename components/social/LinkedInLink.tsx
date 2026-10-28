@@ -1,7 +1,7 @@
 "use client";
 
-import { LinkedinIcon } from "lucide-react";
 import { SocialLink } from "./SocialLink";
+import { LinkedinIcon } from "@/components/icons/SocialBrands";
 import { IconSize, iconSizeClasses } from "@/utils/iconUtils";
 
 /**
@@ -19,7 +19,7 @@ interface LinkedInLinkProps {
 /**
  * LinkedIn profile link component.
  * Constructs the URL from the profile slug (e.g. `linkedin.com/in/{profile}`).
- * Composes {@link SocialLink} with the lucide-react LinkedIn icon.
+ * Composes {@link SocialLink} with the {@link LinkedinIcon} brand mark.
  */
 export function LinkedInLink({
   profile,
