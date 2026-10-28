@@ -9,6 +9,8 @@ import ExperienceCard from "../ExperienceCard";
 interface ExperiencesTabProps {
   /** Array of experience entries to display as cards. */
   experiences: Experience[];
+  /** True for the tab shown on first load, so its first card's logo is prioritized as the LCP image. */
+  priority?: boolean;
 }
 
 /**
@@ -17,7 +19,7 @@ interface ExperiencesTabProps {
  *
  * Client component — rendered inside a tab panel.
  */
-const ExperiencesTab: React.FC<ExperiencesTabProps> = ({ experiences }) => (
+const ExperiencesTab: React.FC<ExperiencesTabProps> = ({ experiences, priority = false }) => (
   <div className="relative mt-6">
     {/* Shared career timeline rail — aligns with the right edge of each card's period column */}
     <div
@@ -32,7 +34,7 @@ const ExperiencesTab: React.FC<ExperiencesTabProps> = ({ experiences }) => (
           className="w-full animate-fade-in-up"
           style={{ animationDelay: `${index * 80}ms` }}
         >
-          <ExperienceCard {...experience} />
+          <ExperienceCard {...experience} priority={priority && index === 0} />
         </div>
       ))}
     </div>

@@ -47,7 +47,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ t
         tabs={TABS.map(({ key, title, experiences }) => ({
           key,
           title,
-          panel: <ExperiencesTab experiences={experiences} />,
+          panel: <ExperiencesTab experiences={experiences} priority={key === currentTab} />,
         }))}
       />
     </div>
