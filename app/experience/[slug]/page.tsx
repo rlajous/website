@@ -195,7 +195,7 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
           <ol className="mt-2 mb-6 ml-1 border-l-2 border-border space-y-5 pl-6">
             {experience.roles.map((r, i) => (
               <li key={i} className="relative">
-                <span className="absolute -left-[10px] top-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-background" />
+                <span className="absolute -left-[33px] top-1.5 w-4 h-4 rounded-full bg-primary ring-4 ring-background" />
                 <h2 className="text-xl md:text-2xl font-semibold leading-tight">
                   {r.position}
                 </h2>
