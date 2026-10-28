@@ -47,6 +47,12 @@ function computeTenure(period: string): string | null {
   return `${months} ${mLabel}`;
 }
 
+/** Props for {@link ExperienceCard}: the experience entry plus rendering hints. */
+interface ExperienceCardProps extends Experience {
+  /** Loads the company logo eagerly with high fetch priority; set only on the first visible card (the LCP image). */
+  priority?: boolean;
+}
+
 /**
  * Card displaying an experience summary (position, company, period, responsibilities, tech badges).
  *
@@ -55,12 +61,6 @@ function computeTenure(period: string): string | null {
  *
  * Client component — uses interactive link behavior.
  */
-/** Props for {@link ExperienceCard}: the experience entry plus rendering hints. */
-interface ExperienceCardProps extends Experience {
-  /** Loads the company logo eagerly with high fetch priority; set only on the first visible card (the LCP image). */
-  priority?: boolean;
-}
-
 const ExperienceCard: React.FC<ExperienceCardProps> = ({
   priority = false,
   slug,
