@@ -34,6 +34,10 @@ const SECURITY_HEADERS = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // /projects and /experience read searchParams, so they render per request and Next
+  // would stream their metadata after </head> for most user agents (Googlebot included).
+  // Matching every UA keeps title, description and canonical inside <head>.
+  htmlLimitedBots: /.*/,
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },

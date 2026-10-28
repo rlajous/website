@@ -55,7 +55,14 @@ function computeTenure(period: string): string | null {
  *
  * Client component — uses interactive link behavior.
  */
-const ExperienceCard: React.FC<Experience> = ({
+/** Props for {@link ExperienceCard}: the experience entry plus rendering hints. */
+interface ExperienceCardProps extends Experience {
+  /** Loads the company logo eagerly with high fetch priority; set only on the first visible card (the LCP image). */
+  priority?: boolean;
+}
+
+const ExperienceCard: React.FC<ExperienceCardProps> = ({
+  priority = false,
   slug,
   position,
   company,
@@ -96,12 +103,14 @@ const ExperienceCard: React.FC<Experience> = ({
                   width={44}
                   height={44}
                   sizes="44px"
+                  loading={priority ? "eager" : "lazy"}
+                  fetchPriority={priority ? "high" : "auto"}
                   className="w-11 h-11 rounded-md object-contain bg-white dark:bg-white/95 border border-border/60 p-1"
                 />
               </div>
             )}
             <div className="min-w-0 flex-1">
-              <h3 className="text-lg font-semibold leading-tight">{company}</h3>
+              <h2 className="text-lg font-semibold leading-tight">{company}</h2>
               <p className="text-sm text-muted-foreground">{position}</p>
               <p className="text-xs text-muted-foreground md:hidden mt-0.5">
                 {period}
