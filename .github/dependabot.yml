@@ -17,3 +17,16 @@ updates:
     groups:
       minor-and-patch:
         update-types: [minor, patch]
+    # Majors that break this repo (checked 2026-10-28): lucide 1.x dropped the brand
+    # icons we use, Tailwind 4 needs a config migration, typescript-eslint doesn't
+    # support TS 7 yet, and eslint-plugin-jsdoc 50 doesn't support ESLint 10.
+    # Security updates still come through; these get migrated by hand.
+    ignore:
+      - dependency-name: lucide-react
+        update-types: [version-update:semver-major]
+      - dependency-name: tailwindcss
+        update-types: [version-update:semver-major]
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+      - dependency-name: eslint
+        update-types: [version-update:semver-major]
