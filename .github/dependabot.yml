@@ -1,0 +1,19 @@
+# Dependency updates for the npm lockfile.
+# cooldown: new releases are proposed only after they've been public for a while.
+# Most compromised npm publishes (Shai-Hulud, ChainDrop, ...) were detected and pulled
+# within days, so waiting keeps them out of the lockfile. Security updates skip the
+# cooldown, so advisories are still patched right away.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
