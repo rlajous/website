@@ -145,67 +145,80 @@ const MONTHS: Record<string, number> = {
 };
 
 /**
- * Converts the start of a human-readable period string into an ISO 8601 date
- * (YYYY-MM-DD), as required by Schema.org date fields such as `datePosted`.
+ * Converts one end of a human-readable period string into an ISO 8601 date
+ * for Schema.org date fields such as `startDate`.
  *
- * Takes the first segment before any dash separator (em-dash, en-dash, or
- * hyphen), then parses a "Month YYYY" or "YYYY" token. The day (and month, when
- * absent) default to the start of the period — e.g. "April 2025 — Present" →
- * "2025-04-01", "2019-2020" → "2019-01-01".
+ * Splits on any dash separator (em-dash, en-dash, or hyphen) and takes the
+ * first (start) or last (end) segment, so a single-year period like "2021" is
+ * both its own start and end. The result keeps the precision of the source
+ * instead of inventing a day: "April 2025" → "2025-04", "2021" → "2021".
+ * An open end ("Present") yields undefined.
  *
  * @param period - Human-readable date range (e.g. "April 2025 — Present", "2021").
+ * @param part - Which end of the range to convert.
  * @returns An ISO 8601 date string, or undefined if no year can be parsed.
  */
-function periodToISODate(period: string): string | undefined {
-  const start = period.split(/[—–-]/)[0].trim();
-  const yearMatch = start.match(/\d{4}/);
+function periodToISODate(
+  period: string,
+  part: "start" | "end"
+): string | undefined {
+  const segments = period.split(/[—–-]/);
+  const segment = segments[part === "start" ? 0 : segments.length - 1].trim();
+  const yearMatch = segment.match(/\d{4}/);
   if (!yearMatch) {
     return undefined;
   }
   const year = yearMatch[0];
-  const monthToken = start.toLowerCase().match(/[a-z]+/)?.[0];
+  const monthToken = segment.toLowerCase().match(/[a-z]+/)?.[0];
   const month = monthToken
     ? Object.entries(MONTHS).find(([name]) => name.startsWith(monthToken))?.[1]
     : undefined;
-  const mm = String(month ?? 1).padStart(2, "0");
-  return `${year}-${mm}-01`;
+  return month ? `${year}-${String(month).padStart(2, "0")}` : year;
 }
 
 /**
- * Builds a JobPosting schema for an experience detail page.
+ * Builds a ProfilePage schema for an experience detail page: the Person with
+ * one Role per position held, each under `worksFor` and dated with
+ * `startDate`/`endDate` (no `endDate` while current).
+ *
+ * Not a JobPosting: that type is for open job offers, and Google Search Console
+ * flagged these pages for missing salary, address and `validThrough` fields.
+ * Jobs use `EmployeeRole`; startups and freelance work are not employment, so
+ * they use the generic `OrganizationRole`.
  *
  * @param experience - The experience entry to describe.
  */
 export function getExperienceSchema(experience: Experience) {
-  const employmentType =
-    experience.type === "job"
-      ? "FULL_TIME"
-      : experience.type === "freelance"
-      ? "CONTRACTOR"
-      : "SELF_EMPLOYED";
-
-  const datePosted = periodToISODate(experience.period);
+  const organization = {
+    "@type": "Organization",
+    name: experience.company,
+    ...(experience.companyUrl && { url: experience.companyUrl }),
+  };
+  const roleType = experience.type === "job" ? "EmployeeRole" : "OrganizationRole";
+  const positions = experience.roles ?? [
+    { position: experience.position, period: experience.period },
+  ];
 
   return {
     "@context": "https://schema.org",
-    "@type": "JobPosting",
-    title: experience.position,
+    "@type": "ProfilePage",
+    name: `${experience.position} at ${experience.company}`,
     description: experience.responsibilities.join(" "),
-    hiringOrganization: {
-      "@type": "Organization",
-      name: experience.company,
-      ...(experience.companyUrl && { url: experience.companyUrl }),
+    mainEntity: {
+      ...PERSON_REF,
+      worksFor: positions.map(({ position, period }) => {
+        const startDate = periodToISODate(period, "start");
+        const endDate = periodToISODate(period, "end");
+        return {
+          "@type": roleType,
+          roleName: position,
+          ...(startDate && { startDate }),
+          ...(endDate && { endDate }),
+          worksFor: organization,
+        };
+      }),
+      knowsAbout: experience.technologies,
     },
-    ...(datePosted && { datePosted }),
-    employmentType,
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: experience.location || "Remote",
-      },
-    },
-    skills: experience.technologies,
   };
 }
 
