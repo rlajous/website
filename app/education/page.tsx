@@ -10,7 +10,7 @@ import { DISPLAY_NAME } from "@/constants/profile";
 export const metadata: Metadata = {
   title: `Education | ${DISPLAY_NAME}`,
   description:
-    `Academic background of ${DISPLAY_NAME}, including his master's in software engineering and bachelor's degree.`,
+    `Academic background of ${DISPLAY_NAME}, including an MSc in Engineering (Software Engineering) from FH Technikum Wien and Software Engineering at ITBA.`,
   alternates: {
     canonical: "/education",
   },

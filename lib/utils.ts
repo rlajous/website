@@ -17,6 +17,22 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
+ * Shortens text for a meta description, cutting at the last sentence (or word) that
+ * fits so search results don't show a sentence chopped mid-way.
+ *
+ * @param text - Full description text.
+ * @param max - Maximum length; ~155 keeps it inside Google's snippet.
+ * @returns The text unchanged when it fits, otherwise a shortened version.
+ */
+export function metaDescription(text: string, max = 155): string {
+  if (text.length <= max) return text;
+  const slice = text.slice(0, max);
+  const sentenceEnd = slice.lastIndexOf(". ");
+  if (sentenceEnd > max / 2) return slice.slice(0, sentenceEnd + 1);
+  return `${slice.slice(0, slice.lastIndexOf(" "))}…`;
+}
+
+/**
  * Lightweight base64-encoded SVG used as a blur placeholder for Next.js Image components.
  *
  * Renders a neutral gray rectangle that matches the muted background token,

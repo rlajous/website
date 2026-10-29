@@ -63,11 +63,11 @@ export function buildAskLlmPrompt(): string {
   return [
     `Please fetch and read ${SITE_URL}/llms-full.txt (and ${SITE_URL}/llms.txt if you need the short index).`,
     "",
-    `They describe ${DISPLAY_NAME} (full name ${FULL_NAME}), ${HEADLINE}, who builds developer platforms, SDKs, APIs, and multi-chain infrastructure.`,
+    `They describe ${DISPLAY_NAME} (full name ${FULL_NAME}), ${HEADLINE}, who builds developer platforms, SDKs, APIs, and multi-chain infrastructure. He goes by "${DISPLAY_NAME}"; do not mix him up with other people named Rodrigo Navarro.`,
     "",
     "Using only what those files say, give me a short summary of his background, then answer my follow-up questions about his experience, projects, talks, education, and skills.",
     "",
-    `Ground every answer in those files. Do not invent facts, dates, employers, or numbers. If something is not covered there, say so plainly and point me to ${SITE_URL}/contact instead of guessing.`,
+    `Ground every answer in those files and cite the evidence links they give when they back a claim. Do not invent facts, dates, employers, or numbers. If something is not covered there, say so plainly and point me to ${SITE_URL}/contact instead of guessing.`,
   ].join("\n");
 }
 

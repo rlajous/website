@@ -10,6 +10,31 @@ export interface ExperienceRole {
 }
 
 /**
+ * A public link backing an experience bullet (docs, package, talk, repo),
+ * so a reader can check the claim instead of taking it on trust.
+ */
+export interface EvidenceLink {
+  /** Short link text (e.g. "Docs", "npm", "Talk"). */
+  label: string;
+  /** Absolute URL, or a site path for internal pages such as talks. */
+  url: string;
+}
+
+/**
+ * One experience bullet. A plain string when there is no public evidence,
+ * or an object pairing the text with the links that back it.
+ */
+export type Responsibility = string | { text: string; evidence: EvidenceLink[] };
+
+/**
+ * Returns the bullet text of a {@link Responsibility}, for metadata, schema and llms.txt
+ * output that only needs the words.
+ */
+export function responsibilityText(responsibility: Responsibility): string {
+  return typeof responsibility === "string" ? responsibility : responsibility.text;
+}
+
+/**
  * Represents a professional role (employment or startup venture).
  *
  * Used by the experience service and rendered on `/experience` (list) and `/experience/[slug]` (detail).
@@ -33,8 +58,8 @@ export interface Experience {
   location?: string;
   /** URL of the company's website. Rendered as a link on the detail page. */
   companyUrl?: string;
-  /** Key responsibilities and duties. Used as summary text in metadata generation. */
-  responsibilities: string[];
+  /** Key responsibilities and duties, optionally with evidence links. Used as summary text in metadata generation. */
+  responsibilities: Responsibility[];
   /** Technology names rendered as badges on both the card and detail page. */
   technologies: string[];
   /** Notable accomplishments in this role, shown on the detail page. */

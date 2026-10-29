@@ -1,10 +1,76 @@
 import { SITE_URL } from "@/constants/routes";
-import { DISPLAY_NAME, FULL_NAME, HEADLINE } from "@/constants/profile";
+import {
+  DISPLAY_NAME,
+  FULL_NAME,
+  GITHUB_URL,
+  HEADLINE,
+  LINKEDIN_URL,
+  X_URL,
+} from "@/constants/profile";
 import { jobs, startups, freelance, skills } from "@/services/experience";
+import { responsibilityText, type Experience, type Responsibility } from "@/domains/Experience";
 import { education } from "@/services/education";
 import { hobby, opensource, earlyWork } from "@/services/projects";
 import { talks } from "@/services/talks";
 import type { Project } from "@/domains/Project";
+
+/**
+ * Date the portfolio content was last reviewed, printed in both llms files so
+ * crawlers can judge freshness. Bump it when the content in `services/` changes.
+ */
+const CONTENT_UPDATED = "2026-10-29";
+
+/** Resolves a site path (e.g. a talk page) to an absolute URL; absolute URLs pass through. */
+function absoluteUrl(url: string): string {
+  return url.startsWith("http") ? url : `${SITE_URL}${url}`;
+}
+
+/**
+ * Renders a bullet with its evidence links appended as Markdown, so AI readers can
+ * check the claim the same way a human can on the detail page.
+ */
+function responsibilityMarkdown(responsibility: Responsibility): string {
+  if (typeof responsibility === "string") return responsibility;
+  const links = responsibility.evidence
+    .map((link) => `[${link.label}](${absoluteUrl(link.url)})`)
+    .join(", ");
+  return `${responsibility.text} (Evidence: ${links})`;
+}
+
+/**
+ * Period shown next to an entry in the short index. For entries with sub-roles it
+ * is the current role's period, so the index never pairs a title with dates when a
+ * different title was held.
+ */
+function currentPeriod(experience: Experience): string {
+  return experience.roles?.[0]?.period ?? experience.period;
+}
+
+/** Shared header for both llms files: name, summary blockquote and naming note. */
+function headerLines(): string[] {
+  return [
+    `# ${DISPLAY_NAME} (${FULL_NAME})`,
+    "",
+    `> ${HEADLINE}, building developer platforms, SDKs, and multi-chain infrastructure. I work across Engineering, Product, and Customers — from roadmap and RFCs to delivery, partner programs, docs, and DevRel.`,
+    "",
+    `Goes by "${DISPLAY_NAME}" professionally; "${FULL_NAME}" is the full legal name. Content last updated ${CONTENT_UPDATED}.`,
+    "",
+  ];
+}
+
+/** Shared "About" section with the site's entry points and public profiles. */
+function aboutLines(): string[] {
+  return [
+    "## About",
+    `- [Home](${SITE_URL}/): Personal portfolio and introduction`,
+    `- [Resume](${SITE_URL}/resume.pdf): Downloadable CV`,
+    `- [Contact](${SITE_URL}/contact): Get in touch`,
+    `- [LinkedIn](${LINKEDIN_URL}): Professional profile`,
+    `- [GitHub](${GITHUB_URL}): Code`,
+    `- [X](${X_URL}): Posts`,
+    "",
+  ];
+}
 
 /**
  * Generates a concise Markdown summary of the portfolio following the llms.txt convention.
@@ -19,42 +85,30 @@ import type { Project } from "@/domains/Project";
 export function generateLlmsTxt(): string {
   const lines: string[] = [];
 
-  // Header
-  lines.push(`# ${DISPLAY_NAME} (${FULL_NAME})`);
-  lines.push("");
-  lines.push(
-    `> ${HEADLINE}, building developer platforms, SDKs, and multi-chain infrastructure. I work across Engineering, Product, and Customers — from roadmap and RFCs to delivery, partner programs, docs, and DevRel.`
-  );
-  lines.push("");
-
-  // About
-  lines.push("## About");
-  lines.push(
-    `- [Home](${SITE_URL}/): Personal portfolio and introduction`
-  );
-  lines.push(
-    `- [Resume](${SITE_URL}/resume.pdf): Downloadable CV`
-  );
-  lines.push(
-    `- [Contact](${SITE_URL}/contact): Get in touch`
-  );
-  lines.push("");
+  lines.push(...headerLines(), ...aboutLines());
 
   // Experience
   lines.push("## Experience");
-  for (const job of [...jobs, ...startups, ...freelance]) {
-    const url = job.companyUrl || `${SITE_URL}/experience/${job.slug}`;
-    const summary = job.responsibilities[0];
-    lines.push(
-      `- [${job.position} at ${job.company}](${url}): ${summary} (${job.period})`
-    );
+  const experienceGroups: { label: string; entries: Experience[] }[] = [
+    { label: "Job", entries: jobs },
+    { label: "Startup", entries: startups },
+    { label: "Freelance", entries: freelance },
+  ];
+  for (const group of experienceGroups) {
+    for (const job of group.entries) {
+      const url = `${SITE_URL}/experience/${job.slug}`;
+      const summary = responsibilityText(job.responsibilities[0]);
+      lines.push(
+        `- [${job.position} at ${job.company}](${url}): ${group.label}. ${summary} (${currentPeriod(job)})`
+      );
+    }
   }
   lines.push("");
 
   // Education
   lines.push("## Education");
   for (const edu of education) {
-    const url = edu.institutionUrl || `${SITE_URL}/education/${edu.slug}`;
+    const url = `${SITE_URL}/education/${edu.slug}`;
     const detail = edu.specialization
       ? `Specialization in ${edu.specialization}`
       : edu.technologies.slice(0, 3).join(", ");
@@ -78,19 +132,21 @@ export function generateLlmsTxt(): string {
   }
   lines.push("");
 
-  // Projects
-  lines.push("## Projects");
-  for (const project of [...hobby, ...opensource, ...earlyWork]) {
-    const url =
-      project.website || project.github || `${SITE_URL}/projects/${project.slug}`;
-    lines.push(`- [${project.name} — ${project.company}](${url}): ${project.description}`);
-  }
-  lines.push("");
-
   // Skills
   lines.push("## Skills");
   for (const skill of skills) {
     lines.push(`- ${skill.category}: ${skill.technologies.join(", ")}`);
+  }
+  lines.push("");
+
+  // Optional: skippable detail per llms.txt convention
+  lines.push("## Optional");
+  lines.push(
+    `- [Full version](${SITE_URL}/llms-full.txt): Every bullet with evidence links, talk abstracts, thesis and project details`
+  );
+  for (const project of [...hobby, ...opensource, ...earlyWork]) {
+    const url = `${SITE_URL}/projects/${project.slug}`;
+    lines.push(`- [${project.name} — ${project.company}](${url}): ${project.description}`);
   }
 
   return lines.join("\n");
@@ -109,26 +165,7 @@ export function generateLlmsTxt(): string {
 export function generateLlmsFullTxt(): string {
   const lines: string[] = [];
 
-  // Header
-  lines.push(`# ${DISPLAY_NAME} (${FULL_NAME})`);
-  lines.push("");
-  lines.push(
-    `> ${HEADLINE}, building developer platforms, SDKs, and multi-chain infrastructure. I work across Engineering, Product, and Customers — from roadmap and RFCs to delivery, partner programs, docs, and DevRel.`
-  );
-  lines.push("");
-
-  // About
-  lines.push("## About");
-  lines.push(
-    `- [Home](${SITE_URL}/): Personal portfolio and introduction`
-  );
-  lines.push(
-    `- [Resume](${SITE_URL}/resume.pdf): Downloadable CV`
-  );
-  lines.push(
-    `- [Contact](${SITE_URL}/contact): Get in touch`
-  );
-  lines.push("");
+  lines.push(...headerLines(), ...aboutLines());
 
   // Experience — Jobs
   lines.push("## Experience");
@@ -137,13 +174,16 @@ export function generateLlmsFullTxt(): string {
     lines.push(`### ${job.position} at ${job.company}`);
     lines.push("");
     lines.push(`- **Period**: ${job.period}`);
+    for (const role of job.roles ?? []) {
+      lines.push(`- **Role**: ${role.position} (${role.period})`);
+    }
     if (job.location) lines.push(`- **Location**: ${job.location}`);
     if (job.companyUrl) lines.push(`- **Company**: [${job.company}](${job.companyUrl})`);
     lines.push(`- **Detail page**: [${SITE_URL}/experience/${job.slug}](${SITE_URL}/experience/${job.slug})`);
     lines.push("");
     lines.push("**Responsibilities:**");
     for (const r of job.responsibilities) {
-      lines.push(`- ${r}`);
+      lines.push(`- ${responsibilityMarkdown(r)}`);
     }
     lines.push("");
     lines.push(`**Technologies:** ${job.technologies.join(", ")}`);
@@ -162,7 +202,7 @@ export function generateLlmsFullTxt(): string {
     lines.push("");
     lines.push("**Responsibilities:**");
     for (const r of startup.responsibilities) {
-      lines.push(`- ${r}`);
+      lines.push(`- ${responsibilityMarkdown(r)}`);
     }
     lines.push("");
     lines.push(`**Technologies:** ${startup.technologies.join(", ")}`);
@@ -181,7 +221,7 @@ export function generateLlmsFullTxt(): string {
     lines.push("");
     lines.push("**Responsibilities:**");
     for (const r of gig.responsibilities) {
-      lines.push(`- ${r}`);
+      lines.push(`- ${responsibilityMarkdown(r)}`);
     }
     lines.push("");
     lines.push(`**Technologies:** ${gig.technologies.join(", ")}`);

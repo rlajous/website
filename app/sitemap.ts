@@ -13,13 +13,14 @@ import { SITE_URL } from "@/constants/routes";
  * deploy trains crawlers to ignore `lastmod`. Bump this only when the static
  * pages or overall site structure meaningfully change.
  */
-const SITE_CONTENT_UPDATED = new Date("2026-06-07");
+const SITE_CONTENT_UPDATED = new Date("2026-10-29");
 
 /**
  * Derives a stable `lastModified` date from a human-readable period string by
  * taking the latest 4-digit year it contains (e.g. "2019-2020" → 2020-12-31).
  *
- * Falls back to {@link SITE_CONTENT_UPDATED} when no year can be parsed. Using a
+ * Falls back to {@link SITE_CONTENT_UPDATED} when no year can be parsed or the
+ * period is ongoing ("Present"), since a current role keeps changing. Using a
  * content-derived, build-stable date keeps `<lastmod>` trustworthy.
  *
  * @param period - Human-readable date range (e.g. "2019-2020", "2024", "Jan 2022 - Present").
@@ -27,7 +28,7 @@ const SITE_CONTENT_UPDATED = new Date("2026-06-07");
  */
 function lastModifiedFromPeriod(period: string): Date {
   const years = period.match(/\d{4}/g);
-  if (!years || years.length === 0) {
+  if (!years || years.length === 0 || /present/i.test(period)) {
     return SITE_CONTENT_UPDATED;
   }
   const latestYear = Math.max(...years.map(Number));

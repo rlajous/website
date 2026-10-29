@@ -32,7 +32,6 @@ export const metadata: Metadata = {
     "Product Engineer",
     "Product Management",
     "Webacy",
-    "Staff Engineer",
     "Developer Platform",
     "SDK",
     "DevRel",
