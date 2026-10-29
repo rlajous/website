@@ -25,12 +25,18 @@ export const jobs: Experience[] = [
       { position: "Staff Engineer", period: "April 2025 — April 2026" },
     ],
     responsibilities: [
-      "Architected the 9-chain risk-scoring expansion (ETH, SOL, ARB, POL, OPT, BASE, BSC, TON, SUI), unlocking enterprise integrations with 1inch, WalletConnect, Mercado Libre, SUI, Cetus, and Metamask.",
-      "Led the labeling-system redesign via an org-wide RFC (76 cross-team comments) and shipped the type-safe label taxonomy — the platform's highest-volume ticket by commits and the foundation for how Webacy explains and ships risk data.",
-      "Shipped @webacy-xyz/sdk (TypeScript monorepo: core / threat / trading) and migrated documentation to Mintlify with OpenAPI 3.0, cutting partner integration time from days to hours.",
-      "Spoke at DuneCon and the DSS Security Summit, converting external visibility into 12 qualified business leads; closed the Agio enterprise deal end-to-end and retained Velvet Capital with an emergency IndexedDB migration during a production outage.",
-      "Designed the event-driven workers architecture (AWS ECS Fargate + SQS/SNS) and the 'Eye of Sauron' Datadog APM stack, resolving 21 P1/P2 production incidents including Redis pool exhaustion and Solana sniper-detection false positives.",
-      "Operated across four functions (Engineering, Product, Sales Engineering, and DevRel) — 23+ self-initiated initiatives over 12 months on a high-impact distributed team.",
+      "Launched pay-per-call API access for AI agents (x402, USDC on Base, no API key) from spike to mainnet in three weeks.",
+      "Shipped Webacy's AI risk assistant (LLM function-calling over 13 risk tools) and a 7-tool MCP server with OAuth 2.1 sign-in and per-tool metering.",
+      "Built enterprise custom plans and self-serve billing: per-org contracts, metered overage, and monthly and annual plans.",
+      "Shipped the stablecoin, RWA and vault due-diligence product (A+ to F grades with per-criterion breakdowns) and depeg alerts that cut repeat alerts from ~30 a week per token to one per episode.",
+      "Built token-fraud detection that profiles launch developers across platforms (1,400+ profiled, 93 flagged for pump-and-dump), plus simulation-based honeypot and hidden-tax checks across EVM chains.",
+      "Expanded risk scoring to 13 chains (EVM, Solana, TON, Sui, Tron, Stellar, Bitcoin), now serving ~4M billable API calls a week to 50+ organizations, including leading wallets, DEX aggregators and a top LatAm marketplace.",
+      "Made sanctions screening fail closed with daily in-house OFAC list ingestion across chains, so a provider outage can no longer return a wallet as clean.",
+      "Led the labeling-system redesign through an org-wide RFC (76 comments across teams) and shipped the label taxonomy that Webacy's risk explanations are built on.",
+      "Shipped @webacy-xyz/sdk and @webacy-xyz/cli and Mintlify docs with OpenAPI 3.0, cutting partner integration time from days to hours.",
+      "Moved label ingestion in-house, cutting third-party data queries ~98% (about 600 a day to 8).",
+      "Replaced a third-party LP-holder provider with an in-house analyzer, shipped behind kill switches and parity evals.",
+      "Spoke at DuneCon and the DSS Security Summit, generating 12 qualified leads, and closed an enterprise deal end to end.",
     ],
     technologies: [
       "TypeScript",
@@ -43,6 +49,11 @@ export const jobs: Experience[] = [
       "SNS",
       "Lambda",
       "Datadog",
+      "AWS CDK",
+      "Stripe",
+      "PostHog",
+      "x402",
+      "MCP",
       "Mintlify",
       "OpenAPI 3.0",
       "Turborepo",
@@ -62,7 +73,7 @@ export const jobs: Experience[] = [
     companyUrl: "https://poap.xyz",
     responsibilities: [
       "Led a new product line end-to-end, from roadmap and stakeholder alignment to delivery, improving onboarding efficiency by 40%.",
-      "Shipped POAP.js, the public SDK that cut partner integration time by 50%.",
+      "Co-built POAP.js, the public TypeScript SDK for POAP (third-largest contributor), cutting partner integration time by 50%.",
       "Drove the Freeze Token smart-contract upgrade, improving token-migration security by 30%.",
     ],
     technologies: [
@@ -139,7 +150,7 @@ export const jobs: Experience[] = [
     location: "Buenos Aires, Argentina",
     companyUrl: "https://github.com/wolox",
     responsibilities: [
-      "Expanded my skill set by constantly changing technology in Front-end tools such as Angular, React, and Vue.js, which has given me great adaptability.",
+      "Shipped client front ends at a software agency, moving between Angular, React and Vue.js projects.",
     ],
     technologies: ["Angular", "React", "Vue.js", "Bash", "AWS"],
   },
@@ -160,7 +171,7 @@ export const startups: Experience[] = [
     type: "startup",
     location: "Remote",
     responsibilities: [
-      "Created the whole application from scratch, including CI/CD pipelines for both front-end and back-end applications.",
+      "Built the product from scratch as a founding engineer, front end and back end, with CI/CD pipelines for both.",
     ],
     technologies: [
       "Next.js",
@@ -183,8 +194,7 @@ export const startups: Experience[] = [
     type: "startup",
     location: "Buenos Aires, Argentina",
     responsibilities: [
-      "Managed front-end and back-end development.",
-      "Worked to solve complex problems using the latest Cloud, Mobile, and Web Technologies.",
+      "Led front-end and back-end development of a GPS-based web and mobile product on AWS.",
     ],
     technologies: [
       "AWS",
