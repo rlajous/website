@@ -145,19 +145,24 @@ const MONTHS: Record<string, number> = {
 };
 
 /**
- * Converts the start of a human-readable period string into an ISO 8601 date
- * (YYYY-MM-DD), as required by Schema.org date fields such as `datePosted`.
+ * Converts one end of a human-readable period string into an ISO 8601 date
+ * (YYYY-MM-DD), as required by Schema.org date fields such as `startDate`.
  *
- * Takes the first segment before any dash separator (em-dash, en-dash, or
- * hyphen), then parses a "Month YYYY" or "YYYY" token. The day (and month, when
- * absent) default to the start of the period — e.g. "April 2025 — Present" →
- * "2025-04-01", "2019-2020" → "2019-01-01".
+ * Splits on any dash separator (em-dash, en-dash, or hyphen), takes the first
+ * (start) or second (end) segment, then parses a "Month YYYY" or "YYYY" token.
+ * The day (and month, when absent) default to the start of that month/year —
+ * e.g. "April 2025 — Present" → "2025-04-01", "2019-2020" → "2019-01-01".
+ * An open end ("Present") or a missing segment yields undefined.
  *
  * @param period - Human-readable date range (e.g. "April 2025 — Present", "2021").
+ * @param part - Which end of the range to convert.
  * @returns An ISO 8601 date string, or undefined if no year can be parsed.
  */
-function periodToISODate(period: string): string | undefined {
-  const start = period.split(/[—–-]/)[0].trim();
+function periodToISODate(
+  period: string,
+  part: "start" | "end" = "start"
+): string | undefined {
+  const start = (period.split(/[—–-]/)[part === "start" ? 0 : 1] ?? "").trim();
   const yearMatch = start.match(/\d{4}/);
   if (!yearMatch) {
     return undefined;
@@ -172,40 +177,40 @@ function periodToISODate(period: string): string | undefined {
 }
 
 /**
- * Builds a JobPosting schema for an experience detail page.
+ * Builds a ProfilePage schema for an experience detail page: the Person with
+ * the role as an `EmployeeRole` under `worksFor` ("… — Present") or `alumniOf` (past).
+ *
+ * Not a JobPosting: that type is for open job offers, and Google Search Console
+ * flagged these pages for missing salary, address and `validThrough` fields.
  *
  * @param experience - The experience entry to describe.
  */
 export function getExperienceSchema(experience: Experience) {
-  const employmentType =
-    experience.type === "job"
-      ? "FULL_TIME"
-      : experience.type === "freelance"
-      ? "CONTRACTOR"
-      : "SELF_EMPLOYED";
-
-  const datePosted = periodToISODate(experience.period);
+  const startDate = periodToISODate(experience.period, "start");
+  const endDate = periodToISODate(experience.period, "end");
+  const organization = {
+    "@type": "Organization",
+    name: experience.company,
+    ...(experience.companyUrl && { url: experience.companyUrl }),
+  };
+  const relation = /present/i.test(experience.period) ? "worksFor" : "alumniOf";
 
   return {
     "@context": "https://schema.org",
-    "@type": "JobPosting",
-    title: experience.position,
+    "@type": "ProfilePage",
+    name: `${experience.position} at ${experience.company}`,
     description: experience.responsibilities.join(" "),
-    hiringOrganization: {
-      "@type": "Organization",
-      name: experience.company,
-      ...(experience.companyUrl && { url: experience.companyUrl }),
-    },
-    ...(datePosted && { datePosted }),
-    employmentType,
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: experience.location || "Remote",
+    mainEntity: {
+      ...PERSON_REF,
+      [relation]: {
+        "@type": "EmployeeRole",
+        roleName: experience.position,
+        ...(startDate && { startDate }),
+        ...(endDate && { endDate }),
+        [relation]: organization,
       },
+      knowsAbout: experience.technologies,
     },
-    skills: experience.technologies,
   };
 }
 
