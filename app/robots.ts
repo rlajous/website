@@ -19,7 +19,8 @@ const AI_CRAWLERS = [
 /**
  * Configures crawler rules for the site.
  *
- * Allows all paths except `/api/` and points to the XML sitemap. AI crawlers and
+ * Allows all paths except `/api/` (but keeps `/api/project-banner/`, the og:image of
+ * projects without a banner) and points to the XML sitemap. AI crawlers and
  * assistant fetchers are listed by name so that allowing them is an explicit choice:
  * the site wants to be found and summarized by LLMs (see `/llms.txt`).
  * Used by Next.js to produce `/robots.txt`.
@@ -29,8 +30,8 @@ const AI_CRAWLERS = [
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: "/api/" },
-      { userAgent: AI_CRAWLERS, allow: "/", disallow: "/api/" },
+      { userAgent: "*", allow: ["/", "/api/project-banner/"], disallow: "/api/" },
+      { userAgent: AI_CRAWLERS, allow: ["/", "/api/project-banner/"], disallow: "/api/" },
     ],
     host: SITE_URL,
     sitemap: `${SITE_URL}/sitemap.xml`,

@@ -97,9 +97,10 @@ export function generateLlmsTxt(): string {
   for (const group of experienceGroups) {
     for (const job of group.entries) {
       const url = `${SITE_URL}/experience/${job.slug}`;
-      const summary = responsibilityText(job.responsibilities[0]);
+      const first = job.responsibilities[0];
+      const summary = first === undefined ? "" : ` ${responsibilityText(first)}`;
       lines.push(
-        `- [${job.position} at ${job.company}](${url}): ${group.label}. ${summary} (${currentPeriod(job)})`
+        `- [${job.position} at ${job.company}](${url}): ${group.label}.${summary} (${currentPeriod(job)})`
       );
     }
   }
