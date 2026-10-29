@@ -4,6 +4,7 @@
  * and Schema.org structured data scripts.
  */
 import { Experience } from "@/domains/Experience";
+import { TALK_DETAIL } from "@/constants/routes";
 
 /**
  * Employment positions ordered by most recent first.
@@ -25,18 +26,42 @@ export const jobs: Experience[] = [
       { position: "Staff Engineer", period: "April 2025 — April 2026" },
     ],
     responsibilities: [
-      "Launched pay-per-call API access for AI agents (x402, USDC on Base, no API key) from spike to mainnet in three weeks.",
-      "Shipped Webacy's AI risk assistant (LLM function-calling over 13 risk tools) and a 7-tool MCP server with OAuth 2.1 sign-in and per-tool metering.",
+      {
+        text: "Launched pay-per-call API access for AI agents (x402, USDC on Base, no API key) from spike to mainnet in three weeks.",
+        evidence: [{ label: "Docs", url: "https://docs.webacy.com/x402-payments" }],
+      },
+      {
+        text: "Shipped Webacy's AI risk assistant (LLM function-calling over 13 risk tools) and a 7-tool MCP server with OAuth 2.1 sign-in and per-tool metering.",
+        evidence: [{ label: "MCP docs", url: "https://docs.webacy.com/integrations/mcp-server" }],
+      },
       "Built enterprise custom plans and self-serve billing: per-org contracts, metered overage, and monthly and annual plans.",
-      "Shipped the stablecoin, RWA and vault due-diligence product (A+ to F grades with per-criterion breakdowns) and depeg alerts that cut repeat alerts from ~30 a week per token to one per episode.",
-      "Built token-fraud detection that profiles launch developers across platforms (1,400+ profiled, 93 flagged for pump-and-dump), plus simulation-based honeypot and hidden-tax checks across EVM chains.",
-      "Expanded risk scoring to 13 chains (EVM, Solana, TON, Sui, Tron, Stellar, Bitcoin), now serving ~4M billable API calls a week to 50+ organizations, including leading wallets, DEX aggregators and a top LatAm marketplace.",
-      "Made sanctions screening fail closed with daily in-house OFAC list ingestion across chains, so a provider outage can no longer return a wallet as clean.",
+      {
+        text: "Shipped the stablecoin, RWA and vault due-diligence product (A+ to F grades with per-criterion breakdowns) and depeg alerts that cut repeat alerts from ~30 a week per token to one per episode.",
+        evidence: [{ label: "Grades", url: "https://docs.webacy.com/safety-grade" }, { label: "Depeg alerts", url: "https://docs.webacy.com/essentials/webhooks" }],
+      },
+      {
+        text: "Built token-fraud detection that profiles launch developers across platforms (1,400+ profiled, 93 flagged for pump-and-dump), plus simulation-based honeypot and hidden-tax checks across EVM chains.",
+        evidence: [{ label: "Talk", url: TALK_DETAIL("ethdenver-2026") }],
+      },
+      {
+        text: "Expanded risk scoring to 13 chains (EVM, Solana, TON, Sui, Tron, Stellar, Bitcoin), now serving ~4M billable API calls a week to 50+ organizations, including leading wallets, DEX aggregators and a top LatAm marketplace.",
+        evidence: [{ label: "Chains", url: "https://docs.webacy.com/supported-blockchains" }],
+      },
+      {
+        text: "Made sanctions screening fail closed with daily in-house OFAC list ingestion across chains, so a provider outage can no longer return a wallet as clean.",
+        evidence: [{ label: "Docs", url: "https://docs.webacy.com/compliance" }],
+      },
       "Led the labeling-system redesign through an org-wide RFC (76 comments across teams) and shipped the label taxonomy that Webacy's risk explanations are built on.",
-      "Shipped @webacy-xyz/sdk and @webacy-xyz/cli and Mintlify docs with OpenAPI 3.0, cutting partner integration time from days to hours.",
+      {
+        text: "Shipped @webacy-xyz/sdk and @webacy-xyz/cli and Mintlify docs with OpenAPI 3.0, cutting partner integration time from days to hours.",
+        evidence: [{ label: "SDK docs", url: "https://docs.webacy.com/sdk/introduction" }, { label: "npm", url: "https://www.npmjs.com/package/@webacy-xyz/sdk" }, { label: "CLI", url: "https://www.npmjs.com/package/@webacy-xyz/cli" }],
+      },
       "Moved label ingestion in-house, cutting third-party data queries ~98% (about 600 a day to 8).",
       "Replaced a third-party LP-holder provider with an in-house analyzer, shipped behind kill switches and parity evals.",
-      "Spoke at DuneCon and the DSS Security Summit, generating 12 qualified leads, and closed an enterprise deal end to end.",
+      {
+        text: "Spoke at DuneCon and the DeFi Security Summit, generating 12 qualified leads, and closed an enterprise deal end to end.",
+        evidence: [{ label: "DuneCon", url: TALK_DETAIL("dunecon-2025") }, { label: "DeFi Security Summit", url: TALK_DETAIL("defi-security-summit-2025") }],
+      },
     ],
     technologies: [
       "TypeScript",
@@ -73,7 +98,10 @@ export const jobs: Experience[] = [
     companyUrl: "https://poap.xyz",
     responsibilities: [
       "Led a new product line end-to-end, from roadmap and stakeholder alignment to delivery, improving onboarding efficiency by 40%.",
-      "Co-built POAP.js, the public TypeScript SDK for POAP (third-largest contributor), cutting partner integration time by 50%.",
+      {
+        text: "Co-built POAP.js, the public TypeScript SDK for POAP (third-largest contributor), cutting partner integration time by 50%.",
+        evidence: [{ label: "GitHub", url: "https://github.com/poap-xyz/poap.js" }],
+      },
       "Drove the Freeze Token smart-contract upgrade, improving token-migration security by 30%.",
     ],
     technologies: [
@@ -148,7 +176,6 @@ export const jobs: Experience[] = [
     period: "June 2018 — October 2019",
     type: "job",
     location: "Buenos Aires, Argentina",
-    companyUrl: "https://github.com/wolox",
     responsibilities: [
       "Shipped client front ends at a software agency, moving between Angular, React and Vue.js projects.",
     ],

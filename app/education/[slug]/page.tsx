@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { blurDataURL } from "@/lib/utils";
+import { DEFAULT_OG_IMAGE } from "@/constants/routes";
 import JsonLd from "@/components/JsonLd";
 import { getEducationSchema } from "@/lib/schema";
 import { DISPLAY_NAME } from "@/constants/profile";
@@ -75,9 +76,11 @@ export async function generateMetadata({
         ? `Specialization in ${edu.specialization}`
         : edu.degree,
       type: "profile",
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
+      images: [DEFAULT_OG_IMAGE],
       title: `${edu.degree} at ${edu.institution}`,
       description: edu.specialization
         ? `Specialization in ${edu.specialization}`

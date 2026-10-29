@@ -6,10 +6,12 @@ import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar, ArrowLeft, Briefcase, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { blurDataURL } from "@/lib/utils";
+import { blurDataURL, metaDescription } from "@/lib/utils";
+import { DEFAULT_OG_IMAGE } from "@/constants/routes";
 import JsonLd from "@/components/JsonLd";
 import { getExperienceSchema } from "@/lib/schema";
 import { DISPLAY_NAME } from "@/constants/profile";
+import { responsibilityText } from "@/domains/Experience";
 
 /** Props for the experience detail page, receiving the slug from the dynamic route. */
 interface ExperiencePageProps {
@@ -49,9 +51,11 @@ export async function generateMetadata({
     };
   }
 
+  const summary = metaDescription(experience.responsibilities.map(responsibilityText).join(" "));
+
   return {
     title: `${experience.position} at ${experience.company} | ${DISPLAY_NAME}`,
-    description: experience.responsibilities.join(" "),
+    description: summary,
     keywords: [
       ...experience.technologies,
       experience.company,
@@ -67,13 +71,15 @@ export async function generateMetadata({
     },
     openGraph: {
       title: `${experience.position} at ${experience.company}`,
-      description: experience.responsibilities.join(" "),
+      description: summary,
       type: "profile",
+      images: [DEFAULT_OG_IMAGE],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
+      images: [DEFAULT_OG_IMAGE],
       title: `${experience.position} at ${experience.company}`,
-      description: experience.responsibilities.join(" "),
+      description: summary,
       creator: "@ro_lajous",
     },
   };
@@ -229,7 +235,24 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
           <ul className="list-disc list-inside space-y-2">
             {experience.responsibilities.map((responsibility, index) => (
               <li key={index} className="text-muted-foreground">
-                {responsibility}
+                {responsibilityText(responsibility)}
+                {typeof responsibility !== "string" &&
+                  responsibility.evidence.map((link) => {
+                    const external = link.url.startsWith("http");
+                    return (
+                      <a
+                        key={link.url}
+                        href={link.url}
+                        {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+                        className="ml-2 inline-flex items-center gap-0.5 text-xs font-medium text-link hover:underline whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+                        data-umami-event="Experience Evidence Click"
+                        data-umami-event-label={link.label}
+                      >
+                        {link.label}
+                        {external && <ExternalLink className="w-3 h-3" aria-hidden />}
+                      </a>
+                    );
+                  })}
               </li>
             ))}
           </ul>

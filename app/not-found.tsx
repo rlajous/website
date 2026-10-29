@@ -2,6 +2,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HEADER_ROUTES, ROUTES } from "@/constants/routes";
 import { Home } from "lucide-react";
+import type { Metadata } from "next";
+import { DISPLAY_NAME } from "@/constants/profile";
+
+/** Own title and noindex, so unmatched URLs don't reuse the home page's metadata. */
+export const metadata: Metadata = {
+  title: `Page not found | ${DISPLAY_NAME}`,
+  robots: { index: false, follow: true },
+};
 
 /**
  * Custom 404 page shown for unmatched routes.

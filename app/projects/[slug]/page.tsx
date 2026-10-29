@@ -51,6 +51,11 @@ export async function generateMetadata({
     };
   }
 
+  // Projects without a banner fall back to the generated per-project banner.
+  const ogImage = project.banner
+    ? `${SITE_URL}/assets${project.banner}`
+    : `${SITE_URL}/api/project-banner/${slug}`;
+
   return {
     title: `${project.name} - ${project.company} | ${DISPLAY_NAME}`,
     description: project.detailedDescription || project.description,
@@ -62,10 +67,11 @@ export async function generateMetadata({
       title: `${project.name} - ${project.company}`,
       description: project.detailedDescription || project.description,
       type: "website",
-      images: project.banner ? [`${SITE_URL}/assets${project.banner}`] : [],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
+      images: [ogImage],
       title: `${project.name} - ${project.company}`,
       description: project.detailedDescription || project.description,
       creator: "@ro_lajous",

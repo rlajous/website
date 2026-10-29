@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
-import { Experience } from "@/domains/Experience";
+import { Experience, responsibilityText } from "@/domains/Experience";
 import { ChevronRight } from "lucide-react";
 
 const MAX_TECH_BADGES = 8;
@@ -140,7 +140,7 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
           <ul className="list-disc ml-5 space-y-1 mt-2">
             {responsibilities.slice(0, MAX_BULLETS).map((item, itemIndex) => (
               <li key={itemIndex} className="mt-2 text-sm">
-                {item}
+                {responsibilityText(item)}
               </li>
             ))}
           </ul>

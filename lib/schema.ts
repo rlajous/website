@@ -18,7 +18,7 @@ import {
   LINKEDIN_URL,
   X_URL,
 } from "@/constants/profile";
-import { Experience } from "@/domains/Experience";
+import { Experience, responsibilityText } from "@/domains/Experience";
 import { Education } from "@/domains/Education";
 import { Project } from "@/domains/Project";
 import { Talk } from "@/domains/Talk";
@@ -203,7 +203,7 @@ export function getExperienceSchema(experience: Experience) {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     name: `${experience.position} at ${experience.company}`,
-    description: experience.responsibilities.join(" "),
+    description: experience.responsibilities.map(responsibilityText).join(" "),
     mainEntity: {
       ...PERSON_REF,
       worksFor: positions.map(({ position, period }) => {
